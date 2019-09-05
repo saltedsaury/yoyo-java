@@ -44,7 +44,8 @@ public class DailyStartTask {
 
         @Override
         public void run() {
-            log.info("DailyStart thread run.");
+            long current = System.currentTimeMillis();
+            log.info("DailyStart thread run.start at :{}",current);
             try {
                 systemBatch = systemBatchDao.selectSystemBatchByPreCode(BatchCode.BATCH_START.getCode()
                         , BatchType.DAILY_START.getCode());
@@ -75,6 +76,8 @@ public class DailyStartTask {
                         }
                     }
                 }
+                long finish = System.currentTimeMillis();
+                log.info("DailyStart finished at :{},cost time :{} sec",finish,(finish-current)/ 1000);
             }catch(InterruptedException e){
                 log.error("do DailyStart task failed.");
                 e.printStackTrace();

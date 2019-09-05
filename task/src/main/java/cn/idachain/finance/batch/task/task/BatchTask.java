@@ -47,7 +47,8 @@ public class BatchTask {
 
         @Override
         public void run() {
-            log.info("Batch thread run.");
+            long current = System.currentTimeMillis();
+            log.info("Batch thread run.start at :{}",current);
             try {
                 systemBatch = systemBatchDao.selectSystemBatchByPreCode(BatchCode.BATCH_START.getCode()
                         , BatchType.DAILY_END.getCode());
@@ -86,6 +87,8 @@ public class BatchTask {
                 systemDate.setSystemDate(calendar.getTime());
                 systemDate.setModifiedTime(new Date(System.currentTimeMillis()));
                 systemDateDao.updateSystemDate(systemDate);
+                long finish = System.currentTimeMillis();
+                log.info("batch task finished at :{},cost time :{} sec",finish,(finish-current)/ 1000);
             }catch(InterruptedException e){
                 log.error("do batch task failed.");
                 e.printStackTrace();
