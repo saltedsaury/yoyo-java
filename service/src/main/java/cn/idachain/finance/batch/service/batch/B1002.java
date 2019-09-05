@@ -63,7 +63,7 @@ public class B1002 extends BaseBatch {
                 for (final InvestInfo investInfo:investInfos){
                     //生成收益计划
                     BigDecimal totalInterest = investInfo.getAmount().multiply(product.getProfitScale());
-                    final RevenuePlan revenuePlan = convertToRevenuePlan(investInfo,totalInterest);
+                    final RevenuePlan revenuePlan = convertToRevenuePlan(investInfo,totalInterest,product);
                     log.info("generate plan {} for invest {} ",revenuePlan,investInfo);
                     investInfo.setPlanNo(revenuePlan.getPlanNo());
 
@@ -112,7 +112,7 @@ public class B1002 extends BaseBatch {
         return true;
     }
 
-    private RevenuePlan convertToRevenuePlan(InvestInfo investInfo, BigDecimal totalInterest){
+    private RevenuePlan convertToRevenuePlan(InvestInfo investInfo, BigDecimal totalInterest,Product product){
         //生成收益计划
         RevenuePlan revenuePlan = new RevenuePlan();
         revenuePlan.setPlanNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.REVENUEPLAN)));
@@ -130,6 +130,8 @@ public class B1002 extends BaseBatch {
         revenuePlan.setLastBonusDate(new Date(System.currentTimeMillis()));
         revenuePlan.setCreateTime(new Date(System.currentTimeMillis()));
         revenuePlan.setModifiedTime(new Date(System.currentTimeMillis()));
+        revenuePlan.setPaybackDate(product.getDueDate());
+        revenuePlan.setCcy(product.getCcy());
         return revenuePlan;
     }
 

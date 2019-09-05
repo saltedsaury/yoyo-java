@@ -41,4 +41,8 @@ public class RevenuePlan extends BaseDO{
 
     private String remark;
 
+    private Date paybackDate;
+
+    private String ccy;
+
 }
