@@ -1,0 +1,61 @@
+{
+  "server": {
+    "port": "8088"
+  },
+  "task": {
+    "financing": {
+      "daily-start": "0 0 21 ? * *",
+      "batch-start": "0 0 21 ? * *",
+      "compensate-confirm":120000,
+      "transfer-confirm":120000
+    }
+  },
+  "logging": {
+    "config": "classpath:log4j2-dev.xml"
+  },
+  "connection": {
+    "classname":"com.mysql.jdbc.Driver",
+    "url": "jdbc:mysql://127.0.0.1:3306/ida_financing?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8",
+    "username": "sue",
+    "password": "110119"
+  },
+  "mybatis-plus": {
+    "global-config": {
+      "id-type": 0,
+      "field-strategy": 2,
+      "db-column-underline": true,
+      "refresh-mapper": false,
+      "logic-delete-value": 0,
+      "logic-not-delete-value": 1
+    },
+    "configuration": {
+      "map-underscore-to-camel-case": true,
+      "cache-enabled": false
+    }
+  },
+  "druid": {
+    "initialSize": "10",
+    "minIdle": "10",
+    "maxActive": "10",
+    "maxWait": "10000",
+    "timeBetweenEvictionRunsMillis": "60000",
+    "minEvictableIdleTimeMillis": "300000",
+    "validationQuery": "select 1",
+    "testWhileIdle": "true",
+    "testOnBorrow": "true",
+    "testOnReturn": "false",
+    "poolPreparedStatements": "true",
+    "maxPoolPreparedStatementPerConnectionSize": "20",
+    "filters": "stat",
+    "loginUsername": "admin",
+    "loginPassword": "admin"
+  },
+  "vote":{
+    "cex":{
+      "server":"http://139.9.55.125/",
+      "interface":{
+        "privatekey" : "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAINOgw7+2cXMDOpvvdYvz3j7v8IIh9e3djAZk5HGin+qns7Xsf4yIWsAu0jb1UYqX5A07b81BowZu0dHeUI5WX3I7zF56lUhp52MAAohi+lyDEPy05wNl3Ctfb9Zd1nOSk6TuiUkuWNhMwQPyKFQNzpw4n8L5fKp4Eb8hLdT0hNfAgMBAAECgYAfw6h0wjYQYXJmbC2yWNKJ4+zZlZK3HoyayjUmuK7cf3v3cbp/UcU/y2eDEpsfZDTF/+fbr4or7jWd4q501MbPClmEMEH+16XwoVMQGT5wQ2Gnre5ggYKdR0oxWjZUBLtcEHJFJtMoYBLBiPZOv0vGbLIiYiMZFqDGuoCfMmPeMQJBAOIXHRYNOaOrbjY0cmCxDUh6mAdbxNkcFXCUsnq+mU4rBecVZlpSPOlyf2rR/EoozzobxQpWCX6PRSJC00ZjGpUCQQCUrWjga91MXimZO0byc22WmONw6KvVxpcdJBMYqdxBvSjmSL6DvLY5TuEkE/DLHC5Mb95l2HUKu7girC1xJG0jAkB0Kl4We3sXHjkFftMZ3T6u89ZzSXKN/wEBFFXT/WR1pmNlBTjOxZxoch0HvJa9X9SBzczi76v3LBPgc6dsbfU1AkB2OmuCwuOovdxQiK3DUPzdW9jJSYyTo6c5Oh2haDnJYPWsIj61nZQ+gDZSrTS3H0LF79Ono3h3P42OrOI57aCHAkBOM+fHGvWpQpjJDep3Fo1KBZPFNGacU0lzUiR5MwAk0TwkGb/vNcuRDxeGwp6BzJK5KB1wSBso8E0UF7DuFaOg"
+      }
+    }
+  }
+}

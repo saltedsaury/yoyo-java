@@ -1,0 +1,144 @@
+package cn.idachain.finance.batch.service.batch;
+
+import cn.idachain.finance.batch.common.enums.*;
+import cn.idachain.finance.batch.common.model.Product;
+import cn.idachain.finance.batch.service.dao.*;
+import cn.idachain.finance.batch.service.service.IInsuranceInfoService;
+import cn.idachain.finance.batch.common.dataobject.InsuranceInfo;
+import cn.idachain.finance.batch.common.dataobject.InsuranceTrade;
+import cn.idachain.finance.batch.common.dataobject.InvestInfo;
+import cn.idachain.finance.batch.common.dataobject.RevenuePlan;
+import cn.idachain.finance.batch.common.util.BlankUtil;
+import cn.idachain.finance.batch.service.service.IBalanceDetialService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+@Slf4j
+@Service
+public class B1005 extends BaseBatch {
+    @Autowired
+    private IInvestDao investDao;
+    @Autowired
+    private IRevenuePlanDao revenuePlanDao;
+    @Autowired
+    private IRedemptionTradeDao redemptionTradeDao;
+    @Autowired
+    private IBonusOrderDao bonusOrderDao;
+    @Autowired
+    private IInsuranceTradeDao insuranceTradeDao;
+    @Autowired
+    private IInsuranceInfoService insuranceInfoService;
+    @Autowired
+    private TransactionTemplate transactionTemplate;
+    @Autowired
+    private IProductDao productDao;
+    @Autowired
+    private IBalanceDetialService balanceDetialService;
+    @Autowired
+    private IExchangeRateDao exchangeRateDao;
+
+    /**
+     * 到期还本
+     * @throws Exception
+     */
+    public boolean execute() throws Exception {
+        log.info("Batch 1005 begin.");
+        beforeExcute(BatchCode.B1005.getCode());
+        if (!checkStatus()){
+            return false;
+        }
+        List<String> status = new ArrayList<String>();
+        status.add(ProductStatus.OPEN.getCode());
+        List<Product> products = productDao.getProductsByStatus(status,null);//需修改 ，查询开放日的产品
+        log.info("query product list for status open,list :{}",products);
+        //分产品打捞投资记录
+        for (Product product : products){
+            List<RevenuePlan> records =  revenuePlanDao.selectPlanForBatch(
+                    product.getProductNo(),PlanStatus.INIT.getCode());//按产品，状态 查询收益计划
+            log.info("query revenue plan for product {},list:{}",product.getProductNo(),records);
+            for (final RevenuePlan record : records){
+                //分红记录是否全部完成
+                int terms = bonusOrderDao.countBonusByPlanAndStatus(record.getPlanNo(),BonusStatus.FINISH.getCode());
+                if(terms != product.getInterestCycle().intValue()){
+                    log.error("bonus haven't finished，plan_no：{}",record.getPlanNo());
+                    //增加报警信息
+                    continue;
+                }
+                //获取投资记录
+                final InvestInfo investInfo = investDao.selectInvestInfoByTradeNoAndStatus(record.getInvestNo(),
+                        InvestStatus.GIVE_OUT.getCode(),record.getCustomerNo());
+                log.info("query invest info over due :{}",investInfo);
+                //获取投保记录
+                final InsuranceTrade insuranceTrade = insuranceTradeDao.getTradeByInvestNo(
+                        investInfo.getTradeNo(),InsuranceTradeStatus.PREPARE.getCode());
+                log.info("query insurance trade prepared :{}",insuranceTrade);
+                if (!BlankUtil.isBlank(insuranceTrade)){
+                    //获取保险产品
+                    InsuranceInfo insuranceInfo = insuranceInfoService.getInsuranceInfoByNoAndProduct(
+                            insuranceTrade.getInsuranceNo(),product.getProductNo());
+
+                    //获取到期兑换比例
+                    BigDecimal overDueRate = insuranceInfo.getOverDueRate();
+                    //获取当前实际兑换比例
+                    BigDecimal currentRate = exchangeRateDao
+                            .getCurrentRateByPairs(insuranceInfo.getTransactionPairs()).getRate();
+
+                    //当前实际兑换比例 < 原定到期兑换比例
+                    if(currentRate.compareTo(overDueRate)<0){
+                        //保险生效
+                        //调用account进行赎回
+                        log.info("pay principal with insurance,planNo:{}",record.getPlanNo());
+                        if(balanceDetialService.payPrincipal(record.getCustomerNo(),
+                                investInfo.getCcy(),record.getPrincipal(),record.getPlanNo(),insuranceTrade.getTradeNo(),true)) {
+                            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                                @Override
+                                protected void doInTransactionWithoutResult(TransactionStatus status) {
+                                    insuranceTradeDao.updateInsuranceTradeStatusByObj(insuranceTrade,
+                                            InsuranceTradeStatus.WAIT_COMPENSATION.getCode());
+                                    insuranceTradeDao.updateInsuranceSubStatusByObj(insuranceTrade,
+                                            InsuranceTradeSubStatus.NO_APPLICATION.getCode());
+                                }
+                            });
+                        }
+                    }else{
+                        //保险不生效
+                        //调用account进行赎回
+                        log.info("pay principal without insurance,insurance not effective,planNo:{}",record.getPlanNo());
+                        if(balanceDetialService.payPrincipal(record.getCustomerNo(),
+                                investInfo.getCcy(),record.getPrincipal(),record.getPlanNo(),null,false)) {
+                            insuranceTradeDao.updateInsuranceTradeStatusByObj(
+                                    insuranceTrade, InsuranceTradeStatus.FINISH.getCode());
+                        }
+                    }
+                }else{
+                    //未购买保险
+                    //调用account进行赎回
+                    log.info("pay principal without insurance,planNo:{}",record.getPlanNo());
+                    balanceDetialService.payPrincipal(record.getCustomerNo(),
+                            investInfo.getCcy(),record.getPrincipal(),record.getPlanNo(),null,false);
+                }
+
+                //更新赎回记录状态 以及 投资记录状态
+                transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                    @Override
+                    protected void doInTransactionWithoutResult(TransactionStatus status) {
+                        investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
+                        revenuePlanDao.updatePlanStatusByObj(record,PlanStatus.FINISH.getCode()); //
+                    }
+                });
+            }
+        }
+        afterExecute();
+        log.info("Batch 1005 end.");
+        return true;
+    }
+
+}

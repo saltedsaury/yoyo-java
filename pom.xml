@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.7.RELEASE</version>
+	</parent>
+	<groupId>cn.idachain.finance.batch</groupId>
+	<artifactId>batch-platform-root</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>batch Root</name>
+	<description>batch application</description>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>test</module>
+		<module>web</module>
+		<module>task</module>
+		<module>common</module>
+		<module>service</module>
+	</modules>
+
+	<properties>
+		<aviator.version>3.2.0</aviator.version>
+		<spring.version>4.3.11.RELEASE</spring.version>
+		<mybatis.spring.version>1.3.1</mybatis.spring.version>
+		<mybatis.version>3.4.5</mybatis.version>
+		<druid.version>1.1.3</druid.version>
+		<mysql-connector-java.version>8.0.11</mysql-connector-java.version>
+		<validation.version>1.1.0.Final</validation.version>
+		<hibernate.validator.version>5.0.1.Final</hibernate.validator.version>
+		<lombok.version>1.16.18</lombok.version>
+		<swagger2.version>2.7.0</swagger2.version>
+		<commons-lang3>3.5</commons-lang3>
+		<commons-collections4>4.1</commons-collections4>
+		<commons-io>2.5</commons-io>
+		<commons-beanutils>1.9.3</commons-beanutils>
+		<commons-beanutils-core>1.8.3</commons-beanutils-core>
+		<guava.version>23.0</guava.version>
+		<fastjson.version>1.2.38</fastjson.version>
+		<jodd.version>3.6.1</jodd.version>
+		<quartz.version>1.5.2</quartz.version>
+		<aspectj.version>1.7.4</aspectj.version>
+		<httpclient.version>4.5.5</httpclient.version>
+
+		<batch.version>0.0.1-SNAPSHOT</batch.version>
+	</properties>
+
+	<!--子模块不用再额外添加这些依赖-->
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<!-- 想要配置log4j2，就要先去除logging包 所有带starter的都要排除logging-->
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<!--easy mock-->
+			<exclusions>
+				<exclusion>
+					<artifactId>objenesis</artifactId>
+					<groupId>org.objenesis</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+			<exclusions>
+				<!-- 想要配置log4j2，就要先去除logging包 -->
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!--log4j2-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- basic -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commons-collections4}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons-beanutils}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils-core</artifactId>
+				<version>${commons-beanutils-core}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io}</version>
+			</dependency>
+			<!--guava-->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+				<exclusions>
+					<!--在版本管理中配置exclusion似乎无效？-->
+					<exclusion>
+						<artifactId>jsr305</artifactId>
+						<groupId>com.google.code.findbugs</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!--json-->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${validation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.validator.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jodd</groupId>
+				<artifactId>jodd-http</artifactId>
+				<version>${jodd.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<!--httpclient-->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+
+			<!-- framework -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<!-- db -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis.spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-connector-java.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.googlecode.aviator</groupId>
+				<artifactId>aviator</artifactId>
+				<version>${aviator.version}</version>
+			</dependency>
+
+			<!-- quartz -->
+			<dependency>
+				<groupId>quartz</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+			<!-- lombok -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
+			<!--swagger2 start-->
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${swagger2.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>guava</artifactId>
+						<groupId>com.google.guava</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${swagger2.version}</version>
+			</dependency>
+			<!--swagger2 end-->
+
+			<!--self-->
+			<dependency>
+				<groupId>cn.idachain.finance.batch</groupId>
+				<artifactId>batch-web</artifactId>
+				<version>${batch.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cn.idachain.finance.batch</groupId>
+				<artifactId>batch-task</artifactId>
+				<version>${batch.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cn.idachain.finance.batch</groupId>
+				<artifactId>batch-service</artifactId>
+				<version>${batch.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cn.idachain.finance.batch</groupId>
+				<artifactId>batch-common</artifactId>
+				<version>${batch.version}</version>
+			</dependency> 
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<includeSystemScope>true</includeSystemScope>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

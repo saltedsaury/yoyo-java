@@ -1,0 +1,11 @@
+client          包装客户端发布sdk作用
+core/common     公共函数、枚举、工具包等
+core/dal        orm实现层
+domain          定义领域模型
+domainservice   领域服务实现(领域校验、领域服务、领域流程、领域仓储)
+ext/daemon      定时任务、异步消息推送等
+ext/integration 调用外部服务实现包装
+ext/service     发布服务或发布API实现层
+service/facade  发布定义API
+test            测试层
+web             web服务发布层
