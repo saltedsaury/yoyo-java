@@ -91,7 +91,7 @@ public class B1005 extends BaseBatch {
                     BigDecimal rate = insuranceInfo.getCompensation();
                     //获取当前实际兑换比例
                     BigDecimal currentRate = exchangeRateDao
-                            .getCurrentRateByPairs(insuranceInfo.getTransactionPairs()).getRate();
+                            .getCurrentRateByPairs(insuranceInfo.getTransactionPairs(),product.getProductNo()).getRate();
 
                     //当前实际兑换比例 < 保值兑换比例
                     if(currentRate.compareTo(rate)<0){

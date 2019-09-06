@@ -16,4 +16,6 @@ public class ExchangeRate extends BaseDO{
     private String transactionPairs;
 
     private String remark;
+
+    private String productNo;
 }

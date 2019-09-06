@@ -20,9 +20,10 @@ public class ExchangeRateDao implements IExchangeRateDao {
     private ExchangeRateMapper exchangeRateMapper;
 
     @Override
-    public ExchangeRate getCurrentRateByPairs(String transPairs){
+    public ExchangeRate getCurrentRateByPairs(String transPairs,String productNo){
         EntityWrapper<ExchangeRate> wrapper = new EntityWrapper<>();
         wrapper.eq("transaction_pairs",transPairs);
+        wrapper.eq("product_no",productNo);
         wrapper.orderBy("create_time",false);
         wrapper.last("limit 1");
         List<ExchangeRate> list = exchangeRateMapper.selectList(wrapper);
