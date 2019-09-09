@@ -75,16 +75,11 @@
             <AppenderRef ref="BIZ-APPENDER"/>
             <AppenderRef ref="ERROR-APPENDER"/>
         </logger>
-
-        <logger name="Digital-Pay-Monitor-info" level="info" additivity="false">
-            <AppenderRef ref="BIZ-APPENDER"/>
+        <logger name="org.mybatis" level="debug">
+            <AppenderRef ref="DEFAULT-APPENDER"/>
         </logger>
 
-        <logger name="Digital-Pay-Monitor-error" level="error" additivity="false">
-            <AppenderRef ref="BIZ-APPENDER"/>
-        </logger>
-
-        <Root level="info">
+        <Root level="all">
             <AppenderRef ref="DEFAULT-APPENDER"/>
             <AppenderRef ref="ERROR-APPENDER"/>
         </Root>
