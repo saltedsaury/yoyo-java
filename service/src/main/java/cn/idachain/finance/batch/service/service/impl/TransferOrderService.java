@@ -158,24 +158,6 @@ public class TransferOrderService implements ITransferOrderService {
         return false;
     }
 
-    private TransferOrder convertToTransferOrder(String transferType, String ccy, BigDecimal amount,
-                                                 BigDecimal fee,String customerNo,String deriction){
-        TransferOrder order = new TransferOrder();
-        order.setTransferType(transferType);
-        order.setOrderNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.TRANSFER)));
-        order.setCcy(ccy);
-        order.setAmount(amount);
-        order.setCustomerNo(customerNo);
-        order.setDeriction(deriction);
-        order.setFee(fee);
-        order.setChannel(Channel.ALL.getCode());
-        order.setStatus(TransferOrderStatus.INIT.getCode());
-        order.setProcessStatus(TransferProcessStatus.INIT.getCode());
-        order.setCreateTime(new Date(System.currentTimeMillis()));
-        order.setModifiedTime(new Date(System.currentTimeMillis()));
-        return order;
-    }
-
     @Override
     public void transferConfirm(){
         List<TransferOrder> orders = transferOrderDao.getTransferOrderByStatus(

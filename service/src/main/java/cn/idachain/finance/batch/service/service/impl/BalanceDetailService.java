@@ -201,7 +201,9 @@ public class BalanceDetailService implements IBalanceDetialService {
 
         final BalancePerson userBalance = balancePersonDao.getBalance(userAccount.getAccountNo(),currency);
         final BalanceInternal bonusBalance = balanceInternalDao.getBalance(bonusAccount.getAccountNo(),currency);
-
+        if (bonusBalance.getBalance().subtract(amount).compareTo(BigDecimal.ZERO)<0){
+            throw new BizException(BizExceptionEnum.INTERNAL_BALANCE_NOT_ENOUGH);
+        }
         final BalanceDetail userDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.IN.getCode(),userAccount.getAccountNo(),currency,
                 amount,userBalance.getBalance(),"收益发放");
@@ -210,7 +212,7 @@ public class BalanceDetailService implements IBalanceDetialService {
                 amount,bonusBalance.getBalance(),"收益发放");
 
         final BigDecimal userAmount = userBalance.getBalance().add(amount);
-        final BigDecimal bonusAmount = bonusBalance.getBalance().add(amount);
+        final BigDecimal bonusAmount = bonusBalance.getBalance().subtract(amount);
 
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
