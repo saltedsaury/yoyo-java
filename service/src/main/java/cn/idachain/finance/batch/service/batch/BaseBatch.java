@@ -40,6 +40,7 @@ public class BaseBatch {
 
     public void afterExecute(){
         //任务完成状态更新
+        systemBatch.setFinishDate(systemDate.getSystemDate());
         systemBatchDao.updateSystemBatchStatus(systemBatch,BatchStatus.SUCCESS.getCode());
     }
 
