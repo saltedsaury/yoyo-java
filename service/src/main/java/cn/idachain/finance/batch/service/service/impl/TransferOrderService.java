@@ -182,6 +182,7 @@ public class TransferOrderService implements ITransferOrderService {
                     //此状态用于标识需要报警的单子
                     updateOrderByTransaction(order,TransferOrderStatus.PROCESSING.getCode(),
                             TransferProcessStatus.TRANSFERED_FAILED.getCode());
+                    log.error("update transfer order status to transfer failed:{}",order.toString());
                 }
             }catch (Exception e){
                 log.error("transferOrder {} confirm error with exception:{}",e.getMessage());
@@ -205,6 +206,7 @@ public class TransferOrderService implements ITransferOrderService {
                     //更新订单状态  增加余额成功
                     updateOrderByTransaction(order,TransferOrderStatus.SUCCESS.getCode(),
                             TransferProcessStatus.SUCCESS.getCode());
+                    log.error("update transfer order status to transfer failed:{}",order.toString());
                 }
             }
         }
