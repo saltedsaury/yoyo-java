@@ -4,6 +4,7 @@ import cn.idachain.finance.batch.common.dataobject.TransferOrder;
 import cn.idachain.finance.batch.common.mapper.TransferOrderMapper;
 import cn.idachain.finance.batch.service.dao.ITransferOrderDao;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,7 +47,7 @@ public class TransferOrderDao implements ITransferOrderDao {
     }
 
     @Override
-    public List<TransferOrder> getTransferOrderByStatus(String status){
-        return transferOrderMapper.selectListForConfirm(status);
+    public List<TransferOrder> getTransferOrderByStatus(String status, Page page){
+        return transferOrderMapper.selectListForConfirm(status,page);
     }
 }

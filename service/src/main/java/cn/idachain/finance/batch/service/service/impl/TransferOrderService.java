@@ -17,6 +17,7 @@ import cn.idachain.finance.batch.service.external.model.LoanParam;
 import cn.idachain.finance.batch.service.external.model.TransferInfoData;
 import cn.idachain.finance.batch.service.external.model.TransferParam;
 import cn.idachain.finance.batch.service.util.GenerateIdUtil;
+import com.baomidou.mybatisplus.plugins.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -160,25 +161,14 @@ public class TransferOrderService implements ITransferOrderService {
 
     @Override
     public void transferConfirm(){
+        boolean transferInFlag;
+        boolean transferOutFlag;
         List<TransferOrder> orders = transferOrderDao.getTransferOrderByStatus(
-                TransferOrderStatus.PROCESSING.getCode());
+                TransferOrderStatus.PROCESSING.getCode(),new Page(0,10));
         for (TransferOrder order : orders) {
-            boolean transferInFlag = false;
-            boolean transferOutFlag = false;
+            transferInFlag = false;
+            transferOutFlag = false;
             try{
-                if (TransferProcessStatus.CHARGEBACK_FAILED.getCode().equals(order.getProcessStatus())
-                        ||TransferProcessStatus.INIT.getCode().equals(order.getProcessStatus()) ){
-                    transferOutFlag = deduct(order.getDeriction(), order.getAmount(), order.getCcy(),
-                            order.getOrderNo(), order.getCustomerNo());
-                    if (transferOutFlag){
-                        //更新订单状态  扣款成功
-                        updateOrderByTransaction(order,TransferOrderStatus.PROCESSING.getCode(),
-                                TransferProcessStatus.CHARGEBACK_SUCCESS.getCode());
-                        transferInFlag = increase(order.getDeriction(), order.getAmount(), order.getCcy(),
-                                order.getOrderNo(), order.getCustomerNo());
-
-                    }
-                }
                 if (TransferProcessStatus.CHARGEBACK_SUCCESS.getCode().equals(order.getProcessStatus())) {
                     transferInFlag= increase(order.getDeriction(), order.getAmount(), order.getCcy(),
                             order.getOrderNo(), order.getCustomerNo());
@@ -196,6 +186,26 @@ public class TransferOrderService implements ITransferOrderService {
             }catch (Exception e){
                 log.error("transferOrder {} confirm error with exception:{}",e.getMessage());
                 e.printStackTrace();
+            }
+        }
+        List<TransferOrder> initList = transferOrderDao.getTransferOrderByStatus(
+                TransferOrderStatus.INIT.getCode(),new Page(0,10));
+        for (TransferOrder order : orders) {
+            transferInFlag = false;
+            transferOutFlag = false;
+            transferOutFlag = deduct(order.getDeriction(), order.getAmount(), order.getCcy(),
+                    order.getOrderNo(), order.getCustomerNo());
+            if (transferOutFlag) {
+                //更新订单状态  扣款成功
+                updateOrderByTransaction(order, TransferOrderStatus.PROCESSING.getCode(),
+                        TransferProcessStatus.CHARGEBACK_SUCCESS.getCode());
+                transferInFlag = increase(order.getDeriction(), order.getAmount(), order.getCcy(),
+                        order.getOrderNo(), order.getCustomerNo());
+                if (transferInFlag){
+                    //更新订单状态  增加余额成功
+                    updateOrderByTransaction(order,TransferOrderStatus.SUCCESS.getCode(),
+                            TransferProcessStatus.SUCCESS.getCode());
+                }
             }
         }
     }
