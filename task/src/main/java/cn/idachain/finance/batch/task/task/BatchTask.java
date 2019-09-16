@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 
 import java.lang.reflect.Method;
 import java.util.Calendar;
@@ -47,8 +48,7 @@ public class BatchTask {
 
         @Override
         public void run() {
-            long current = System.currentTimeMillis();
-            log.info("Batch thread run.start at :{}",current);
+            StopWatch watch = new StopWatch("BatchTimer");
             try {
                 systemBatch = systemBatchDao.selectSystemBatchByPreCode(BatchCode.BATCH_START.getCode()
                         , BatchType.DAILY_END.getCode());
@@ -57,6 +57,7 @@ public class BatchTask {
                     //TODO 如果一直执行失败，需要一个保障机制停止线程并报出异常
                     //执行当前任务直至成功
                     log.info("当前任务：" + systemBatch);
+                    watch.start(systemBatch.getBatchCode());
                     while (true) {
                         boolean success = false;
                         try {
@@ -78,6 +79,7 @@ public class BatchTask {
                             throw new InterruptedException();
                         }
                     }
+                    watch.stop();
                 }
                 //任务结束后更新系统日期
                 SystemDate systemDate = systemDateDao.getSystemDateByType(BizConstants.SYSTEM_BATCH);
@@ -87,8 +89,8 @@ public class BatchTask {
                 systemDate.setSystemDate(calendar.getTime());
                 systemDate.setModifiedTime(new Date(System.currentTimeMillis()));
                 systemDateDao.updateSystemDate(systemDate);
-                long finish = System.currentTimeMillis();
-                log.info("batch task finished at :{},cost time :{} sec",finish,(finish-current)/ 1000);
+                log.info("batch task cost time :"+watch.prettyPrint());
+
             }catch(InterruptedException e){
                 log.error("do batch task failed.");
                 e.printStackTrace();

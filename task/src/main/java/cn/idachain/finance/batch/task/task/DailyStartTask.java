@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 
 import java.lang.reflect.Method;
 import java.util.Date;
@@ -44,8 +45,7 @@ public class DailyStartTask {
 
         @Override
         public void run() {
-            long current = System.currentTimeMillis();
-            log.info("DailyStart thread run.start at :{}",current);
+            StopWatch stopWatch = new StopWatch("DailyTimer");
             try {
                 systemBatch = systemBatchDao.selectSystemBatchByPreCode(BatchCode.BATCH_START.getCode()
                         , BatchType.DAILY_START.getCode());
@@ -54,6 +54,7 @@ public class DailyStartTask {
                     //TODO 如果一直执行失败，需要一个保障机制停止线程并报出异常
                     //执行当前任务直至成功
                     log.info("当前任务：" + systemBatch);
+                    stopWatch.start(systemBatch.getBatchCode());
                     while (true) {
                         boolean success = false;
                         try {
@@ -75,9 +76,9 @@ public class DailyStartTask {
                             throw new InterruptedException();
                         }
                     }
+                    stopWatch.stop();
                 }
-                long finish = System.currentTimeMillis();
-                log.info("DailyStart finished at :{},cost time :{} sec",finish,(finish-current)/ 1000);
+                log.info("daily start cost time :"+stopWatch.prettyPrint());
             }catch(InterruptedException e){
                 log.error("do DailyStart task failed.");
                 e.printStackTrace();
