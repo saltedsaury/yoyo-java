@@ -12,5 +12,5 @@ public interface ITransferOrderDao {
 
     void updateProcessStatusByObj(TransferOrder transferOrder, String status);
 
-    List<TransferOrder> getTransferOrderByStatus(String status, Page page);
+    List<TransferOrder> getTransferOrderByStatus(String status, String process, Page page);
 }

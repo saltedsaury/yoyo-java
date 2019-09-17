@@ -164,15 +164,14 @@ public class TransferOrderService implements ITransferOrderService {
         boolean transferInFlag;
         boolean transferOutFlag;
         List<TransferOrder> orders = transferOrderDao.getTransferOrderByStatus(
-                TransferOrderStatus.PROCESSING.getCode(),new Page(0,10));
+                TransferOrderStatus.PROCESSING.getCode(),
+                TransferProcessStatus.CHARGEBACK_SUCCESS.getCode(),
+                new Page(0,10));
         for (TransferOrder order : orders) {
             transferInFlag = false;
-            transferOutFlag = false;
             try{
-                if (TransferProcessStatus.CHARGEBACK_SUCCESS.getCode().equals(order.getProcessStatus())) {
-                    transferInFlag= increase(order.getDeriction(), order.getAmount(), order.getCcy(),
-                            order.getOrderNo(), order.getCustomerNo());
-                }
+                transferInFlag= increase(order.getDeriction(), order.getAmount(), order.getCcy(),
+                        order.getOrderNo(), order.getCustomerNo());
                 if (transferInFlag){
                     //更新订单状态  增加余额成功
                     updateOrderByTransaction(order,TransferOrderStatus.SUCCESS.getCode(),
@@ -184,13 +183,16 @@ public class TransferOrderService implements ITransferOrderService {
                             TransferProcessStatus.TRANSFERED_FAILED.getCode());
                     log.error("update transfer order status to transfer failed:{}",order.toString());
                 }
+
             }catch (Exception e){
                 log.error("transferOrder {} confirm error with exception:{}",e.getMessage());
                 e.printStackTrace();
             }
         }
         List<TransferOrder> initList = transferOrderDao.getTransferOrderByStatus(
-                TransferOrderStatus.INIT.getCode(),new Page(0,10));
+                TransferOrderStatus.INIT.getCode(),
+                TransferProcessStatus.INIT.getCode(),
+                new Page(0,10));
         for (TransferOrder order : orders) {
             transferInFlag = false;
             transferOutFlag = false;

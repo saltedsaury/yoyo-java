@@ -11,7 +11,8 @@ import java.util.List;
 public interface TransferOrderMapper extends SuperMapper<TransferOrder> {
 
     @Select("select * from transfer_order where status = #{status} " +
+            " and process_status = #{process}" +
             "and NOW() > date_add(modified_time,interval 10 minute)")
-    List<TransferOrder> selectListForConfirm(@Param("status") String status, Page page);
+    List<TransferOrder> selectListForConfirm(@Param("status") String status, @Param("process") String process, Page page);
 
 }
