@@ -169,9 +169,11 @@ public class TransferOrderService implements ITransferOrderService {
     public void transferConfirm(){
         boolean transferInFlag;
         boolean transferOutFlag;
+        List<String> process = new ArrayList<>();
+        process.add(TransferProcessStatus.CHARGEBACK_SUCCESS.getCode());
+        process.add(TransferProcessStatus.TRANSFERED_FAILED.getCode());
         List<TransferOrder> orders = transferOrderDao.getTransferOrderByStatus(
-                TransferOrderStatus.PROCESSING.getCode(),
-                TransferProcessStatus.CHARGEBACK_SUCCESS.getCode(),
+                TransferOrderStatus.PROCESSING.getCode(),process,
                 new Page(0,10));
         for (TransferOrder order : orders) {
             transferInFlag = false;
@@ -195,9 +197,10 @@ public class TransferOrderService implements ITransferOrderService {
                 e.printStackTrace();
             }
         }
+        process = new ArrayList<>();
+        process.add(TransferProcessStatus.INIT.getCode());
         List<TransferOrder> initList = transferOrderDao.getTransferOrderByStatus(
-                TransferOrderStatus.INIT.getCode(),
-                TransferProcessStatus.INIT.getCode(),
+                TransferOrderStatus.INIT.getCode(),process,
                 new Page(0,10));
         for (TransferOrder order : initList) {
             transferInFlag = false;

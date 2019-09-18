@@ -47,7 +47,7 @@ public class TransferOrderDao implements ITransferOrderDao {
     }
 
     @Override
-    public List<TransferOrder> getTransferOrderByStatus(String status, String process, Page page){
+    public List<TransferOrder> getTransferOrderByStatus(String status, List<String> process, Page page){
         return transferOrderMapper.selectListForConfirm(status,process,page);
     }
 }

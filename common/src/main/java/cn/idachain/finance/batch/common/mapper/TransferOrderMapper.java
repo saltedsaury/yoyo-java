@@ -10,9 +10,13 @@ import java.util.List;
 
 public interface TransferOrderMapper extends SuperMapper<TransferOrder> {
 
-    @Select("select * from transfer_order where status = #{status} " +
-            " and process_status = #{process}" +
-            "and NOW() > date_add(modified_time,interval 10 minute)")
-    List<TransferOrder> selectListForConfirm(@Param("status") String status, @Param("process") String process, Page page);
+    @Select("<script>" +
+            "select * from transfer_order where status = #{status} " +
+            " and process_status in " +
+            " <foreach collection='process' item='item' open='(' separator=',' close=')'> " +
+            " #{item} </foreach> " +
+            "and NOW() > date_add(create_time,interval 1 minute)" +
+            "</script>")
+    List<TransferOrder> selectListForConfirm(@Param("status") String status, @Param("process") List<String> process, Page page);
 
 }
