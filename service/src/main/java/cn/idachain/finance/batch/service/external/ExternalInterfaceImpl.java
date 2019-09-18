@@ -93,7 +93,10 @@ public class ExternalInterfaceImpl implements ExternalInterface {
     public CexResponse transferOut(TransferParam param) {
         return transferOut(param, 0);
     }
-
+    @Override
+    public CexResponse transferOutWithoutToken(TransferParam param) {
+        return ensureNotNull(execute(CexConstant.TRANSFER_OUT_WITHOUT_TOKEN, param, 0));
+    }
     @Override
     public CexResponse transferOut(TransferParam param, int retryCount) {
         return ensureNotNull(execute(CexConstant.TRANSFER_OUT, param, retryCount));

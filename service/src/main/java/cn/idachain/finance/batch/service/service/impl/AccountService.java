@@ -1,7 +1,11 @@
 package cn.idachain.finance.batch.service.service.impl;
 
+import cn.idachain.finance.batch.common.dataobject.AccountOrg;
 import cn.idachain.finance.batch.common.dataobject.AccountPerson;
 import cn.idachain.finance.batch.common.dataobject.BalancePerson;
+import cn.idachain.finance.batch.common.exception.BizException;
+import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
+import cn.idachain.finance.batch.service.dao.IAccountOrgDao;
 import cn.idachain.finance.batch.service.dao.IAccountPersonDao;
 import cn.idachain.finance.batch.service.dao.IBalancePersonDao;
 import cn.idachain.finance.batch.service.service.IAccountService;
@@ -21,6 +25,8 @@ public class AccountService implements IAccountService {
     private IBalancePersonDao balancePersonDao;
     @Autowired
     private TransactionTemplate transactionTemplate;
+    @Autowired
+    private IAccountOrgDao accountOrgDao;
 
     @Override
     public AccountPerson getCustomerAccount(String customerNo, String currency){
@@ -41,6 +47,17 @@ public class AccountService implements IAccountService {
         });
 
         return accountPerson;
+
+    }
+
+    @Override
+    public AccountOrg getOrgAccount(String customerNo, String currency, String accountType){
+        AccountOrg accountOrg =  accountOrgDao.getOrgAccountByCustomerNo(customerNo,currency,accountType);
+        if (null == accountOrg){
+            throw new BizException(BizExceptionEnum.ORG_ACCOUNT_NOT_EXIST);
+        }
+
+        return accountOrg;
 
     }
 }

@@ -38,6 +38,8 @@ public class BalanceDetailService implements IBalanceDetialService {
     private TransactionTemplate transactionTemplate;
     @Autowired
     private IAccountService accountService;
+    @Autowired
+    private IBalanceOrgDao balanceOrgDao;
 
     /**
      * 划转
@@ -522,5 +524,70 @@ public class BalanceDetailService implements IBalanceDetialService {
             }
         });
         return true;
+    }
+
+    @Override
+    public boolean systemTransfer(String customerNo, String currency, String direction,
+                                  String tradeNo, BigDecimal amount, String accountType){
+        AccountOrg orgAccount = accountService.getOrgAccount(customerNo,currency,accountType);
+        AccountInternal bizAccount = accountInternalDao.getAccountByTransType(
+                accountType,currency);
+        AccountInternal finAccount = accountInternalDao.getAccountByTransType(
+                AccountTransType.FINANCING.getCode(),currency);
+
+        final BalanceOrg orgBalance = balanceOrgDao.getBalance(orgAccount.getAccountNo(),currency);
+        final BalanceInternal finBalance = balanceInternalDao.getBalance(finAccount.getAccountNo(),currency);
+        final BalanceInternal bizBalance = balanceInternalDao.getBalance(bizAccount.getAccountNo(),currency);
+
+
+        final BigDecimal bizAmount;
+        final BigDecimal finAmount;
+
+        //计算余额
+        if (Direction.IN.getCode().equals(direction)){
+            finAmount = finBalance.getBalance().add(amount);
+            bizAmount = bizBalance.getBalance().add(amount);
+        }else{
+            finAmount = finBalance.getBalance().subtract(amount);
+            bizAmount = bizBalance.getBalance().subtract(amount);
+        }
+        if (finAmount.compareTo(BigDecimal.ZERO)<0){
+            throw new BizException(BizExceptionEnum.INTERNAL_BALANCE_NOT_ENOUGH);
+        }
+        if (bizAmount.compareTo(BigDecimal.ZERO)<0){
+            throw new BizException(BizExceptionEnum.INTERNAL_BALANCE_NOT_ENOUGH);
+        }
+        final BalanceDetail orgDetailIn = AccountConvert.convertToBalanceDetail(
+                tradeNo,Direction.IN.getCode(),orgAccount.getAccountNo(),currency,
+                amount,orgBalance.getBalance(),"机构资金划转");
+        final BalanceDetail orgDetailOut = AccountConvert.convertToBalanceDetail(
+                tradeNo,Direction.OUT.getCode(),orgAccount.getAccountNo(),currency,
+                amount,orgBalance.getBalance(),"机构资金划转");
+        final BalanceDetail finDetail = AccountConvert.convertToBalanceDetail(
+                tradeNo,direction,finAccount.getAccountNo(),currency,
+                amount,finBalance.getBalance(),"机构资金划转");
+        final BalanceDetail bizDetail = AccountConvert.convertToBalanceDetail(
+                tradeNo,direction,bizAccount.getAccountNo(),currency,
+                amount,bizBalance.getBalance(),"机构资金划转");
+
+
+        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+            @Override
+            protected void doInTransactionWithoutResult(TransactionStatus status) {
+                balanceDetailDao.saveBalanceDetail(orgDetailIn);
+                balanceDetailDao.saveBalanceDetail(orgDetailOut);
+                balanceDetailDao.saveBalanceDetail(bizDetail);
+                balanceDetailDao.saveBalanceDetail(finDetail);
+                if (balanceInternalDao.updateBalance(finBalance,finAmount)<=0){
+                    throw new BizException(BizExceptionEnum.DB_ERROR);
+                }
+                if(balanceInternalDao.updateBalance(bizBalance,bizAmount)<=0){
+                    throw new BizException(BizExceptionEnum.DB_ERROR);
+                }
+            }
+        });
+
+        return true;
+
     }
 }

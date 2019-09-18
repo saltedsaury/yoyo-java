@@ -27,6 +27,7 @@ public class CexConstant {
     public static final String USER_INVENTORY = "/apis/channel/queryBatchUserAssetTotalInfo";
 
     public static final String CHARGE_ADDR = "/apis/channel/getRechgCurrAddrByCode";
+    public static final String TRANSFER_OUT_WITHOUT_TOKEN = "/apis/channel/transferOutWithoutToken";
 
 
     // 用户资金密码校验

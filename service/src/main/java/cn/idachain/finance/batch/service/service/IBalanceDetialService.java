@@ -21,4 +21,7 @@ public interface IBalanceDetialService {
     boolean redemption(String customerNo, String currency, String tradeNo, BigDecimal amount, BigDecimal fine, BigDecimal bonus);
 
     boolean giveUpCompensation(String freezeCode, String tradeNo, String customerNo, String currency);
+
+    boolean systemTransfer(String customerNo, String currency, String direction,
+                           String tradeNo, BigDecimal amount, String accountType);
 }

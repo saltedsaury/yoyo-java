@@ -22,6 +22,7 @@ public enum BizExceptionEnum implements ServiceExceptionEnum {
     INTERNAL_BALANCE_NOT_ENOUGH(700002,"内部户余额不足！"),
     OPEN_ACCOUNT_ERROR(700003,"开户失败！"),
     ASSET_FREEZE_ERROR(700004,"资产冻结失败,请检查余额"),
+    ORG_ACCOUNT_NOT_EXIST(700005,"机构账户不存在"),
 
 
     //系统异常

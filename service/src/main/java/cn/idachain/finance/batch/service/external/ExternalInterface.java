@@ -53,6 +53,8 @@ public interface ExternalInterface {
      */
     CexResponse transferOut(TransferParam param);
 
+    CexResponse transferOutWithoutToken(TransferParam param);
+
     CexResponse transferOut(TransferParam param, int retryCount);
 
     /**
