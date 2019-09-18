@@ -17,6 +17,7 @@ import cn.idachain.finance.batch.service.util.GenerateIdUtil;
 import com.baomidou.mybatisplus.plugins.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
@@ -229,13 +230,17 @@ public class TransferOrderService implements ITransferOrderService {
                 updateOrderByTransaction(order,TransferOrderStatus.PROCESSING.getCode(),
                         TransferProcessStatus.CHARGEBACK_FAILED.getCode());
                 log.info("update transfer order status to chargeback failed:{}",order.toString());
+            }catch (DuplicateKeyException ex){
+                transferOutFlag = true;
             }
             if (transferOutFlag) {
                 //更新订单状态  扣款成功
                 updateOrderByTransaction(order, TransferOrderStatus.PROCESSING.getCode(),
                         TransferProcessStatus.CHARGEBACK_SUCCESS.getCode());
+
                 transferInFlag = increase(order.getDeriction(), order.getAmount(), order.getCcy(),
-                        order.getOrderNo(), order.getCustomerNo(),order.getTransferType(),order.getAccountType());
+                        order.getOrderNo(), order.getCustomerNo(), order.getTransferType(), order.getAccountType());
+
                 if (transferInFlag){
                     //更新订单状态  增加余额成功
                     updateOrderByTransaction(order,TransferOrderStatus.SUCCESS.getCode(),
