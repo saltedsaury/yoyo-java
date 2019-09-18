@@ -193,7 +193,7 @@ public class TransferOrderService implements ITransferOrderService {
                 TransferOrderStatus.INIT.getCode(),
                 TransferProcessStatus.INIT.getCode(),
                 new Page(0,10));
-        for (TransferOrder order : orders) {
+        for (TransferOrder order : initList) {
             transferInFlag = false;
             transferOutFlag = false;
             transferOutFlag = deduct(order.getDeriction(), order.getAmount(), order.getCcy(),
