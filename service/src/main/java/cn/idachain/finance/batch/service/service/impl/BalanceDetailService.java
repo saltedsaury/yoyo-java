@@ -5,6 +5,7 @@ import cn.idachain.finance.batch.common.enums.AccountTransType;
 import cn.idachain.finance.batch.common.enums.Direction;
 import cn.idachain.finance.batch.common.exception.BizException;
 import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
+import cn.idachain.finance.batch.common.exception.TryAgainException;
 import cn.idachain.finance.batch.service.dao.*;
 import cn.idachain.finance.batch.service.service.IAccountService;
 import cn.idachain.finance.batch.service.service.IBalanceDetialService;
@@ -90,11 +91,9 @@ public class BalanceDetailService implements IBalanceDetialService {
                balanceDetailDao.saveBalanceDetail(userDetail);
                balanceDetailDao.saveBalanceDetail(finDetail);
                if (balanceInternalDao.updateBalance(finBalance,finAmount)<=0){
-                   throw new BizException(BizExceptionEnum.DB_ERROR);
-               }
+                   throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);               }
                if(balancePersonDao.updateBalance(userBalance,userAmount)<=0){
-                   throw new BizException(BizExceptionEnum.DB_ERROR);
-               }
+                   throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);               }
             }
         });
 
@@ -138,8 +137,7 @@ public class BalanceDetailService implements IBalanceDetialService {
                 freezeDetailDao.insertBatch(freezeDetails);
                 if (balancePersonDao.updateFreeze(userBalance,
                         userBalance.getFreeze().add(principal).add(insuranceFee))<=0){
-                    throw new BizException(BizExceptionEnum.DB_ERROR);
-                }
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);                }
             }
         });
 
@@ -176,11 +174,9 @@ public class BalanceDetailService implements IBalanceDetialService {
                 balanceDetailDao.saveBalanceDetail(finDetail);
                 balanceDetailDao.saveBalanceDetail(loanDetail);
                 if (balanceInternalDao.updateBalance(finBalance,finBalance.getBalance().add(amount))<=0){
-                    throw new BizException(BizExceptionEnum.DB_ERROR);
-                }
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);                }
                 if (balanceInternalDao.updateBalance(loanBalance,loanBalance.getBalance().add(amount))<=0){
-                    throw new BizException(BizExceptionEnum.DB_ERROR);
-                }
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);                }
             }
         });
 
@@ -222,11 +218,9 @@ public class BalanceDetailService implements IBalanceDetialService {
                 balanceDetailDao.saveBalanceDetail(userDetail);
                 balanceDetailDao.saveBalanceDetail(bonusDetail);
                 if (balancePersonDao.updateBalance(userBalance,userAmount)<=0){
-                    throw new BizException(BizExceptionEnum.DB_ERROR);
-                }
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);                }
                 if (balanceInternalDao.updateBalance(bonusBalance,bonusAmount)<=0){
-                    throw new BizException(BizExceptionEnum.DB_ERROR);
-                }
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);                }
             }
         });
 
@@ -280,16 +274,13 @@ public class BalanceDetailService implements IBalanceDetialService {
                 balanceDetailDao.saveBalanceDetail(userDetail);
                 balanceDetailDao.saveBalanceDetail(payableDetail);
                 if (balancePersonDao.updateBalance(userBalance,userAmount)<=0){
-                    throw new BizException(BizExceptionEnum.DB_ERROR);
-                }
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);                }
                 if (balanceInternalDao.updateBalance(payableBalance,payableAmount)<=0){
-                    throw new BizException(BizExceptionEnum.DB_ERROR);
-                }
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);                }
                 if (freeze){
                     freezeDetailDao.saveFreezeDetail(finalFreezeDetail);
                     if (balancePersonDao.updateFreeze(userBalance, finalUserFreeze)<=0){
-                        throw new BizException(BizExceptionEnum.DB_ERROR);
-                    }
+                        throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);                    }
                 }
             }
         });
@@ -579,10 +570,10 @@ public class BalanceDetailService implements IBalanceDetialService {
                 balanceDetailDao.saveBalanceDetail(bizDetail);
                 balanceDetailDao.saveBalanceDetail(finDetail);
                 if (balanceInternalDao.updateBalance(finBalance,finAmount)<=0){
-                    throw new BizException(BizExceptionEnum.DB_ERROR);
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);
                 }
                 if(balanceInternalDao.updateBalance(bizBalance,bizAmount)<=0){
-                    throw new BizException(BizExceptionEnum.DB_ERROR);
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);
                 }
             }
         });

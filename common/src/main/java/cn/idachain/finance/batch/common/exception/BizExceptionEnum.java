@@ -23,7 +23,7 @@ public enum BizExceptionEnum implements ServiceExceptionEnum {
     OPEN_ACCOUNT_ERROR(700003,"开户失败！"),
     ASSET_FREEZE_ERROR(700004,"资产冻结失败,请检查余额"),
     ORG_ACCOUNT_NOT_EXIST(700005,"机构账户不存在"),
-
+    UPDATE_BALANCE_FAILED(700006,"余额更新失败"),
 
     //系统异常
     DB_ERROR(900001,"数据库操作失败！"),

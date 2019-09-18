@@ -1,6 +1,7 @@
 package cn.idachain.finance.batch.service.service.impl;
 
 import cn.idachain.finance.batch.common.enums.*;
+import cn.idachain.finance.batch.common.exception.TryAgainException;
 import cn.idachain.finance.batch.service.service.ITransferOrderService;
 import cn.idachain.finance.batch.common.exception.BizException;
 import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
@@ -191,7 +192,7 @@ public class TransferOrderService implements ITransferOrderService {
         process.add(TransferProcessStatus.TRANSFERED_FAILED.getCode());
         List<TransferOrder> orders = transferOrderDao.getTransferOrderByStatus(
                 TransferOrderStatus.PROCESSING.getCode(),process,
-                new Page(0,10));
+                new Page(0,100));
         for (TransferOrder order : orders) {
             transferInFlag = false;
             try{
@@ -218,14 +219,17 @@ public class TransferOrderService implements ITransferOrderService {
         process.add(TransferProcessStatus.INIT.getCode());
         List<TransferOrder> initList = transferOrderDao.getTransferOrderByStatus(
                 TransferOrderStatus.INIT.getCode(),process,
-                new Page(0,10));
+                new Page(0,100));
         for (TransferOrder order : initList) {
             transferInFlag = false;
             transferOutFlag = false;
             try {
                 transferOutFlag = deduct(order.getDeriction(), order.getAmount(), order.getCcy(),
                         order.getOrderNo(), order.getCustomerNo(), order.getTransferType(),order.getAccountType());
-            }catch (BizException e){
+            }catch (TryAgainException tryAgain){
+                log.warn("update account balance failed :{}",order.toString());
+            }
+            catch (BizException e){
                 //更新订单状态  扣款失败
                 updateOrderByTransaction(order,TransferOrderStatus.PROCESSING.getCode(),
                         TransferProcessStatus.CHARGEBACK_FAILED.getCode());
