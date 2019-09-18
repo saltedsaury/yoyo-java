@@ -450,7 +450,7 @@ public class BalanceDetailService implements IBalanceDetialService {
                 tradeNo,Direction.IN.getCode(),userAccount.getAccountNo(),currency,
                 actralAmount,userBalance.getBalance(),"提前赎回");
         BalanceDetail bonusDetail = AccountConvert.convertToBalanceDetail(
-                tradeNo,Direction.OUT.getCode(),bonusAccount.getAccountNo(),currency,
+                tradeNo,Direction.IN.getCode(),bonusAccount.getAccountNo(),currency,
                 bonus,bonusBalance.getBalance(),"提前赎回");
         BalanceDetail fineDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.IN.getCode(),fineAccount.getAccountNo(),currency,
@@ -473,11 +473,8 @@ public class BalanceDetailService implements IBalanceDetialService {
 
         final BigDecimal userAmount = userBalance.getBalance().add(actralAmount);
         final BigDecimal fineAmount = fineBalance.getBalance().add(fine);
-        final BigDecimal bonusAmount = bonusBalance.getBalance().subtract(bonus);
+        final BigDecimal bonusAmount = bonusBalance.getBalance().add(bonus);
         final BigDecimal payableAmount = payableBalance.getBalance().subtract(amount);
-        if (bonusAmount.compareTo(BigDecimal.ZERO)<0){
-            throw new BizException(BizExceptionEnum.INTERNAL_BALANCE_NOT_ENOUGH);
-        }
         if (payableAmount.compareTo(BigDecimal.ZERO)<0){
             throw new BizException(BizExceptionEnum.INTERNAL_BALANCE_NOT_ENOUGH);
         }
