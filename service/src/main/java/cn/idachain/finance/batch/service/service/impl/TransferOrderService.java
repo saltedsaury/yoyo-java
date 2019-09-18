@@ -82,6 +82,12 @@ public class TransferOrderService implements ITransferOrderService {
                 log.info("transfer out from uptop success, response :{}",response);
                 return true;
             }
+            if (CexRespCode.SUCCESS_TRANSFER_FAIL.getCode().equals(response.getCode())){
+                log.error("call up transferOut error,code:{},msg:{},traceId:{}",
+                        response.getCode(),response.getMsg(),response.getTraceId());
+                BizExceptionEnum.TRANSFER_ERROR.setMessage(response.getMsg());
+                throw new BizException(BizExceptionEnum.TRANSFER_ERROR);
+            }
             log.error("call up transferOut error,code:{},msg:{},traceId:{}",
                     response.getCode(),response.getMsg(),response.getTraceId());
             return false;
@@ -196,8 +202,15 @@ public class TransferOrderService implements ITransferOrderService {
         for (TransferOrder order : initList) {
             transferInFlag = false;
             transferOutFlag = false;
-            transferOutFlag = deduct(order.getDeriction(), order.getAmount(), order.getCcy(),
-                    order.getOrderNo(), order.getCustomerNo());
+            try {
+                transferOutFlag = deduct(order.getDeriction(), order.getAmount(), order.getCcy(),
+                        order.getOrderNo(), order.getCustomerNo());
+            }catch (BizException e){
+                //更新订单状态  扣款失败
+                updateOrderByTransaction(order,TransferOrderStatus.PROCESSING.getCode(),
+                        TransferProcessStatus.CHARGEBACK_FAILED.getCode());
+                log.info("update transfer order status to chargeback failed:{}",order.toString());
+            }
             if (transferOutFlag) {
                 //更新订单状态  扣款成功
                 updateOrderByTransaction(order, TransferOrderStatus.PROCESSING.getCode(),

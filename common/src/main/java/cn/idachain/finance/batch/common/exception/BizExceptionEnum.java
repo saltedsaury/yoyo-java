@@ -13,6 +13,7 @@ public enum BizExceptionEnum implements ServiceExceptionEnum {
     RECORD_ALREADY_EXIST(600006,"申请已提交，请勿重复提交！"),
     CAN_NOT_REDEEM(600007,"当前产品不支持提前赎回！"),
     EXCHANGE_RATE_NOT_EXIST(600008,"交易对当前利率不存在！"),
+    TRANSFER_ERROR(600010,"划转失败"),
 
 
 
