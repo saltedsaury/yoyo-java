@@ -379,19 +379,20 @@ public class BalanceDetailService implements IBalanceDetialService {
             userAmount = userAmount.add(detail.getFreezeAmt());
             map.put(bal,detail.getFreezeAmt());
 
-            final BalanceDetail userDtl = AccountConvert.convertToBalanceDetail(
-                    tradeNo,Direction.OUT.getCode(),detail.getAccountNo(),detail.getCurrency(),
-                    detail.getFreezeAmt(),userBal.getBalance(),"投资扣款");
             final BalanceDetail finDtl = AccountConvert.convertToBalanceDetail(
                     tradeNo,Direction.IN.getCode(),acc.getAccountNo(),acc.getCurrency(),
                     detail.getFreezeAmt(),bal.getBalance(),"投资收款");
             final FreezeDetail unFreeze = AccountConvert.convertToFreezeDetail(tradeNo,tradeNo,
                     detail.getAccountNo(),detail.getCurrency(),new BigDecimal("0"),detail.getFreezeAmt(),
                     "解冻扣款",detail.getFreezeType());
-            balanceDetails.add(userDtl);
             balanceDetails.add(finDtl);
             unfreezeDetails.add(unFreeze);
         }
+        final BalanceDetail userDtl = AccountConvert.convertToBalanceDetail(
+                tradeNo,Direction.OUT.getCode(),freezeDetails.get(0).getAccountNo(),
+                freezeDetails.get(0).getCurrency(),userAmount,userBal.getBalance(),
+                "投资扣款");
+        balanceDetails.add(userDtl);
 
         final BalancePerson finalUserBal = userBal;
         final BigDecimal finalUserAmount = userAmount;
@@ -401,11 +402,16 @@ public class BalanceDetailService implements IBalanceDetialService {
             protected void doInTransactionWithoutResult(TransactionStatus status) {
                 balanceDetailDao.insertBatch(balanceDetails);
                 freezeDetailDao.insertBatch(unfreezeDetails);
-                balancePersonDao.updateBalance(finalUserBal, finalUserBal1.getBalance().subtract(finalUserAmount));
-                balancePersonDao.updateFreeze(finalUserBal, finalUserBal1.getFreeze().subtract(finalUserAmount));
-
+                if(balancePersonDao.updateBalance(finalUserBal, finalUserBal1.getBalance().subtract(finalUserAmount))<=0){
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);
+                }
+                if(balancePersonDao.updateFreeze(finalUserBal, finalUserBal1.getFreeze().subtract(finalUserAmount))<=0){
+                    throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);
+                }
                 map.forEach( (k,v)->{
-                    balanceInternalDao.updateBalance(k,k.getBalance().add(v));
+                    if(balanceInternalDao.updateBalance(k,k.getBalance().add(v))<=0){
+                        throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);
+                    }
                 } );
             }
         });
@@ -450,19 +456,11 @@ public class BalanceDetailService implements IBalanceDetialService {
                 fine,fineBalance.getBalance(),"提前赎回");
         BalanceDetail payableDetail1 = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.OUT.getCode(),payableAccount.getAccountNo(),currency,
-                actralAmount,payableBalance.getBalance(),"提前赎回");
-        BalanceDetail payableDetail2 = AccountConvert.convertToBalanceDetail(
-                tradeNo,Direction.OUT.getCode(),payableAccount.getAccountNo(),currency,
-                bonus,payableBalance.getBalance(),"提前赎回");
-        BalanceDetail payableDetail3 = AccountConvert.convertToBalanceDetail(
-                tradeNo,Direction.OUT.getCode(),payableAccount.getAccountNo(),currency,
-                fine,payableBalance.getBalance(),"提前赎回");
+                amount,payableBalance.getBalance(),"提前赎回");
         details.add(fineDetail);
         details.add(bonusDetail);
         details.add(userDetail);
         details.add(payableDetail1);
-        details.add(payableDetail2);
-        details.add(payableDetail3);
 
         final BigDecimal userAmount = userBalance.getBalance().add(actralAmount);
         final BigDecimal fineAmount = fineBalance.getBalance().add(fine);
