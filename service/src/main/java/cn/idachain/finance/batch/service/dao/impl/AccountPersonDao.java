@@ -15,7 +15,9 @@ public class AccountPersonDao implements IAccountPersonDao {
     public AccountPerson getAccountByCustomerNo(String customerNo, String currency){
         AccountPerson condition = new AccountPerson();
         condition.setCustomerNo(customerNo);
-        condition.setCurrency(currency);
+        if (null != currency){
+            condition.setCurrency(currency);
+        }
         return accountPersonMapper.selectOne(condition);
     }
 

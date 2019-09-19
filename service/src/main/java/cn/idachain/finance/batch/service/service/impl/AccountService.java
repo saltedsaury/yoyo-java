@@ -35,14 +35,12 @@ public class AccountService implements IAccountService {
             return accountPerson;
         }
         accountPerson = AccountConvert.convertToAccountPerson(customerNo,currency);
-        BalancePerson balancePerson = AccountConvert.convertToBalancePerson(accountPerson.getAccountNo(),currency);
 
         AccountPerson finalAccountPerson = accountPerson;
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus status) {
                 accountPersonDao.saveAccount(finalAccountPerson);
-                balancePersonDao.saveBalancePerson(balancePerson);
             }
         });
 

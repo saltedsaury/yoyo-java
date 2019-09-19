@@ -52,7 +52,11 @@ public class AccountConvert {
         AccountPerson accountPerson = new AccountPerson();
         accountPerson.setCustomerNo(customerNo);
         accountPerson.setAccountNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.ACCOUNTDETAIL)));
-        accountPerson.setCurrency(currency);
+        if (null == currency){
+            accountPerson.setAccountNo("DEFAULT");
+        }else {
+            accountPerson.setCurrency(currency);
+        }
         accountPerson.setAccountType("FINANCING");
         accountPerson.setRemark("");
 
