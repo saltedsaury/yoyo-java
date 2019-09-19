@@ -43,14 +43,6 @@ public class B0002 extends BaseBatch{
             productDao.updateProductByObj(product,ProductStatus.OPEN.getCode());
         }
 
-        List<String> status = new ArrayList<>();
-        status.add(ProductStatus.INIT.getCode());
-        List<Product> initProduct = productDao.getProductsByStatus(status,null);
-        for (Product prod:initProduct){
-            if (DateUtil.isSameDay(prod.getEffectiveDate(),currentDate)){
-                productDao.updateProductByObj(prod,ProductStatus.FOR_SALE.getCode());
-            }
-        }
         afterExecute();
         return true;
     }

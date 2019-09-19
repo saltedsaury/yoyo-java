@@ -1,13 +1,15 @@
-/*
-package cn.idachain.finance.batch.service.batch;
+package cn.idachain.finance.batch.task.task;
 
-import cn.idachain.finance.batch.common.enums.*;
 import cn.idachain.finance.batch.common.dataobject.InsuranceInfo;
 import cn.idachain.finance.batch.common.dataobject.InsuranceTrade;
-import cn.idachain.finance.batch.service.dao.*;
+import cn.idachain.finance.batch.common.enums.InsuranceTradeStatus;
+import cn.idachain.finance.batch.common.enums.InsuranceTradeSubStatus;
+import cn.idachain.finance.batch.service.dao.IInsuranceInfoDao;
+import cn.idachain.finance.batch.service.dao.IInsuranceTradeDao;
 import cn.idachain.finance.batch.service.service.IBalanceDetialService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
@@ -18,7 +20,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class B1006 extends BaseBatch {
+public class InsuranceOverDue {
 
     @Autowired
     private IInsuranceInfoDao insuranceInfoDao;
@@ -29,28 +31,23 @@ public class B1006 extends BaseBatch {
     @Autowired
     private IBalanceDetialService balanceDetialService;
 
-    */
-/**
+    /**
      * 保险产品逾期
      * @throws Exception
-     *//*
-
+     */
+    @Scheduled(cron = "${task.financing.begin-of-day}")
     public boolean execute(){
-        log.info("Batch 1006 begin.");
-        beforeExcute(BatchCode.B1006.getCode());
-        if (!checkStatus()){
-            return false;
-        }
+        log.info("insurance over due task begin.");
 
         Date currentDate = new Date(System.currentTimeMillis());
         //获取到理赔截至日启的保险产品
         List<InsuranceInfo> products = insuranceInfoDao.getAllInsurance();
-        log.info("do batch B1006 on date :{} for insurance product list:{}",currentDate.toString(),products);
+        log.info("do insurance over due task on date :{} for insurance product list:{}",currentDate.toString(),products);
         for (InsuranceInfo info : products){
             List<InsuranceTrade> insuranceTrades = insuranceTradeDao.getInsuranceTradeOverDue(info.getInsuranceNo(),currentDate);
             log.info("get insurance trade need finish for product {},trade list :{},size:{}",
                     info.getInsuranceNo(),insuranceTrades,insuranceTrades.size());
-            for (InsuranceTrade trade :insuranceTrades){
+            for (final InsuranceTrade trade :insuranceTrades){
                 //账务解冻金额
                 if(balanceDetialService.giveUpCompensation(trade.getTradeNo(),
                         trade.getTradeNo(),trade.getCustomerNo(),
@@ -70,10 +67,7 @@ public class B1006 extends BaseBatch {
             }
         }
 
-
-        afterExecute();
-        log.info("Batch 1006 end.");
+        log.info("insurance over due task end.");
         return true;
     }
 }
-*/
