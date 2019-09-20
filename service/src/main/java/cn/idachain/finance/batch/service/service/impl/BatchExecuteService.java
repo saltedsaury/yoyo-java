@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 @Slf4j
@@ -22,7 +23,7 @@ public class BatchExecuteService implements IBatchExecuteService {
     public boolean execute(String batchCode, String batchType) throws Exception {
         try {
             log.info("Batch {} run.", batchCode);
-            Class<?> batch = Class.forName("cn.idachain.finance.financing.service.batch."
+            Class<?> batch = Class.forName("cn.idachain.finance.batch.service.batch."
                     + batchCode);
             //Object batchClass = batch.newInstance();
             Object batchClass = ApplicationContextHolder.getBeanByType(batch);
@@ -34,4 +35,20 @@ public class BatchExecuteService implements IBatchExecuteService {
         }
     }
 
+    @Override
+    public boolean taskexecute(String taskName) throws ClassNotFoundException, NoSuchMethodException,
+            InvocationTargetException, IllegalAccessException {
+        try {
+            log.info("task {} run.", taskName);
+            Class<?> batch = Class.forName("cn.idachain.finance.batch.task.task."
+                    + taskName);
+            //Object batchClass = batch.newInstance();
+            Object batchClass = ApplicationContextHolder.getBeanByType(batch);
+            Method execute = batch.getMethod("execute");
+            return (Boolean) execute.invoke(batchClass);
+        }catch (Exception e) {
+            log.error("task {} excute error,{}",taskName,e);
+            throw e;
+        }
+    }
 }

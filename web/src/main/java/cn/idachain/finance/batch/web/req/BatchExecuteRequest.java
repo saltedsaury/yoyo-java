@@ -16,4 +16,14 @@ public class BatchExecuteRequest {
      * 任务类型
      */
     private String batchType;
+
+    /**
+     * 任务编号
+     */
+    private String taskName;
+
+    /**
+     * 任务类型
+     */
+    private String date;
 }

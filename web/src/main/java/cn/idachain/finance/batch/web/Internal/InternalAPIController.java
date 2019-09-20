@@ -25,14 +25,23 @@ public class InternalAPIController {
 
 
     @RequestMapping(value = "batchexecute", method = RequestMethod.POST)
-    public CommonResult investCompensete(@RequestBody BatchExecuteRequest request) throws Exception {
-        log.info("========== API batchexecute request:{} ===========",request);
-        CommonResult response = new CommonResult();
+    public CommonResult batchexecute(@RequestBody BatchExecuteRequest request) throws Exception {
+        log.info("========== API batchexecute finish ===========",request);
         if (!batchExecuteService.execute(request.getBatchCode(),request.getBatchType())){
             return new CommonResult(ErrorCode.TRADE_ERROR.getCode(),"执行失败");
         }
-        log.info("========== API batchexecute response:{} ===========",response);
-        return response;
+        log.info("========== API batchexecute response:{} ===========");
+        return CommonResult.of(000000,"success");
+    }
+
+    @RequestMapping(value = "taskexecute", method = RequestMethod.POST)
+    public CommonResult taskexecute(@RequestBody BatchExecuteRequest request) throws Exception {
+        log.info("========== API taskexecute request:{} ===========",request);
+        if (!batchExecuteService.taskexecute(request.getTaskName())){
+            return new CommonResult(ErrorCode.TRADE_ERROR.getCode(),"执行失败");
+        }
+        log.info("========== API taskexecute finish ===========");
+        return CommonResult.of(000000,"success");
     }
 }
 
