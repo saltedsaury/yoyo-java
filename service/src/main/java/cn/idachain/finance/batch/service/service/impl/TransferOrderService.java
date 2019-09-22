@@ -18,6 +18,7 @@ import cn.idachain.finance.batch.service.util.GenerateIdUtil;
 import com.baomidou.mybatisplus.plugins.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
@@ -41,6 +42,9 @@ public class TransferOrderService implements ITransferOrderService {
     private ExternalInterface externalInterface;
     @Autowired
     private BalanceDetailService balanceDetailService;
+
+    @Value("${task.financing.transfer-confirm.count}")
+    private Integer confirmCount;
 
     private void updateOrderByTransaction(final TransferOrder order, final String orderStatus,
                                           final String processStatus){
@@ -192,7 +196,7 @@ public class TransferOrderService implements ITransferOrderService {
         process.add(TransferProcessStatus.TRANSFERED_FAILED.getCode());
         List<TransferOrder> orders = transferOrderDao.getTransferOrderByStatus(
                 TransferOrderStatus.PROCESSING.getCode(),process,
-                new Page(0,100));
+                new Page(0,confirmCount));
         for (TransferOrder order : orders) {
             transferInFlag = false;
             try{
@@ -219,7 +223,7 @@ public class TransferOrderService implements ITransferOrderService {
         process.add(TransferProcessStatus.INIT.getCode());
         List<TransferOrder> initList = transferOrderDao.getTransferOrderByStatus(
                 TransferOrderStatus.INIT.getCode(),process,
-                new Page(0,100));
+                new Page(0,confirmCount));
         for (TransferOrder order : initList) {
             transferInFlag = false;
             transferOutFlag = false;
