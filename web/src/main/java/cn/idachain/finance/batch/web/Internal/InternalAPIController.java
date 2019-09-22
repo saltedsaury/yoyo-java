@@ -31,7 +31,7 @@ public class InternalAPIController {
             return new CommonResult(ErrorCode.TRADE_ERROR.getCode(),"执行失败");
         }
         log.info("========== API batchexecute response:{} ===========");
-        return CommonResult.of(000000,"success");
+        return new CommonResult(null);
     }
 
     @RequestMapping(value = "taskexecute", method = RequestMethod.POST)
@@ -41,7 +41,7 @@ public class InternalAPIController {
             return new CommonResult(ErrorCode.TRADE_ERROR.getCode(),"执行失败");
         }
         log.info("========== API taskexecute finish ===========");
-        return CommonResult.of(000000,"success");
+        return new CommonResult(null);
     }
 }
 
