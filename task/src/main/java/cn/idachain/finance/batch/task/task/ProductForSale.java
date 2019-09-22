@@ -21,7 +21,7 @@ public class ProductForSale {
     private IProductDao productDao;
 
     @Scheduled(cron = "${task.financing.begin-of-day}")
-    public void execute(){
+    public boolean execute(){
         Date currentDate = new Date(System.currentTimeMillis());
 
         List<String> status = new ArrayList<String>();
@@ -32,5 +32,6 @@ public class ProductForSale {
                 productDao.updateProductByObj(prod,ProductStatus.FOR_SALE.getCode());
             }
         }
+        return true;
     }
 }
