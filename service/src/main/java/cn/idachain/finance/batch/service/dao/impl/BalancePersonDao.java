@@ -20,6 +20,7 @@ public class BalancePersonDao implements IBalancePersonDao {
         EntityWrapper<BalancePerson> condition = new EntityWrapper<BalancePerson>();
         condition.eq("account_no",balancePerson.getAccountNo());
         condition.eq("balance",balancePerson.getBalance());
+        condition.eq("currency",balancePerson.getCurrency());
 
         BalancePerson newBalance = new BalancePerson();
         newBalance.setBalance(amount);

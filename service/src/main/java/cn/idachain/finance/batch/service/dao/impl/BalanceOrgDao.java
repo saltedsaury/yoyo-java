@@ -20,6 +20,7 @@ public class BalanceOrgDao implements IBalanceOrgDao {
         EntityWrapper<BalanceOrg> condition = new EntityWrapper<BalanceOrg>();
         condition.eq("account_no",balanceOrg.getAccountNo());
         condition.eq("balance",balanceOrg.getBalance());
+        condition.eq("currency",balanceOrg.getCurrency());
 
         BalanceOrg newBalance = new BalanceOrg();
         newBalance.setBalance(amount);

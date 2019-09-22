@@ -20,6 +20,7 @@ public class BalanceInternalDao implements IBalanceInternalDao {
         EntityWrapper<BalanceInternal> condition = new EntityWrapper<BalanceInternal>();
         condition.eq("account_no",balancePerson.getAccountNo());
         condition.eq("balance",balancePerson.getBalance());
+        condition.eq("currency",balancePerson.getCurrency());
 
         BalanceInternal newBalance = new BalanceInternal();
         newBalance.setBalance(amount);
