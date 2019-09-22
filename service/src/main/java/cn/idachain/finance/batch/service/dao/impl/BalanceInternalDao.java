@@ -43,9 +43,8 @@ public class BalanceInternalDao implements IBalanceInternalDao {
     public BalanceInternal getBalance(String accountNo, String currency){
         BalanceInternal condition = new BalanceInternal();
         condition.setAccountNo(accountNo);
-        if (null != currency) {
-            condition.setCurrency(currency);
-        }
+        condition.setCurrency(currency);
+
         return balanceInternalMapper.selectOne(condition);
     }
 }
