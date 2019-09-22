@@ -71,6 +71,7 @@ public class B1002 extends BaseBatch {
                     final List<BonusOrder> bonusOrders = new ArrayList<BonusOrder>();
 
                     for (int i = 1;i<=product.getInterestCycle();i++){
+                        //todo 金额四舍五入 和产品确认
                         Date bonusDate = DateUtil.offsiteDay(product.getValueDate(),
                                 (TimeUnit.getByCode(product.getCycleType()).getDay()*i)-1);
                         BigDecimal amount = investInfo.getAmount().multiply(product.getProfitPerCycle());

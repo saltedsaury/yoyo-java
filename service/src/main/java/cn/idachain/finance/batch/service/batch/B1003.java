@@ -67,6 +67,7 @@ public class B1003 extends BaseBatch {
             revenuePlan.setModifiedTime(new Date(System.currentTimeMillis()));
 
             //调用account接口记录分红
+            //fixme  放一个事务
             if (balanceDetialService.payBonus(
                     order.getCustomerNo(),order.getCcy(),order.getAmount(),order.getTradeNo())) {
                 log.info("pay bonus success,orderNo:{},amount:{}",order.getTradeNo(),order.getAmount());

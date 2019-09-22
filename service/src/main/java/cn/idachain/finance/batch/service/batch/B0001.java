@@ -22,7 +22,7 @@ public class B0001 extends BaseBatch{
         if (!checkStatus()){
             return false;
         }
-
+        //todo 批量更新
         List<BonusOrder> bonusOrders = bonusOrderDao.selectBonusByStatus(
                 new Date(System.currentTimeMillis()), BonusStatus.INIT.getCode());
         log.info("do batch B0001 for bonus order list :{}",bonusOrders);

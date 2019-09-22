@@ -39,6 +39,7 @@ public class CexRestTemplate {
     @Autowired
     private HttpClient httpClient;
 
+    //todo 排队
     public <T> T post(String url, Class<T> returnClass, CexRequest req) {
         HttpEntity<Map> entity = buildHttpEntity(req);
         log.info("postForEntity: url {}", getFullUrl(url));

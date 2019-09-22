@@ -54,7 +54,6 @@ public class BatchTask {
                         , BatchType.DAILY_END.getCode());
                 log.info("起始任务：" + systemBatch);
                 while (!BlankUtil.isBlank(systemBatch)) {
-                    //TODO 如果一直执行失败，需要一个保障机制停止线程并报出异常
                     //执行当前任务直至成功
                     log.info("当前任务：" + systemBatch);
                     watch.start(systemBatch.getBatchCode());
