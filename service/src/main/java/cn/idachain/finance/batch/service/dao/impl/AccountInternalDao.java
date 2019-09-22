@@ -15,7 +15,9 @@ public class AccountInternalDao implements IAccountInternalDao {
     public AccountInternal getAccountByTransType(String transType, String currency){
         AccountInternal condition = new AccountInternal();
         condition.setTransType(transType);
-        condition.setCurrency(currency);
+        if (null != currency) {
+            condition.setCurrency(currency);
+        }
         return accountInternalMapper.selectOne(condition);
     }
 

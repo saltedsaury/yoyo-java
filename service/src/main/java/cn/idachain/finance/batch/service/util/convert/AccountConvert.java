@@ -53,7 +53,7 @@ public class AccountConvert {
         accountPerson.setCustomerNo(customerNo);
         accountPerson.setAccountNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.ACCOUNTDETAIL)));
         if (null == currency){
-            accountPerson.setAccountNo("DEFAULT");
+            accountPerson.setCurrency("DEFAULT");
         }else {
             accountPerson.setCurrency(currency);
         }

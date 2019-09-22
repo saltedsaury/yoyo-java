@@ -26,7 +26,9 @@ public class AccountOrgDao implements IAccountOrgDao {
     public AccountOrg getOrgAccountByCustomerNo(String customerNo, String currency,String accountType) {
         AccountOrg condition = new AccountOrg();
         condition.setCustomerNo(customerNo);
-        condition.setCurrency(currency);
+        if (null != currency) {
+            condition.setCurrency(currency);
+        }
         condition.setAccountType(accountType);
         return accountOrgMapper.selectOne(condition);
     }

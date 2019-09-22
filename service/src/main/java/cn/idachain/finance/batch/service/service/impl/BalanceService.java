@@ -24,22 +24,20 @@ public class BalanceService extends BaseService implements IBalanceService {
     public BalancePerson getBalance(String customerNo, String currency){
         AccountPerson acc = accountService.getCustomerAccount(customerNo,null);
         BalancePerson bal = balancePersonDao.getBalance(acc.getAccountNo(),currency);
-        BalancePerson balancePerson = new BalancePerson();
         if (null == bal){
-            balancePerson = AccountConvert.convertToBalancePerson(acc.getAccountNo(),currency);
-            balancePersonDao.saveBalancePerson(balancePerson);
+            bal = AccountConvert.convertToBalancePerson(acc.getAccountNo(),currency);
+            balancePersonDao.saveBalancePerson(bal);
         }
-        return balancePerson;
+        return bal;
     }
 
     @Override
     public BalancePerson getAccBalance(String accountNo, String currency){
         BalancePerson bal = balancePersonDao.getBalance(accountNo,currency);
-        BalancePerson balancePerson = new BalancePerson();
         if (null == bal){
-            balancePerson = AccountConvert.convertToBalancePerson(accountNo,currency);
-            balancePersonDao.saveBalancePerson(balancePerson);
+            bal = AccountConvert.convertToBalancePerson(accountNo,currency);
+            balancePersonDao.saveBalancePerson(bal);
         }
-        return balancePerson;
+        return bal;
     }
 }
