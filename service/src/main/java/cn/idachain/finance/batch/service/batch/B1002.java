@@ -75,7 +75,6 @@ public class B1002 extends BaseBatch {
 
                     //生成分红记录
                     final List<BonusOrder> bonusOrders = new ArrayList<BonusOrder>();
-                    DecimalFormat df =new DecimalFormat("#.00");
                     for (int i = 1;i<=product.getInterestCycle();i++){
                         //金额四舍五入 已和产品确认
                         Date bonusDate = DateUtil.offsiteDay(product.getValueDate(),
