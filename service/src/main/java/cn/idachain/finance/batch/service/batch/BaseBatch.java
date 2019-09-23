@@ -1,5 +1,7 @@
 package cn.idachain.finance.batch.service.batch;
 
+import cn.idachain.finance.batch.common.exception.BizException;
+import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
 import cn.idachain.finance.batch.service.util.DateUtil;
 import cn.idachain.finance.batch.common.constants.BizConstants;
 import cn.idachain.finance.batch.common.enums.BatchCode;
@@ -32,8 +34,13 @@ public class BaseBatch {
     public boolean checkStatus(){
         if(BatchCode.BATCH_START.getCode().equals(systemBatch.getPreBatchCode())){
             Date current = new Date(System.currentTimeMillis());
-            log.error("check system date : {},real date :{}",systemDate.getSystemDate(),current);
-            return DateUtil.isSameDay(systemDate.getSystemDate(), current);
+            log.info("check system date : {},real date :{}",systemDate.getSystemDate(),current);
+            if (DateUtil.isSameDay(systemDate.getSystemDate(), current)){
+                return true;
+            }else{
+                log.error("system date error，last date batch haven't finished! ");
+                throw new BizException(BizExceptionEnum.SYSTEM_BATCH_DATE_ERROR);
+            }
         }
         SystemBatch parent = systemBatchDao.selectSystemBatchByCode(systemBatch.getPreBatchCode());
         if (!DateUtil.isSameDay(systemDate.getSystemDate(),parent.getFinishDate())){

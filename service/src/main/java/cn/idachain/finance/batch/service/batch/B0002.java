@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 日启 4
+ * 产品到期 修改已到期产品的产品状态，等待日终进行赎回处理
+ */
 @Slf4j
 @Service
 public class B0002 extends BaseBatch{

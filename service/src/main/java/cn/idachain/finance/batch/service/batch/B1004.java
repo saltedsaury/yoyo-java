@@ -15,6 +15,10 @@ import org.springframework.transaction.support.TransactionTemplate;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * 日终 2
+ * 提前赎回 打捞提前赎回申请单，进行登账并发放
+ */
 @Slf4j
 @Service
 public class B1004 extends BaseBatch {

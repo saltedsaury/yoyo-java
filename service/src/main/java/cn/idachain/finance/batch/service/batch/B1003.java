@@ -20,6 +20,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 日终 1
+ * 分红 对待发放的分红进行登账发放
+ */
 @Slf4j
 @Service
 public class B1003 extends BaseBatch {

@@ -21,6 +21,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 日启 2
+ * 生成收益计划  于产品成立后，对成立的产品进行收益计算
+ */
 @Slf4j
 @Service
 public class B1002 extends BaseBatch {

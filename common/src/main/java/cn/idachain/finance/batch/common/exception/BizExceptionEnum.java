@@ -27,6 +27,7 @@ public enum BizExceptionEnum implements ServiceExceptionEnum {
 
     //系统异常
     DB_ERROR(900001,"数据库操作失败！"),
+    SYSTEM_BATCH_DATE_ERROR(900002,"批处理日期异常！"),
 
     ;
 

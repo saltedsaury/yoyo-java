@@ -22,6 +22,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 日终 3
+ * 到期还本，到期还本处理
+ */
 @Slf4j
 @Service
 public class B1005 extends BaseBatch {

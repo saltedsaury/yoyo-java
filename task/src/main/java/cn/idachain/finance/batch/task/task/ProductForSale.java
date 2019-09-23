@@ -23,7 +23,7 @@ public class ProductForSale {
     @Scheduled(cron = "${task.financing.begin-of-day}")
     public boolean execute(){
         Date currentDate = new Date(System.currentTimeMillis());
-
+        log.info("push product status to for_sale on date :{}",currentDate);
         List<String> status = new ArrayList<String>();
         status.add(ProductStatus.INIT.getCode());
         List<Product> initProduct = productDao.getProductsByStatus(status,null);
@@ -32,6 +32,7 @@ public class ProductForSale {
                 productDao.updateProductByObj(prod,ProductStatus.FOR_SALE.getCode());
             }
         }
+        log.info("push product status finished!");
         return true;
     }
 }

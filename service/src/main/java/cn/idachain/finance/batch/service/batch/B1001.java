@@ -22,7 +22,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 产品成立
+ * 日启 1
+ * 产品成立  于起息日0点执行
  */
 @Slf4j
 @Service
@@ -53,14 +54,10 @@ public class B1001 extends BaseBatch{
             if (new BigDecimal("0").compareTo(product.getSurplusAmount())==0){
                 log.info("product :{} off shelve due to surplus amount is zero.",product);
                 if(investConfirm(product)) { //申购确认全部完成，更新产品状态
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(new Date(System.currentTimeMillis()));
-                    calendar.add(Calendar.DATE, 1);
-                    final Date valueDate = calendar.getTime();
+                    final Date valueDate = new Date();
                     int investCycle = (product.getInterestCycle().intValue()
                             * TimeUnit.getByCode(product.getCycleType()).getDay())-1;
-                    calendar.add(Calendar.DATE, investCycle);
-                    final Date dueDate = calendar.getTime();
+                    final Date dueDate = DateUtil.offsiteDay(valueDate, investCycle);
 
                     transactionTemplate.execute(new TransactionCallbackWithoutResult() {
                         @Override
@@ -72,11 +69,10 @@ public class B1001 extends BaseBatch{
                 }
                 continue;
             }
-            //到达原定起息日的前一日，产品成立
+            //到达原定起息日，产品成立
             if(!BlankUtil.isBlank(product.getValueDate())){
                 log.info("product :{} off shelve due to arriving at value date.",product);
-                //todo  不误伤
-                if(new Date(System.currentTimeMillis()).compareTo(DateUtil.offsiteDay(product.getValueDate(),-1))>0){
+                if(new Date(System.currentTimeMillis()).compareTo(product.getValueDate())>0){
                     if(investConfirm(product)) { //申购确认全部完成，更新产品状态
                         productDao.updateProductByObj(product, ProductStatus.OFF_SHELVE.getCode());
                     }

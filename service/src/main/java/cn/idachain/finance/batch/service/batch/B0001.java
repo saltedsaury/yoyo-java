@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 日启 3
+ * 到达分红日当日，修改分红单状态，等待日终处理
+ */
 @Slf4j
 @Service
 public class B0001 extends BaseBatch{
