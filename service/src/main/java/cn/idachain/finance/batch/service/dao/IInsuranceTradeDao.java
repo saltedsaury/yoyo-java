@@ -15,5 +15,5 @@ public interface IInsuranceTradeDao {
 
     void updateInsuranceSubStatusByObj(InsuranceTrade trade, String status);
 
-    List<InsuranceTrade> getInsuranceTradeOverDue(String insuranceNo, Date currentDate);
+    List<InsuranceTrade> getInsuranceTradeOverDue(String insuranceNo, String status, Date currentDate);
 }

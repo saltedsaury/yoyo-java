@@ -36,35 +36,41 @@ public class InsuranceOverDue {
      * @throws Exception
      */
     @Scheduled(cron = "${task.financing.begin-of-day}")
-    public boolean execute(){
+    public boolean execute() throws Exception {
         log.info("insurance over due task begin.");
 
         Date currentDate = new Date(System.currentTimeMillis());
         //获取到理赔截至日启的保险产品
         List<InsuranceInfo> products = insuranceInfoDao.getAllInsurance();
         log.info("do insurance over due task on date :{} for insurance product list:{}",currentDate.toString(),products);
-        for (InsuranceInfo info : products){
-            List<InsuranceTrade> insuranceTrades = insuranceTradeDao.getInsuranceTradeOverDue(info.getInsuranceNo(),currentDate);
-            log.info("get insurance trade need finish for product {},trade list :{},size:{}",
-                    info.getInsuranceNo(),insuranceTrades,insuranceTrades.size());
-            for (final InsuranceTrade trade :insuranceTrades){
-                //账务解冻金额
-                if(balanceDetialService.giveUpCompensation(trade.getTradeNo(),
-                        trade.getTradeNo(),trade.getCustomerNo(),
-                        info.getTransactionPairs().split(":")[0])) {
+        try {
+            for (InsuranceInfo info : products) {
+                List<InsuranceTrade> insuranceTrades = insuranceTradeDao.getInsuranceTradeOverDue(
+                        info.getInsuranceNo(), InsuranceTradeSubStatus.NO_APPLICATION.getCode(), currentDate);
+                log.info("get insurance trade need finish for product {},trade list :{},size:{}",
+                        info.getInsuranceNo(), insuranceTrades, insuranceTrades.size());
+                for (final InsuranceTrade trade : insuranceTrades) {
+                    //账务解冻金额
+                    if (balanceDetialService.giveUpCompensation(trade.getTradeNo(),
+                            trade.getTradeNo(), trade.getCustomerNo(),
+                            info.getTransactionPairs().split(":")[0])) {
 
-                    log.info("compensate asset unfreeze success:{}", trade.getTradeNo());
-                    transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                        @Override
-                        protected void doInTransactionWithoutResult(TransactionStatus status) {
-                            insuranceTradeDao.updateInsuranceTradeStatusByObj(trade,
-                                    InsuranceTradeStatus.FINISH.getCode());
-                            insuranceTradeDao.updateInsuranceSubStatusByObj(trade,
-                                    InsuranceTradeSubStatus.BE_OVERDUE.getCode());
-                        }
-                    });
+                        log.info("compensate asset unfreeze success:{}", trade.getTradeNo());
+                        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                            @Override
+                            protected void doInTransactionWithoutResult(TransactionStatus status) {
+                                insuranceTradeDao.updateInsuranceTradeStatusByObj(trade,
+                                        InsuranceTradeStatus.FINISH.getCode());
+                                insuranceTradeDao.updateInsuranceSubStatusByObj(trade,
+                                        InsuranceTradeSubStatus.BE_OVERDUE.getCode());
+                            }
+                        });
+                    }
                 }
             }
+        }catch (Exception e){
+            log.error("insurance over due task failed.");
+            throw e;
         }
 
         log.info("insurance over due task end.");

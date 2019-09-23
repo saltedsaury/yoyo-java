@@ -73,9 +73,10 @@ public class InsuranceTradeDao implements IInsuranceTradeDao {
     }
 
     @Override
-    public List<InsuranceTrade> getInsuranceTradeOverDue(String insuranceNo, Date currentDate) {
+    public List<InsuranceTrade> getInsuranceTradeOverDue(String insuranceNo, String status, Date currentDate) {
         EntityWrapper<InsuranceTrade> wrapper = new EntityWrapper<InsuranceTrade>();
         wrapper.eq("insurance_no",insuranceNo);
+        wrapper.eq("sub_status",status);
         wrapper.le("compensate_end",currentDate);
         return insuranceTradeMapper.selectList(wrapper);
     }
