@@ -17,6 +17,7 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,21 +67,26 @@ public class B1002 extends BaseBatch {
                 log.info("query invest list for product {} ,list :{}",product.getProductNo(),investInfos);
                 for (final InvestInfo investInfo:investInfos){
                     //生成收益计划
-                    BigDecimal totalInterest = investInfo.getAmount().multiply(product.getProfitScale());
+                    BigDecimal totalInterest = investInfo.getAmount().multiply(product.getProfitScale())
+                            .setScale(2,BigDecimal.ROUND_HALF_UP);
                     final RevenuePlan revenuePlan = convertToRevenuePlan(investInfo,totalInterest,product);
                     log.info("generate plan {} for invest {} ",revenuePlan,investInfo);
                     investInfo.setPlanNo(revenuePlan.getPlanNo());
 
                     //生成分红记录
                     final List<BonusOrder> bonusOrders = new ArrayList<BonusOrder>();
-
+                    DecimalFormat df =new DecimalFormat("#.00");
                     for (int i = 1;i<=product.getInterestCycle();i++){
-                        //todo 金额四舍五入 和产品确认
+                        //金额四舍五入 已和产品确认
                         Date bonusDate = DateUtil.offsiteDay(product.getValueDate(),
                                 (TimeUnit.getByCode(product.getCycleType()).getDay()*i)-1);
-                        BigDecimal amount = investInfo.getAmount().multiply(product.getProfitPerCycle());
+                        BigDecimal amount = totalInterest.divide(
+                                BigDecimal.valueOf(product.getInterestCycle()),
+                                2,BigDecimal.ROUND_HALF_UP);
                         if (i == product.getInterestCycle()){
-                            amount = revenuePlan.getInterest().subtract(amount.multiply(new BigDecimal(i-1)));
+                            amount = totalInterest.subtract(
+                                    amount.multiply(new BigDecimal(i-1)))
+                                    .setScale(2,BigDecimal.ROUND_HALF_UP);
                         }
 
                         BonusOrder order = convertToBonusOrder(investInfo,Long.valueOf(i),amount,bonusDate);
