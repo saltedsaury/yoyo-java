@@ -33,9 +33,12 @@ public class B0001 extends BaseBatch{
             for (BonusOrder order:bonusOrders){
                 order.setStatus(BonusStatus.PREPARE.getCode());
             }
-            bonusOrderDao.updateBatchById(bonusOrders,bonusOrders.size());
+            if (bonusOrders !=null && bonusOrders.size()>0) {
+                bonusOrderDao.updateBatchById(bonusOrders, bonusOrders.size());
+            }
         }catch (Exception e){
             log.error("update bonusOrder batch db error:{}",e);
+            throw e;
         }
 
         afterExecute();
