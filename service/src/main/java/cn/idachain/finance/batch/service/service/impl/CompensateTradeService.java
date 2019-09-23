@@ -50,18 +50,18 @@ public class CompensateTradeService extends BaseService implements ICompensateTr
                 insurance.getInvestNo(),null,insurance.getCustomerNo());
         log.info("query invest info :{}",info);
         //调用account解冻扣款
-        if (balanceDetialService.compensate(trade.getCustomerNo(),trade.getCcy(),trade.getCompensateCcy(),
-                trade.getEffectiveAmount(),trade.getCompensateAmount(),trade.getTradeNo(),insurance.getTradeNo())) {
-            log.info("compensate confirm keeping account finish ,compensate tradeNo:{}",trade.getTradeNo());
-            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                @Override
-                protected void doInTransactionWithoutResult(TransactionStatus status) {
-                    compensateTradeDao.updateCompensateTradeStatusByObj(trade, CompensationStatus.FINISH.getCode());
-                    insuranceTradeDao.updateInsuranceTradeStatusByObj(insurance, InsuranceTradeStatus.FINISH.getCode());
-                    insuranceTradeDao.updateInsuranceSubStatusByObj(insurance, InsuranceTradeSubStatus.FINISHI_COMPENSATION.getCode());
-                }
-            });
-        }
+        log.info("compensate confirm keeping account finish ,compensate tradeNo:{}",trade.getTradeNo());
+        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+            @Override
+            protected void doInTransactionWithoutResult(TransactionStatus status) {
+                balanceDetialService.compensate(trade.getCustomerNo(),trade.getCcy(),trade.getCompensateCcy(),
+                        trade.getEffectiveAmount(),trade.getCompensateAmount(),trade.getTradeNo(),insurance.getTradeNo());
+                log.info("compensate confirm keeping account finish ,compensate tradeNo:{}",trade.getTradeNo());
+                compensateTradeDao.updateCompensateTradeStatusByObj(trade, CompensationStatus.FINISH.getCode());
+                insuranceTradeDao.updateInsuranceTradeStatusByObj(insurance, InsuranceTradeStatus.FINISH.getCode());
+                insuranceTradeDao.updateInsuranceSubStatusByObj(insurance, InsuranceTradeSubStatus.FINISHI_COMPENSATION.getCode());
+            }
+        });
 
         return trade;
     }

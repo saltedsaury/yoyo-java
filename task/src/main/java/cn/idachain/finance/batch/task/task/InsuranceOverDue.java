@@ -44,28 +44,26 @@ public class InsuranceOverDue {
         List<InsuranceInfo> products = insuranceInfoDao.getAllInsurance();
         log.info("do insurance over due task on date :{} for insurance product list:{}",currentDate.toString(),products);
         try {
-            for (InsuranceInfo info : products) {
+            for (final InsuranceInfo info : products) {
                 List<InsuranceTrade> insuranceTrades = insuranceTradeDao.getInsuranceTradeOverDue(
                         info.getInsuranceNo(), InsuranceTradeSubStatus.NO_APPLICATION.getCode(), currentDate);
                 log.info("get insurance trade need finish for product {},trade list :{},size:{}",
                         info.getInsuranceNo(), insuranceTrades, insuranceTrades.size());
                 for (final InsuranceTrade trade : insuranceTrades) {
                     //账务解冻金额
-                    if (balanceDetialService.giveUpCompensation(trade.getTradeNo(),
-                            trade.getTradeNo(), trade.getCustomerNo(),
-                            info.getTransactionPairs().split(":")[0])) {
-
-                        log.info("compensate asset unfreeze success:{}", trade.getTradeNo());
-                        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                            @Override
-                            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                                insuranceTradeDao.updateInsuranceTradeStatusByObj(trade,
-                                        InsuranceTradeStatus.FINISH.getCode());
-                                insuranceTradeDao.updateInsuranceSubStatusByObj(trade,
-                                        InsuranceTradeSubStatus.BE_OVERDUE.getCode());
-                            }
-                        });
-                    }
+                    transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                        @Override
+                        protected void doInTransactionWithoutResult(TransactionStatus status) {
+                            balanceDetialService.giveUpCompensation(trade.getTradeNo(),
+                                    trade.getTradeNo(), trade.getCustomerNo(),
+                                    info.getTransactionPairs().split(":")[0]);
+                            log.info("compensate asset unfreeze success:{}", trade.getTradeNo());
+                            insuranceTradeDao.updateInsuranceTradeStatusByObj(trade,
+                                    InsuranceTradeStatus.FINISH.getCode());
+                            insuranceTradeDao.updateInsuranceSubStatusByObj(trade,
+                                    InsuranceTradeSubStatus.BE_OVERDUE.getCode());
+                        }
+                    });
                 }
             }
         }catch (Exception e){

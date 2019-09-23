@@ -45,9 +45,13 @@ public class BaseBatch {
         SystemBatch parent = systemBatchDao.selectSystemBatchByCode(systemBatch.getPreBatchCode());
         if (!DateUtil.isSameDay(systemDate.getSystemDate(),parent.getFinishDate())){
             log.error("check parent batch finish date fail,system date:{},parent finish date:{}");
-            return false;
+            throw new BizException(BizExceptionEnum.SYSTEM_BATCH_DATE_ERROR);
         }
-        return BatchStatus.SUCCESS.getCode().equals(parent.getStatus());
+        if (!BatchStatus.SUCCESS.getCode().equals(parent.getStatus())){
+            log.error("check parent batch status fail,parent batch code:{}",parent.getBatchCode());
+            throw new BizException(BizExceptionEnum.SYSTEM_BATCH_DATE_ERROR);
+        }
+        return true;
     }
 
     public void afterExecute(){

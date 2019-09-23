@@ -63,30 +63,30 @@ public class B1004 extends BaseBatch {
 
             //修改提前赎回记录状态 以及 投资记录状态 防止自动赎回流程重复捞单
             //调用account接口记赎回
-            if (balanceDetialService.redemption(trade.getCustomerNo(),trade.getCcy(),
-                    trade.getTradeNo(),trade.getAmount(),trade.getFine(),trade.getBonus())) {
-                log.info("pay redemption success,orderNo:{},amount:{}",trade.getTradeNo(),trade.getAmount());
-                transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                    @Override
-                    protected void doInTransactionWithoutResult(TransactionStatus status) {
-                        investDao.updateInvestInfoStatusByObj(investInfo, InvestStatus.ALREADY_REDEEMED.getCode());
-                        redemptionTradeDao.updateTradeStatusByObj(trade, RedemptionStatus.FINISH.getCode());
-                        revenuePlanDao.updatePlanStatusByObj(revenuePlan, PlanStatus.ALREADY_REDEEMED.getCode());
-                        //购买保险产品需将保险产品失效
-                        InsuranceTrade insuranceTrade = insuranceTradeDao.getTradeByInvestNo(
-                                investInfo.getTradeNo(), InsuranceTradeStatus.INIT.getCode());
-                        if (!BlankUtil.isBlank(insuranceTrade)) {
-                            insuranceTradeDao.updateInsuranceTradeStatusByObj(insuranceTrade,
-                                    InsuranceTradeStatus.FINISH.getCode());
-                        }
-                        //分红记录失效
-                        BonusOrder bonusOrder = new BonusOrder();
-                        bonusOrder.setInvestNo(investInfo.getTradeNo());
-                        bonusOrder.setStatus(BonusStatus.INIT.getCode());
-                        bonusOrderDao.updateBonusByStatus(bonusOrder, BonusStatus.CANCEL.getCode());
+            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                @Override
+                protected void doInTransactionWithoutResult(TransactionStatus status) {
+                    balanceDetialService.redemption(trade.getCustomerNo(),trade.getCcy(),
+                            trade.getTradeNo(),trade.getAmount(),trade.getFine(),trade.getBonus());
+                    log.info("pay redemption success,orderNo:{},amount:{}",trade.getTradeNo(),trade.getAmount());
+                    investDao.updateInvestInfoStatusByObj(investInfo, InvestStatus.ALREADY_REDEEMED.getCode());
+                    redemptionTradeDao.updateTradeStatusByObj(trade, RedemptionStatus.FINISH.getCode());
+                    revenuePlanDao.updatePlanStatusByObj(revenuePlan, PlanStatus.ALREADY_REDEEMED.getCode());
+                    //购买保险产品需将保险产品失效
+                    InsuranceTrade insuranceTrade = insuranceTradeDao.getTradeByInvestNo(
+                            investInfo.getTradeNo(), InsuranceTradeStatus.INIT.getCode());
+                    if (!BlankUtil.isBlank(insuranceTrade)) {
+                        insuranceTradeDao.updateInsuranceTradeStatusByObj(insuranceTrade,
+                                InsuranceTradeStatus.FINISH.getCode());
                     }
-                });
-            }
+                    //分红记录失效
+                    BonusOrder bonusOrder = new BonusOrder();
+                    bonusOrder.setInvestNo(investInfo.getTradeNo());
+                    bonusOrder.setStatus(BonusStatus.INIT.getCode());
+                    bonusOrderDao.updateBonusByStatus(bonusOrder, BonusStatus.CANCEL.getCode());
+                }
+            });
+
         }
 
         afterExecute();

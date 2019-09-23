@@ -91,10 +91,15 @@ public class B1001 extends BaseBatch{
         for (InvestInfo info : investInfos){
             try{
                 //调用account解冻扣款
-                if (balanceDetialService.invest(info.getTradeNo())) {
-                    log.info("invest charged amount success,invest info:{}",info);
-                    investDao.updateInvestInfoStatusByObj(info, InvestStatus.INVEST_SUCCESS.getCode());
-                }
+                transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                    @Override
+                    protected void doInTransactionWithoutResult(TransactionStatus status) {
+                        balanceDetialService.invest(info.getTradeNo());
+                        log.info("invest charged amount success,invest info:{}",info);
+                        investDao.updateInvestInfoStatusByObj(info, InvestStatus.INVEST_SUCCESS.getCode());
+
+                    }
+                });
             }catch (Exception e){
                 log.error("do invest confirm failed, investNo:{}",info.getTradeNo());
                 finishFlag = false;

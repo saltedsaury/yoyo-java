@@ -2,11 +2,12 @@ package cn.idachain.finance.batch.service.dao;
 
 import cn.idachain.finance.batch.common.dataobject.BonusOrder;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.IService;
 
 import java.util.Date;
 import java.util.List;
 
-public interface IBonusOrderDao {
+public interface IBonusOrderDao extends IService<BonusOrder> {
     int countBonusByPlanAndStatus(String planNo, String status);
 
     void saveBonusOrder(BonusOrder bonusOrder);

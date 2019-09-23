@@ -71,20 +71,20 @@ public class B1003 extends BaseBatch {
             revenuePlan.setModifiedTime(new Date(System.currentTimeMillis()));
 
             //调用account接口记录分红
-            //fixme  放一个事务
-            if (balanceDetialService.payBonus(
-                    order.getCustomerNo(),order.getCcy(),order.getAmount(),order.getTradeNo())) {
-                log.info("pay bonus success,orderNo:{},amount:{}",order.getTradeNo(),order.getAmount());
-                //分红成功修改状态和收益计划表
-                transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                    @Override
-                    protected void doInTransactionWithoutResult(TransactionStatus status) {
-                        order.setModifiedTime(new Date(System.currentTimeMillis()));
-                        bonusOrderDao.updateBonusByStatus(order, BonusStatus.FINISH.getCode());
-                        revenuePlanDao.updatePlanById(revenuePlan);
-                    }
-                });
-            }
+
+            log.info("pay bonus success,orderNo:{},amount:{}",order.getTradeNo(),order.getAmount());
+            //分红成功修改状态和收益计划表
+            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                @Override
+                protected void doInTransactionWithoutResult(TransactionStatus status) {
+                    balanceDetialService.payBonus(
+                            order.getCustomerNo(),order.getCcy(),order.getAmount(),order.getTradeNo());
+                    log.info("pay bonus success,orderNo:{},amount:{}",order.getTradeNo(),order.getAmount());
+                    order.setModifiedTime(new Date(System.currentTimeMillis()));
+                    bonusOrderDao.updateBonusByStatus(order, BonusStatus.FINISH.getCode());
+                    revenuePlanDao.updatePlanById(revenuePlan);
+                }
+            });
 
         }
 

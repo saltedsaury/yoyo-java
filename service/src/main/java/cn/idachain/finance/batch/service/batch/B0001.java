@@ -26,17 +26,18 @@ public class B0001 extends BaseBatch{
         if (!checkStatus()){
             return false;
         }
-        //todo 批量更新
         List<BonusOrder> bonusOrders = bonusOrderDao.selectBonusByStatus(
                 new Date(System.currentTimeMillis()), BonusStatus.INIT.getCode());
         log.info("do batch B0001 for bonus order list :{}",bonusOrders);
-        for (BonusOrder order:bonusOrders){
-            try{
-                bonusOrderDao.updateBonusByStatus(order,BonusStatus.PREPARE.getCode());
-            }catch (Exception e){
-                log.error("update bonusOrder db error,orderNo:{}",order.getTradeNo());
+        try {
+            for (BonusOrder order:bonusOrders){
+                order.setStatus(BonusStatus.PREPARE.getCode());
             }
+            bonusOrderDao.updateBatchById(bonusOrders,bonusOrders.size());
+        }catch (Exception e){
+            log.error("update bonusOrder batch db error:{}",e);
         }
+
         afterExecute();
         return true;
     }

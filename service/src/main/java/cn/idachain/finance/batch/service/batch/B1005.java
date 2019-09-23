@@ -102,44 +102,54 @@ public class B1005 extends BaseBatch {
                         //保险生效
                         //调用account进行赎回
                         log.info("pay principal with insurance,planNo:{}",record.getPlanNo());
-                        if(balanceDetialService.payPrincipal(record.getCustomerNo(),
-                                investInfo.getCcy(),record.getPrincipal(),record.getPlanNo(),insuranceTrade.getTradeNo(),true)) {
-                            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                                @Override
-                                protected void doInTransactionWithoutResult(TransactionStatus status) {
-                                    insuranceTradeDao.updateInsuranceTradeStatusByObj(insuranceTrade,
-                                            InsuranceTradeStatus.WAIT_COMPENSATION.getCode());
-                                    insuranceTradeDao.updateInsuranceSubStatusByObj(insuranceTrade,
-                                            InsuranceTradeSubStatus.NO_APPLICATION.getCode());
-                                }
-                            });
-                        }
+                        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                            @Override
+                            protected void doInTransactionWithoutResult(TransactionStatus status) {
+                                balanceDetialService.payPrincipal(record.getCustomerNo(),
+                                        investInfo.getCcy(),record.getPrincipal(),
+                                        record.getPlanNo(),insuranceTrade.getTradeNo(),true);
+                                insuranceTradeDao.updateInsuranceTradeStatusByObj(insuranceTrade,
+                                        InsuranceTradeStatus.WAIT_COMPENSATION.getCode());
+                                insuranceTradeDao.updateInsuranceSubStatusByObj(insuranceTrade,
+                                        InsuranceTradeSubStatus.NO_APPLICATION.getCode());
+                                investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
+                                revenuePlanDao.updatePlanStatusByObj(record,PlanStatus.FINISH.getCode());
+                            }
+                        });
+
                     }else{
                         //保险不生效
                         //调用account进行赎回
                         log.info("pay principal without insurance,insurance not effective,planNo:{}",record.getPlanNo());
-                        if(balanceDetialService.payPrincipal(record.getCustomerNo(),
-                                investInfo.getCcy(),record.getPrincipal(),record.getPlanNo(),null,false)) {
+                        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                            @Override
+                            protected void doInTransactionWithoutResult(TransactionStatus status) {
+                            balanceDetialService.payPrincipal(record.getCustomerNo(),
+                                    investInfo.getCcy(),record.getPrincipal(),
+                                    record.getPlanNo(),null,false);
                             insuranceTradeDao.updateInsuranceTradeStatusByObj(
                                     insuranceTrade, InsuranceTradeStatus.FINISH.getCode());
-                        }
+                            investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
+                            revenuePlanDao.updatePlanStatusByObj(record,PlanStatus.FINISH.getCode());
+                            }
+                        });
                     }
                 }else{
                     //未购买保险
                     //调用account进行赎回
                     log.info("pay principal without insurance,planNo:{}",record.getPlanNo());
-                    balanceDetialService.payPrincipal(record.getCustomerNo(),
-                            investInfo.getCcy(),record.getPrincipal(),record.getPlanNo(),null,false);
+                    transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                        @Override
+                        protected void doInTransactionWithoutResult(TransactionStatus status) {
+                            balanceDetialService.payPrincipal(record.getCustomerNo(),
+                                    investInfo.getCcy(),record.getPrincipal(),
+                                    record.getPlanNo(),null,false);
+                            investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
+                            revenuePlanDao.updatePlanStatusByObj(record,PlanStatus.FINISH.getCode()); //
+                        }
+                    });
                 }
 
-                //更新赎回记录状态 以及 投资记录状态
-                transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                    @Override
-                    protected void doInTransactionWithoutResult(TransactionStatus status) {
-                        investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
-                        revenuePlanDao.updatePlanStatusByObj(record,PlanStatus.FINISH.getCode()); //
-                    }
-                });
             }
         }
         afterExecute();

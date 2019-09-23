@@ -6,6 +6,7 @@ import cn.idachain.finance.batch.common.util.BlankUtil;
 import cn.idachain.finance.batch.service.dao.IBonusOrderDao;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class BonusOrderDao implements IBonusOrderDao {
+public class BonusOrderDao extends ServiceImpl<BonusOrderMapper,BonusOrder> implements IBonusOrderDao {
     @Autowired
     private BonusOrderMapper bonusOrderMapper;
 
