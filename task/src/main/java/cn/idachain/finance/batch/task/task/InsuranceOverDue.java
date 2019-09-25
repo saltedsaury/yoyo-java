@@ -47,7 +47,8 @@ public class InsuranceOverDue {
         try {
             for (final InsuranceInfo info : products) {
                 List<InsuranceTrade> insuranceTrades = insuranceTradeDao.getInsuranceTradeOverDue(
-                        info.getInsuranceNo(), InsuranceTradeStatus.WAIT_COMPENSATION.getCode(), currentDate);
+                        info.getInsuranceNo(), InsuranceTradeStatus.WAIT_COMPENSATION.getCode(),
+                        InsuranceTradeSubStatus.NO_APPLICATION.getCode(), currentDate);
                 log.info("get insurance trade need finish for product {},trade list :{},size:{}",
                         info.getInsuranceNo(), insuranceTrades, insuranceTrades.size());
                 for (final InsuranceTrade trade : insuranceTrades) {
