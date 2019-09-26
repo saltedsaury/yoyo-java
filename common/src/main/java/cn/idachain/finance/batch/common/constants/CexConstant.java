@@ -89,7 +89,7 @@ public class CexConstant {
     public static final String HEADER_PARAM_CONTENT_TYPE = "Content-Type";
     public static final String HEADER_PARAM_CONTENT_TYPE_VALUE = "application/json";
     public static final String HEADER_PARAM_CEX_BIZ_CHANNEL = "CEXCHANNEL";
-    public static final String HEADER_PARAM_CEX_BIZ_CHANNEL_VALUE = "8";
+    public static final String HEADER_PARAM_CEX_BIZ_CHANNEL_VALUE = "28";
     public static final String HEADER_PARAM_CEX_BIZ_CHANNEL_OUT_ORDER_NO = "CEXCHANNELOUTORDERNO";
 
 
