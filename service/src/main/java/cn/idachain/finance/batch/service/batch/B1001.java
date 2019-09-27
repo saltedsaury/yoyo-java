@@ -94,7 +94,7 @@ public class B1001 extends BaseBatch{
                 transactionTemplate.execute(new TransactionCallbackWithoutResult() {
                     @Override
                     protected void doInTransactionWithoutResult(TransactionStatus status) {
-                        balanceDetialService.invest(info.getTradeNo());
+                        balanceDetialService.invest(info.getTradeNo(),info.getProductNo());
                         log.info("invest charged amount success,invest info:{}",info);
                         investDao.updateInvestInfoStatusByObj(info, InvestStatus.INVEST_SUCCESS.getCode());
 

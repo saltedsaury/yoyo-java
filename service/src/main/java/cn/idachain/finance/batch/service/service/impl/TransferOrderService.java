@@ -69,7 +69,7 @@ public class TransferOrderService implements ITransferOrderService {
      * @param ccy
      */
     private boolean deduct(String deriction,BigDecimal amount,
-                           String ccy,String orderNo,String customerNo,String transferType,String accountType) {
+                           String ccy,String orderNo,String customerNo,String transferType,String accountNo) {
         //整体资金方向为转入，应从up扣减余额
         if(Direction.IN.getCode().equals(deriction)){
             TransferParam param =  TransferParam.builder()
@@ -91,7 +91,7 @@ public class TransferOrderService implements ITransferOrderService {
                 return true;
             }
             if (CexRespCode.SUCCESS_TRANSFER_FAIL.getCode().equals(response.getCode())){
-                log.error("call up transferOut error,code:{},msg:{},traceId:{}",
+                log.warn("call up transferOut error,code:{},msg:{},traceId:{}",
                         response.getCode(),response.getMsg(),response.getTraceId());
                 BizExceptionEnum.TRANSFER_ERROR.setMessage(response.getMsg());
                 throw new BizException(BizExceptionEnum.TRANSFER_ERROR);
@@ -106,7 +106,7 @@ public class TransferOrderService implements ITransferOrderService {
                 log.info("transfer out from financing for boss , customerNo:{},currency:{},orderNo:{},amount:{}"
                         ,customerNo,ccy,orderNo,amount);
                 return balanceDetailService.systemTransfer(customerNo,ccy,Direction.OUT.getCode(),
-                        orderNo,amount,accountType);
+                        orderNo,amount,accountNo);
             }
             log.info("transfer out from financing, customerNo:{},currency:{},orderNo:{},amount:{}"
                     ,customerNo,ccy,orderNo,amount);
@@ -117,7 +117,6 @@ public class TransferOrderService implements ITransferOrderService {
         }
     }
 
-
     /**
      * 增加余额
      * @param deriction
@@ -125,14 +124,14 @@ public class TransferOrderService implements ITransferOrderService {
      * @param ccy
      */
     private boolean increase(String deriction,BigDecimal amount,String ccy,String orderNo,
-                             String customerNo,String transferType,String accountType){
+                             String customerNo,String transferType,String accountNo){
         //整体资金方向为转入，应从增加account余额
         if(Direction.IN.getCode().equals(deriction)){
             if (TransferType.SYSTEM.getCode().equals(transferType)){
                 log.info("transfer in to financing for boss, customerNo:{},currency:{},orderNo:{},amount:{}"
                         ,customerNo,ccy,orderNo,amount);
                 return balanceDetailService.systemTransfer(customerNo,ccy,
-                        Direction.IN.getCode(),orderNo,amount,accountType);
+                        Direction.IN.getCode(),orderNo,amount,accountNo);
             }
             log.info("transfer in to financing, customerNo:{},currency:{},orderNo:{},amount:{}"
                     ,customerNo,ccy,orderNo,amount);
@@ -201,7 +200,7 @@ public class TransferOrderService implements ITransferOrderService {
             transferInFlag = false;
             try{
                 transferInFlag= increase(order.getDeriction(), order.getAmount(), order.getCcy(),
-                        order.getOrderNo(), order.getCustomerNo(),order.getTransferType(),order.getAccountType());
+                        order.getOrderNo(), order.getCustomerNo(),order.getTransferType(),order.getAccountNo());
                 if (transferInFlag){
                     //更新订单状态  增加余额成功
                     updateOrderByTransaction(order,TransferOrderStatus.SUCCESS.getCode(),
@@ -229,7 +228,7 @@ public class TransferOrderService implements ITransferOrderService {
             transferOutFlag = false;
             try {
                 transferOutFlag = deduct(order.getDeriction(), order.getAmount(), order.getCcy(),
-                        order.getOrderNo(), order.getCustomerNo(), order.getTransferType(),order.getAccountType());
+                        order.getOrderNo(), order.getCustomerNo(), order.getTransferType(),order.getAccountNo());
             }catch (TryAgainException tryAgain){
                 log.warn("update account balance failed :{}",order.toString());
             }
@@ -247,7 +246,7 @@ public class TransferOrderService implements ITransferOrderService {
                         TransferProcessStatus.CHARGEBACK_SUCCESS.getCode());
 
                 transferInFlag = increase(order.getDeriction(), order.getAmount(), order.getCcy(),
-                        order.getOrderNo(), order.getCustomerNo(), order.getTransferType(), order.getAccountType());
+                        order.getOrderNo(), order.getCustomerNo(), order.getTransferType(), order.getAccountNo());
 
                 if (transferInFlag){
                     //更新订单状态  增加余额成功

@@ -107,7 +107,8 @@ public class B1005 extends BaseBatch {
                             protected void doInTransactionWithoutResult(TransactionStatus status) {
                                 balanceDetialService.payPrincipal(record.getCustomerNo(),
                                         investInfo.getCcy(),record.getPrincipal(),
-                                        record.getPlanNo(),insuranceTrade.getTradeNo(),true);
+                                        record.getPlanNo(),insuranceTrade.getTradeNo(),
+                                        true,investInfo.getProductNo());
                                 insuranceTradeDao.updateInsuranceTradeStatusByObj(insuranceTrade,
                                         InsuranceTradeStatus.WAIT_COMPENSATION.getCode());
                                 insuranceTradeDao.updateInsuranceSubStatusByObj(insuranceTrade,
@@ -126,7 +127,7 @@ public class B1005 extends BaseBatch {
                             protected void doInTransactionWithoutResult(TransactionStatus status) {
                             balanceDetialService.payPrincipal(record.getCustomerNo(),
                                     investInfo.getCcy(),record.getPrincipal(),
-                                    record.getPlanNo(),null,false);
+                                    record.getPlanNo(),null,false,investInfo.getProductNo());
                             insuranceTradeDao.updateInsuranceTradeStatusByObj(
                                     insuranceTrade, InsuranceTradeStatus.FINISH.getCode());
                             investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
@@ -143,7 +144,7 @@ public class B1005 extends BaseBatch {
                         protected void doInTransactionWithoutResult(TransactionStatus status) {
                             balanceDetialService.payPrincipal(record.getCustomerNo(),
                                     investInfo.getCcy(),record.getPrincipal(),
-                                    record.getPlanNo(),null,false);
+                                    record.getPlanNo(),null,false,investInfo.getProductNo());
                             investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
                             revenuePlanDao.updatePlanStatusByObj(record,PlanStatus.FINISH.getCode()); //
                         }

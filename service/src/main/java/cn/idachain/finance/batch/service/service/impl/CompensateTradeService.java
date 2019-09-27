@@ -55,7 +55,8 @@ public class CompensateTradeService extends BaseService implements ICompensateTr
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus status) {
                 balanceDetialService.compensate(trade.getCustomerNo(),trade.getCcy(),trade.getCompensateCcy(),
-                        trade.getEffectiveAmount(),trade.getCompensateAmount(),trade.getTradeNo(),insurance.getTradeNo());
+                        trade.getEffectiveAmount(),trade.getCompensateAmount(),
+                        trade.getTradeNo(),insurance.getTradeNo(),insurance.getInsuranceNo());
                 log.info("compensate confirm keeping account finish ,compensate tradeNo:{}",trade.getTradeNo());
                 compensateTradeDao.updateCompensateTradeStatusByObj(trade, CompensationStatus.FINISH.getCode());
                 insuranceTradeDao.updateInsuranceTradeStatusByObj(insurance, InsuranceTradeStatus.FINISH.getCode());

@@ -23,13 +23,12 @@ public class AccountOrgDao implements IAccountOrgDao {
     }
 
     @Override
-    public AccountOrg getOrgAccountByCustomerNo(String customerNo, String currency,String accountType) {
+    public AccountOrg getOrgAccountByAccNo(String currency,String accountNo) {
         AccountOrg condition = new AccountOrg();
-        condition.setCustomerNo(customerNo);
         if (null != currency) {
             condition.setCurrency(currency);
         }
-        condition.setAccountType(accountType);
+        condition.setAccountNo(accountNo);
         return accountOrgMapper.selectOne(condition);
     }
 }

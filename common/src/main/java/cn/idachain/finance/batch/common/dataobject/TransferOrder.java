@@ -29,6 +29,6 @@ public class TransferOrder extends BaseDO {
 
     private String transferType;
 
-    private String accountType;
+    private String accountNo;
 
 }

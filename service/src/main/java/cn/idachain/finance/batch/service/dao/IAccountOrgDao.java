@@ -7,5 +7,5 @@ import java.util.List;
 public interface IAccountOrgDao {
     List<AccountOrg> getAccountListByType(String accountType);
 
-    AccountOrg getOrgAccountByCustomerNo(String customerNo, String currency, String accountType);
+    AccountOrg getOrgAccountByAccNo(String currency, String accountNo);
 }

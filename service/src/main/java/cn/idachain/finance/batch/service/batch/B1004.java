@@ -67,7 +67,8 @@ public class B1004 extends BaseBatch {
                 @Override
                 protected void doInTransactionWithoutResult(TransactionStatus status) {
                     balanceDetialService.redemption(trade.getCustomerNo(),trade.getCcy(),
-                            trade.getTradeNo(),trade.getAmount(),trade.getFine(),trade.getBonus());
+                            trade.getTradeNo(),trade.getAmount(),trade.getFine(),
+                            trade.getBonus(),investInfo.getProductNo());
                     log.info("pay redemption success,orderNo:{},amount:{}",trade.getTradeNo(),trade.getAmount());
                     investDao.updateInvestInfoStatusByObj(investInfo, InvestStatus.ALREADY_REDEEMED.getCode());
                     redemptionTradeDao.updateTradeStatusByObj(trade, RedemptionStatus.FINISH.getCode());

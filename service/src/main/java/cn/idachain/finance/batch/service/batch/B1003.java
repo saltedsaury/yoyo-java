@@ -77,8 +77,8 @@ public class B1003 extends BaseBatch {
             transactionTemplate.execute(new TransactionCallbackWithoutResult() {
                 @Override
                 protected void doInTransactionWithoutResult(TransactionStatus status) {
-                    balanceDetialService.payBonus(
-                            order.getCustomerNo(),order.getCcy(),order.getAmount(),order.getTradeNo());
+                    balanceDetialService.payBonus(order.getCustomerNo(),order.getCcy(),
+                            order.getAmount(),order.getTradeNo(),order.getProductNo());
                     log.info("pay bonus success,orderNo:{},amount:{}",order.getTradeNo(),order.getAmount());
                     order.setModifiedTime(new Date(System.currentTimeMillis()));
                     bonusOrderDao.updateBonusByStatus(order, BonusStatus.FINISH.getCode());
