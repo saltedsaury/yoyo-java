@@ -417,7 +417,7 @@ public class BalanceDetailService implements IBalanceDetialService {
             log.info("get biz balance :{}",bal);
             userBal = balanceService.getAccBalance(detail.getAccountNo(),detail.getCurrency());
             userAmount = userAmount.add(detail.getFreezeAmt());
-            map.put(bal,detail.getFreezeAmt());
+            map.merge(bal, detail.getFreezeAmt(), BigDecimal::add);
 
             final BalanceDetail finDtl = AccountConvert.convertToBalanceDetail(
                     tradeNo,Direction.IN.getCode(),acc.getAccountNo(),detail.getCurrency(),
@@ -450,7 +450,7 @@ public class BalanceDetailService implements IBalanceDetialService {
                     log.error("unfreeze user balance error,account no:{}",finalUserBal.getAccountNo());
                     throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);
                 }
-                map.forEach( (k,v)->{
+                map.forEach((k,v)->{
                     if(balanceOrgDao.updateBalance(k,k.getBalance().add(v))<=0){
                         log.error("update internal account {} balance error",k.getAccountNo());
                         throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);
