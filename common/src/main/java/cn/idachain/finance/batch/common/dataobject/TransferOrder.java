@@ -31,4 +31,6 @@ public class TransferOrder extends BaseDO {
 
     private String accountNo;
 
+    private Long transferTime;
+
 }

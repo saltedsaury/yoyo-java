@@ -57,7 +57,7 @@ public class BalanceDetailService implements IBalanceDetialService {
      * @return
      */
     @Override
-    public boolean transfer(String customerNo, String currency, String direction, String tradeNo, BigDecimal amount){
+    public Long transfer(String customerNo, String currency, String direction, String tradeNo, BigDecimal amount){
         AccountPerson userAccount = accountService.getCustomerAccount(customerNo,null);
         AccountInternal finAccount = accountInternalDao.getAccountByTransType(
                 AccountTransType.FINANCING.getCode(),null);
@@ -111,7 +111,7 @@ public class BalanceDetailService implements IBalanceDetialService {
             }
         });
 
-        return true;
+        return System.currentTimeMillis();
     }
 
     /**
@@ -556,7 +556,7 @@ public class BalanceDetailService implements IBalanceDetialService {
     }
 
     @Override
-    public boolean systemTransfer(String customerNo, String currency, String direction,
+    public Long systemTransfer(String customerNo, String currency, String direction,
                                   String tradeNo, BigDecimal amount,String accountNo){
         AccountOrg orgAccount = accountService.getOrgAccount(null,accountNo);
         AccountInternal finAccount = accountInternalDao.getAccountByTransType(
@@ -605,7 +605,7 @@ public class BalanceDetailService implements IBalanceDetialService {
             }
         });
 
-        return true;
+        return System.currentTimeMillis();
 
     }
 }
