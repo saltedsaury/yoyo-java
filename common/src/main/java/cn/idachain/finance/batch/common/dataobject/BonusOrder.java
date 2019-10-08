@@ -34,4 +34,6 @@ public class BonusOrder extends BaseDO{
     private Date bonusDate;
 
     private String productNo;
+
+    private Long paidTime;
 }

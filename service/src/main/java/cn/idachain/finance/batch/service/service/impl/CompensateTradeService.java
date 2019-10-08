@@ -52,6 +52,7 @@ public class CompensateTradeService extends BaseService implements ICompensateTr
                         trade.getEffectiveAmount(),trade.getCompensateAmount(),
                         trade.getTradeNo(),insurance.getTradeNo(),insurance.getInsuranceNo());
                 log.info("compensate confirm keeping account finish ,compensate tradeNo:{}",trade.getTradeNo());
+                trade.setPaidTime(System.currentTimeMillis());
                 compensateTradeDao.updateCompensateTradeStatusByObj(trade, CompensationStatus.FINISH.getCode());
                 insuranceTradeDao.updateInsuranceTradeStatusByObj(insurance, InsuranceTradeStatus.FINISH.getCode());
                 insuranceTradeDao.updateInsuranceSubStatusByObj(insurance, InsuranceTradeSubStatus.FINISHI_COMPENSATION.getCode());

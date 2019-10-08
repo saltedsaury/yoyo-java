@@ -1,10 +1,10 @@
 package cn.idachain.finance.batch.service.batch;
 
-import cn.idachain.finance.batch.common.enums.*;
 import cn.idachain.finance.batch.common.dataobject.InsuranceInfo;
 import cn.idachain.finance.batch.common.dataobject.InsuranceTrade;
 import cn.idachain.finance.batch.common.dataobject.InvestInfo;
 import cn.idachain.finance.batch.common.dataobject.RevenuePlan;
+import cn.idachain.finance.batch.common.enums.*;
 import cn.idachain.finance.batch.common.model.Product;
 import cn.idachain.finance.batch.common.util.BlankUtil;
 import cn.idachain.finance.batch.service.dao.*;
@@ -114,6 +114,7 @@ public class B1005 extends BaseBatch {
                                 insuranceTradeDao.updateInsuranceSubStatusByObj(insuranceTrade,
                                         InsuranceTradeSubStatus.NO_APPLICATION.getCode());
                                 investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
+                                record.setPaidTime(System.currentTimeMillis());
                                 revenuePlanDao.updatePlanStatusByObj(record,PlanStatus.FINISH.getCode());
                             }
                         });
@@ -131,6 +132,7 @@ public class B1005 extends BaseBatch {
                             insuranceTradeDao.updateInsuranceTradeStatusByObj(
                                     insuranceTrade, InsuranceTradeStatus.FINISH.getCode());
                             investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
+                            record.setPaidTime(System.currentTimeMillis());
                             revenuePlanDao.updatePlanStatusByObj(record,PlanStatus.FINISH.getCode());
                             }
                         });
@@ -146,6 +148,7 @@ public class B1005 extends BaseBatch {
                                     investInfo.getCcy(),record.getPrincipal(),
                                     record.getPlanNo(),null,false,investInfo.getProductNo());
                             investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
+                            record.setPaidTime(System.currentTimeMillis());
                             revenuePlanDao.updatePlanStatusByObj(record,PlanStatus.FINISH.getCode()); //
                         }
                     });

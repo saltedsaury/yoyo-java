@@ -32,6 +32,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -56,11 +57,15 @@ public class TransferOrderService implements ITransferOrderService {
     private void updateOrderByTransaction(final TransferOrder order,
                                           final TransferOrderStatus orderStatus,
                                           final TransferProcessStatus processStatus,
-                                          final Long transferTime) {
+                                          final Long transferTime,
+                                          final Long chargeTime) {
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus status) {
             try{
+                if (chargeTime != null) {
+                    order.setChargeTime(chargeTime);
+                }
                 if (transferTime != null) {
                     order.setTransferTime(transferTime);
                     transferOrderDao.updateStatus(order, orderStatus.getCode(), processStatus.getCode());
@@ -232,12 +237,12 @@ public class TransferOrderService implements ITransferOrderService {
                 if (increase.isSuccess()){
                     //更新订单状态  增加余额成功
                     updateOrderByTransaction(order, TransferOrderStatus.SUCCESS,
-                            TransferProcessStatus.SUCCESS, increase.getOuterTransferTime());
+                            TransferProcessStatus.SUCCESS, increase.getOuterTransferTime(), increase.getInnerTransferTime());
                 }else{
                     //更新订单状态  增加余额失败
                     //此状态用于标识需要报警的单子
                     updateOrderByTransaction(order,TransferOrderStatus.PROCESSING,
-                            TransferProcessStatus.TRANSFERED_FAILED, null);
+                            TransferProcessStatus.TRANSFERED_FAILED, null, null);
                     log.error("update transfer order status to transfer failed:{}",order.toString());
                 }
 
@@ -261,7 +266,7 @@ public class TransferOrderService implements ITransferOrderService {
             } catch (BizException e){
                 //更新订单状态  扣款失败
                 updateOrderByTransaction(order, TransferOrderStatus.PROCESSING,
-                        TransferProcessStatus.CHARGEBACK_FAILED, null);
+                        TransferProcessStatus.CHARGEBACK_FAILED, null, null);
                 log.info("update transfer order status to chargeback failed:{}",order.toString());
                 deduct = TransferProcessDTO.fail();
             }catch (DuplicateKeyException ex){
@@ -270,7 +275,7 @@ public class TransferOrderService implements ITransferOrderService {
             if (deduct.isSuccess()) {
                 //更新订单状态  扣款成功
                 updateOrderByTransaction(order, TransferOrderStatus.PROCESSING,
-                        TransferProcessStatus.CHARGEBACK_SUCCESS, deduct.getOuterTransferTime());
+                        TransferProcessStatus.CHARGEBACK_SUCCESS, deduct.getOuterTransferTime(), deduct.getInnerTransferTime());
 
                 increase = increase(order.getDeriction(), order.getAmount(), order.getCcy(),
                         order.getOrderNo(), order.getCustomerNo(), order.getTransferType(), order.getAccountNo());
@@ -278,7 +283,7 @@ public class TransferOrderService implements ITransferOrderService {
                 if (increase.isSuccess()){
                     //更新订单状态  增加余额成功
                     updateOrderByTransaction(order,TransferOrderStatus.SUCCESS,
-                            TransferProcessStatus.SUCCESS, increase.getOuterTransferTime());
+                            TransferProcessStatus.SUCCESS, increase.getOuterTransferTime(), increase.getInnerTransferTime());
                     // 这里修复一条错误的日志
                     log.info("update transfer order status to transfer success:{}",order.toString());
                 }

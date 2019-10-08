@@ -12,7 +12,10 @@ import java.util.List;
  */
 public interface IRecBalanceSnapshotDao {
 
+    List<RecBalanceSnapshot> lastSnapshot();
+
     List<RecBalanceSnapshot> lastSnapshot(Long snapshotTime);
 
     void insertSnapshot(String ccy, BigDecimal amount, Direction direction, Long snapshotTime);
+
 }

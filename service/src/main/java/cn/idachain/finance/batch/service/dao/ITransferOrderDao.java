@@ -12,10 +12,11 @@ public interface ITransferOrderDao {
 
     void updateProcessStatusByObj(TransferOrder transferOrder, String status);
 
-    void updateStatusAndTransferTime(TransferOrder order,
-                                     String status,
-                                     String processStatus,
-                                     Long transferTime);
+    void updateStatus(TransferOrder order,
+                      String status,
+                      String processStatus);
+
+    List<TransferOrder> getTransferOrderByStatus(String status, List<String> processStatus);
 
     List<TransferOrder> getTransferOrderByStatus(String status, List<String> process, Page page);
 }

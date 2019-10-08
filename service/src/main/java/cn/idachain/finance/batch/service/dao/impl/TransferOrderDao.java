@@ -62,6 +62,14 @@ public class TransferOrderDao implements ITransferOrderDao {
     }
 
     @Override
+    public List<TransferOrder> getTransferOrderByStatus(String status, List<String> processStatus) {
+        EntityWrapper<TransferOrder> wrapper = new EntityWrapper<>();
+        wrapper.eq("status", status);
+        wrapper.in(!processStatus.isEmpty(), "process_status", processStatus);
+        return transferOrderMapper.selectList(wrapper);
+    }
+
+    @Override
     public List<TransferOrder> getTransferOrderByStatus(String status, List<String> process, Page page){
         return transferOrderMapper.selectListForConfirm(status,process,page);
     }

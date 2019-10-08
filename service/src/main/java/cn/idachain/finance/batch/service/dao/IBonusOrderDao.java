@@ -23,4 +23,5 @@ public interface IBonusOrderDao extends IService<BonusOrder> {
     List<BonusOrder> getBonusOrderByCustomer(String customerNo, String status, Page page);
 
     List<BonusOrder> getBonusOrderByPlanNo(String planNo, Page page);
+
 }

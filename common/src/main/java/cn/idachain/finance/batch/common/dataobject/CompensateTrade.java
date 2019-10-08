@@ -27,4 +27,6 @@ public class CompensateTrade extends BaseDO{
 
     private String customerNo;
 
+    private Long paidTime;
+
 }

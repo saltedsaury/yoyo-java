@@ -15,6 +15,12 @@ import java.util.List;
 public interface RecBalanceSnapshotMapper extends SuperMapper<RecBalanceSnapshot> {
 
     @Select("select tb.* from (select currency, max(snapshot_time) max_time " +
+            "from rec_balance_snapshot GROUP BY currency ) ta " +
+            "inner join rec_balance_snapshot tb on ta.currency = tb.currency " +
+            "where ta.max_time = tb.snapshot_time")
+    List<RecBalanceSnapshot> getLastSnapshot();
+
+    @Select("select tb.* from (select currency, max(snapshot_time) max_time " +
             "from rec_balance_snapshot where snapshot_time <= #{snapshotTime} GROUP BY currency ) ta " +
             "inner join rec_balance_snapshot tb on ta.currency = tb.currency " +
             "where ta.max_time = tb.snapshot_time")
