@@ -47,10 +47,9 @@ public class TransferOrderDao implements ITransferOrderDao {
     }
 
     @Override
-    public void updateStatusAndTransferTime(TransferOrder order,
-                                            String status,
-                                            String processStatus,
-                                            Long transferTime) {
+    public void updateStatus(TransferOrder order,
+                             String status,
+                             String processStatus) {
         EntityWrapper<TransferOrder> wrapper = new EntityWrapper<TransferOrder>();
         wrapper.eq("order_no",order.getOrderNo());
         wrapper.eq("status", order.getStatus());
@@ -58,7 +57,6 @@ public class TransferOrderDao implements ITransferOrderDao {
 
         order.setStatus(status);
         order.setProcessStatus(processStatus);
-        order.setTransferTime(transferTime);
         order.setModifiedTime(new Date(System.currentTimeMillis()));
         transferOrderMapper.update(order, wrapper);
     }

@@ -56,16 +56,18 @@ public class TransferOrderService implements ITransferOrderService {
     private void updateOrderByTransaction(final TransferOrder order,
                                           final TransferOrderStatus orderStatus,
                                           final TransferProcessStatus processStatus,
-                                          final Long transferTime){
+                                          final Long transferTime) {
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus status) {
             try{
-                transferOrderDao.updateStatusAndTransferTime(
-                        order, orderStatus.getCode(), processStatus.getCode(), transferTime);
                 if (transferTime != null) {
+                    order.setTransferTime(transferTime);
+                    transferOrderDao.updateStatus(order, orderStatus.getCode(), processStatus.getCode());
                     balanceSnapshotDao.insertSnapshot(order.getCcy(), order.getAmount(),
                             Direction.getByCode(order.getDeriction()), transferTime);
+                } else {
+                    transferOrderDao.updateStatus(order, orderStatus.getCode(), processStatus.getCode());
                 }
             }catch (Exception e){
                 status.setRollbackOnly();
