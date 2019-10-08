@@ -42,6 +42,16 @@ public class ProductConvert {
         product.setRules(productAgreement.getRules());
         product.setIntroduction(productAgreement.getIntroduction());
         product.setInsuranceFlag(productAgreement.getInsuranceFlag());
+        product.setValueMode(productAgreement.getValueMode());
+        product.setCreateTime(productInfo.getCreateTime());
+        product.setOperator(productAgreement.getOperator());
+        product.setSubscribedAmount(productAgreement.getSubscribedAmount());
+        product.setSubscribedCcy(productAgreement.getSubscribedCcy());
+        product.setSubscribeTimes(productAgreement.getSubscribeTimes());
+        product.setQuota(productAgreement.getQuota());
+        product.setLastInterest(productAgreement.getLastInterest());
+        product.setPrimaryDate(productAgreement.getPrimaryDate());
+        product.setPrimaryRate(productAgreement.getPrimaryRate());
 
         return product;
     }

@@ -3,7 +3,7 @@ package cn.idachain.finance.batch.common.enums;
 public enum ProductType {
 
     FINANCING(1,"理财产品"),
-    LOAN(2,"贷款产品");
+    SUBSCRIBE(2,"认购产品");
 
     private int code;
 

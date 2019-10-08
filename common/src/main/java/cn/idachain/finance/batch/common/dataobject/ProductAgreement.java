@@ -6,8 +6,8 @@ import lombok.ToString;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@ToString
 @Data
+@ToString
 public class ProductAgreement extends BaseDO{
     private static final long serialVersionUID = 2465295378929034251L;
     private String productNo;
@@ -47,4 +47,23 @@ public class ProductAgreement extends BaseDO{
     private String introduction;
 
     private String insuranceFlag;
+
+    private String operator;
+
+    private String valueMode;
+
+    private String subscribedCcy;
+
+    private BigDecimal subscribedAmount;
+
+    private Integer subscribeTimes;
+
+    private BigDecimal primaryRate;
+
+    private Date primaryDate;
+
+    private Integer lastInterest;
+
+    private Integer quota;
+
 }

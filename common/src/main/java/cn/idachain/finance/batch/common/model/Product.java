@@ -68,4 +68,25 @@ public class Product {
     private String introduction;
 
     private String insuranceFlag;
+
+    private String operator;
+
+    private Date createTime;
+
+    private String valueMode;
+
+    private String subscribedCcy;
+
+    private BigDecimal subscribedAmount;
+
+    private Integer subscribeTimes;
+
+    private BigDecimal primaryRate;
+
+    private Date primaryDate;
+
+    private Integer lastInterest;
+
+    private Integer quota;
+
 }
