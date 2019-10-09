@@ -6,7 +6,6 @@ import cn.idachain.finance.batch.common.exception.BizException;
 import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
 import cn.idachain.finance.batch.common.mapper.RecBalanceSnapshotMapper;
 import cn.idachain.finance.batch.service.dao.IRecBalanceSnapshotDao;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +29,7 @@ public class RecBalanceSnapshotDao implements IRecBalanceSnapshotDao {
 
     @Override
     public List<RecBalanceSnapshot> lastSnapshot(Long snapshotTime) {
-        return snapshotMapper.getLastSnapshot(snapshotTime);
+        return snapshotMapper.getLastSnapshotBefore(snapshotTime);
     }
 
     @Override

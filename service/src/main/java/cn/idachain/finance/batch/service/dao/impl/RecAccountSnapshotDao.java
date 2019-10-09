@@ -3,7 +3,6 @@ package cn.idachain.finance.batch.service.dao.impl;
 import cn.idachain.finance.batch.common.dataobject.RecAccountSnapshot;
 import cn.idachain.finance.batch.common.mapper.RecAccountSnapshotMapper;
 import cn.idachain.finance.batch.service.dao.IRecAccountSnapshotDao;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +29,8 @@ public class RecAccountSnapshotDao implements IRecAccountSnapshotDao {
 
     @Override
     public Long getLastSnapshotTime() {
-        return snapshotMapper.lastSnapshotTime();
+        Long lastSnapshotTime = snapshotMapper.lastSnapshotTime();
+        return lastSnapshotTime == null ? 0 : lastSnapshotTime;
     }
 
     @Override

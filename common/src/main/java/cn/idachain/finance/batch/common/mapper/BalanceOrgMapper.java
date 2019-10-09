@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface BalanceOrgMapper extends SuperMapper<BalanceOrg> {
 
-    @Select("select currency, sum(balance) as balance from balance_org group by currnecy")
+    @Select("select currency, sum(balance) as balance from balance_org group by currency")
     List<BalanceOrg> getBalanceGroupByCcy();
 
 }

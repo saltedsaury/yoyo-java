@@ -59,12 +59,13 @@ public class ReconcileTask {
      */
     @Transactional
     public void reconcile() {
-        // TODO edge
-        Long previousTime = accountSnapshotDao.getLastSnapshotTime();
+        Long previousTime = accountSnapshotDao.getLastSnapshotTime() + 1L;
         Long nowTime = System.currentTimeMillis() - 1000L;
 
         checkBalanceInternal();
+        log.info("check internal balance success!");
         checkBalanceSnapshot();
+        log.info("check balance snapshot success!");
 
         // k: account:ccy, v: amount
         Map<String, BigDecimal> internalAmount = new HashMap<>(16);
@@ -83,6 +84,11 @@ public class ReconcileTask {
         detailToMap(() -> balanceDetailDao.getDetailsByRedemptionBetweenTime(previousTime, nowTime),
                 internalAmount, personAmount, orgAmount);
 
+        // 前一快照之后没有新资金变动
+        if (internalAmount.isEmpty() && personAmount.isEmpty() && orgAmount.isEmpty()) {
+            log.info("reconcile success! no fresh orders ");
+            return;
+        }
         // 数量过多时需要优化
         if (personAmount.size() > 10000) {
             log.info("reconcile batch size: {}", personAmount.size());
@@ -97,16 +103,17 @@ public class ReconcileTask {
                         .merge(s.getAccount(), s.getBalance(), BigDecimal::add)
         );
 
-        boolean ok = checkBalanceDetail(internalAmount, AccountType.INTERNAL) &&
-                checkBalanceDetail(personAmount, AccountType.PERSON) &&
+        boolean ok = checkBalanceDetail(internalAmount, AccountType.INTERNAL) &
+                checkBalanceDetail(personAmount, AccountType.PERSON) &
                 checkBalanceDetail(orgAmount, AccountType.ORG);
 
         if (ok) {
+            log.info("new account snapshots are inserting");
             // 插入新的快照
             accountSnapshotDao.insertBatch(buildSnapshot(internalAmount, AccountType.INTERNAL, nowTime));
             accountSnapshotDao.insertBatch(buildSnapshot(personAmount, AccountType.PERSON, nowTime));
             accountSnapshotDao.insertBatch(buildSnapshot(orgAmount, AccountType.ORG, nowTime));
-            log.info("reconcile success!");
+            log.info("reconcile success! detail checked");
             return;
         }
         throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
@@ -119,42 +126,40 @@ public class ReconcileTask {
         Set<String> accounts = accountAmount.keySet().stream()
                 .map(account -> account.substring(0, account.indexOf(":")))
                 .collect(Collectors.toSet());
+
+        List<? extends BaseBalance> balanceList;
         switch (accountType) {
             case INTERNAL:
-                List<BalanceInternal> errInternal = balanceInternalDao.getBalanceSpecial(accounts).stream()
-                        .filter(b -> b.getBalance().compareTo(accountAmount.get(b.getAccountNo())) != 0)
-                        .collect(Collectors.toList());
-                if (!errInternal.isEmpty()) {
-                    errInternal.forEach(e ->
-                            log.error("internal balance check failed! account: {}, balance: {}, expect: {}",
-                                    e.getAccountNo(), e.getBalance(), accountAmount.get(e.getAccountNo())));
-                    return false;
-                }
-                return true;
+                balanceList = balanceInternalDao.getBalanceSpecial(accounts);
+                break;
             case PERSON:
-                List<BalancePerson> errPerson = balancePersonDao.getBalanceSpecial(accounts).stream()
-                        .filter(b -> b.getBalance().compareTo(accountAmount.get(b.getAccountNo())) != 0)
-                        .collect(Collectors.toList());
-                if (!errPerson.isEmpty()) {
-                    errPerson.forEach(e ->
-                            log.error("internal balance check failed! account: {}, balance: {}, expect: {}",
-                                    e.getAccountNo(), e.getBalance(), accountAmount.get(e.getAccountNo())));
-                    return false;
-                }
-                return true;
+                balanceList = balancePersonDao.getBalanceSpecial(accounts);
+                break;
             case ORG:
-                List<BalanceOrg> errOrg = balanceOrgDao.getBalanceSpecial(accounts).stream()
-                        .filter(b -> b.getBalance().compareTo(accountAmount.get(b.getAccountNo())) != 0)
-                        .collect(Collectors.toList());
-                if (!errOrg.isEmpty()) {
-                    errOrg.forEach(e ->
-                            log.error("internal balance check failed! account: {}, balance: {}, expect: {}",
-                                    e.getAccountNo(), e.getBalance(), accountAmount.get(e.getAccountNo())));
-                    return false;
-                }
-                return true;
+                balanceList = balanceOrgDao.getBalanceSpecial(accounts);
+                break;
+            default:
+                // never occur
+                log.error("account type err");
+                return false;
         }
-        return false;
+        List<? extends BaseBalance> errList = balanceList.stream().filter(b -> {
+            BigDecimal actualBalance = accountAmount.get(b.getAccountNo());
+            if (actualBalance == null) {
+                // 该币种未变动
+                return false;
+            }
+            return b.getBalance().compareTo(actualBalance) != 0;
+        }).collect(Collectors.toList());
+
+        if (!errList.isEmpty()) {
+            errList.forEach(e ->
+                    log.error("internal balance check failed! account: {}, balance: {}, expect: {}",
+                            e.getAccountNo(), e.getBalance(), accountAmount.get(e.getAccountNo()))
+            );
+            return false;
+        }
+        return true;
     }
 
     private void checkBalanceInternal() {
@@ -182,7 +187,6 @@ public class ReconcileTask {
         if (errFlag) {
             throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
         }
-        log.info("check internal balance success!");
     }
 
     private void checkBalanceSnapshot() {
@@ -215,15 +219,12 @@ public class ReconcileTask {
         if (errFlag) {
             throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
         }
-
-        log.info("check balance snapshot success!");
     }
 
     private Map<String, BigDecimal> getSnapshotDelta() {
         Map<String, BigDecimal> snapshotCcyAmount = snapshotDao.lastSnapshot().stream().collect(
                 Collectors.toMap(RecBalanceSnapshot::getCurrency, s -> s.getInAmount().subtract(s.getOutAmount()))
         );
-        // (有重复动作)
         Map<String, BigDecimal> internalCcyAmount = balanceInternalDao.getAllBalance().stream().collect(
                 Collectors.toMap(BalanceInternal::getCurrency, BalanceInternal::getBalance, BigDecimal::add)
         );
