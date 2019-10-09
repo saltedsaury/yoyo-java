@@ -17,6 +17,7 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,66 +61,149 @@ public class B1002 extends BaseBatch {
         log.info("query product list for status off shelve,list :{}",productList);
         //分产品打捞投资记录
         for (Product product : productList){
-            if (InterestMode.PRECYCLE.getCode().equals(product.getInterestMode())){
-
-                List<InvestInfo> investInfos = investDao.selectInvestRecordForBatch(product.getProductNo(),
-                        BizType.INVEST.getCode(), InvestStatus.INVEST_SUCCESS.getCode());
-                log.info("query invest list for product {} ,list :{}",product.getProductNo(),investInfos);
-                for (final InvestInfo investInfo:investInfos){
-                    //生成收益计划
-                    BigDecimal totalInterest = investInfo.getAmount().multiply(product.getProfitScale())
-                            .setScale(2,BigDecimal.ROUND_HALF_UP);
-                    final RevenuePlan revenuePlan = convertToRevenuePlan(investInfo,totalInterest,product);
-                    log.info("generate plan {} for invest {} ",revenuePlan,investInfo);
-                    investInfo.setPlanNo(revenuePlan.getPlanNo());
-
-                    //生成分红记录
-                    final List<BonusOrder> bonusOrders = new ArrayList<BonusOrder>();
-                    for (int i = 1;i<=product.getInterestCycle();i++){
-                        //金额四舍五入 已和产品确认
-                        Date bonusDate = DateUtil.offsiteDay(product.getValueDate(),
-                                (TimeUnit.getByCode(product.getCycleType()).getDay()*i)-1);
-                        BigDecimal amount = totalInterest.divide(
-                                BigDecimal.valueOf(product.getInterestCycle()),
-                                2,BigDecimal.ROUND_HALF_UP);
-                        if (i == product.getInterestCycle()){
-                            amount = totalInterest.subtract(
-                                    amount.multiply(new BigDecimal(i-1)))
-                                    .setScale(2,BigDecimal.ROUND_HALF_UP);
-                        }
-
-                        BonusOrder order = convertToBonusOrder(investInfo,Long.valueOf(i),amount,bonusDate);
-                        bonusOrders.add(order);
-                    }
-                    log.info("generate bonus orders list :{} ",bonusOrders);
-                    //保险生效
-                    final InsuranceTrade insuranceTrade = insuranceTradeDao.getTradeByInvestNo(
-                            investInfo.getTradeNo(),InsuranceTradeStatus.INIT.getCode());
-                    log.info("query insurance trade :{} ",insuranceTrade);
-
-                    transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                        @Override
-                        protected void doInTransactionWithoutResult(TransactionStatus status) {
-                            revenuePlanDao.saveRevenuePlan(revenuePlan);
-                            investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.GIVE_OUT.getCode());
-                            if (null != insuranceTrade) {
-                                insuranceTradeDao.updateInsuranceTradeStatusByObj(insuranceTrade,
-                                        InsuranceTradeStatus.PREPARE.getCode());
-                            }
-                            for (BonusOrder order: bonusOrders){
-                                bonusOrderDao.saveBonusOrder(order);
-                            }
-                        }
-                    });
-                }
-                log.info("generate bonus finish fro product :{}",product.getProductNo());
-                productDao.updateProductByObj(product,ProductStatus.LOCK_IN.getCode());
-
+            if (ProductType.FINANCING.getCode().equals(product.getStatus())){
+                financingProduct(product);
+            }
+            if (ProductType.SUBSCRIBE.getCode().equals(product.getStatus())){
+                subscribeProduct(product);
             }
         }
 
         afterExecute();
         return true;
+    }
+
+    /**
+     * 理财产品
+     * @param product
+     */
+    private void financingProduct(Product product){
+        if (InterestMode.PRECYCLE.getCode().equals(product.getInterestMode())){
+
+            List<InvestInfo> investInfos = investDao.selectInvestRecordForBatch(product.getProductNo(),
+                    BizType.INVEST.getCode(), InvestStatus.INVEST_SUCCESS.getCode());
+            log.info("query invest list for product {} ,list :{}",product.getProductNo(),investInfos);
+            for (final InvestInfo investInfo:investInfos){
+                //生成收益计划
+                BigDecimal totalInterest = investInfo.getAmount().multiply(product.getProfitScale())
+                        .setScale(2,RoundingMode.HALF_UP);
+                final RevenuePlan revenuePlan = convertToRevenuePlan(investInfo,totalInterest,product);
+                log.info("generate plan {} for invest {} ",revenuePlan,investInfo);
+                investInfo.setPlanNo(revenuePlan.getPlanNo());
+
+                //生成分红记录
+                final List<BonusOrder> bonusOrders = new ArrayList<BonusOrder>();
+                for (int i = 1;i<=product.getInterestCycle();i++){
+                    //金额四舍五入 已和产品确认
+                    Date bonusDate = DateUtil.offsiteDay(product.getValueDate(),
+                            (TimeUnit.getByCode(product.getCycleType()).getDay()*i)-1);
+                    BigDecimal amount = totalInterest.divide(
+                            BigDecimal.valueOf(product.getInterestCycle()),
+                            2,RoundingMode.HALF_UP);
+                    if (i == product.getInterestCycle()){
+                        amount = totalInterest.subtract(
+                                amount.multiply(new BigDecimal(i-1)))
+                                .setScale(2,RoundingMode.HALF_UP);
+                    }
+
+                    BonusOrder order = convertToBonusOrder(investInfo, (long) i, amount, bonusDate);
+
+                    bonusOrders.add(order);
+                }
+                log.info("generate bonus orders list :{} ",bonusOrders);
+                //保险生效
+                final InsuranceTrade insuranceTrade = insuranceTradeDao.getTradeByInvestNo(
+                        investInfo.getTradeNo(),InsuranceTradeStatus.INIT.getCode());
+                log.info("query insurance trade :{} ",insuranceTrade);
+
+                transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                    @Override
+                    protected void doInTransactionWithoutResult(TransactionStatus status) {
+                        revenuePlanDao.saveRevenuePlan(revenuePlan);
+                        investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.GIVE_OUT.getCode());
+                        if (null != insuranceTrade) {
+                            insuranceTradeDao.updateInsuranceTradeStatusByObj(insuranceTrade,
+                                    InsuranceTradeStatus.PREPARE.getCode());
+                        }
+                        for (BonusOrder order: bonusOrders){
+                            bonusOrderDao.saveBonusOrder(order);
+                        }
+                    }
+                });
+            }
+            log.info("generate bonus finish fro product :{}",product.getProductNo());
+            productDao.updateProductByObj(product,ProductStatus.LOCK_IN.getCode());
+
+        }
+    }
+
+    /**
+     * 认购产品
+     * @param product
+     */
+    private void subscribeProduct(Product product){
+        //获取投资记录
+        List<InvestInfo> investInfos = investDao.selectInvestRecordForBatch(product.getProductNo(),
+                BizType.INVEST.getCode(), InvestStatus.INVEST_SUCCESS.getCode());
+        log.info("query invest list for product {} ,list :{}",product.getProductNo(),investInfos);
+        for (final InvestInfo investInfo:investInfos){
+            //换算还款金额
+            BigDecimal paybackAmount = BigDecimal.ZERO;
+            paybackAmount = investInfo.getAmount().multiply(product.getSubscribedAmount());
+
+            //生成分红记录
+            final List<BonusOrder> bonusOrders = new ArrayList<BonusOrder>();
+            //第0期收益率是否为空
+            BigDecimal primarAmount = BigDecimal.ZERO;
+            if (product.getPrimaryRate().compareTo(BigDecimal.ZERO)>0){
+                // 生成第0期收益
+                primarAmount = investInfo.getAmount().multiply(product.getPrimaryRate())
+                        .setScale(2,RoundingMode.HALF_UP);
+                Date primarDate = product.getPrimaryDate();
+                BonusOrder primaryBonus = convertToBonusOrder(investInfo,
+                        Long.parseLong("0"),primarAmount,primarDate);
+                bonusOrders.add(primaryBonus);
+            }
+
+            // 计算应发收益
+            BigDecimal totalInterest = investInfo.getAmount().multiply(product.getProfitScale())
+                    .setScale(2,RoundingMode.HALF_UP);
+            // 尾期是否计息
+            int terms = product.getInterestCycle().intValue();
+            if (!Boolean.parseBoolean(product.getLastInterest().toString())){
+                terms = terms - 1;
+            }
+            for (int i = 1;i<=terms;i++){
+                Date bonusDate = DateUtil.offsiteDay(product.getValueDate(),
+                        (TimeUnit.getByCode(product.getCycleType()).getDay()*i)-1);
+                BigDecimal amount = totalInterest.divide(
+                        BigDecimal.valueOf(terms), 2, RoundingMode.HALF_UP);
+                if (i == terms){
+                    amount = totalInterest.subtract(
+                            amount.multiply(new BigDecimal(i-1)))
+                            .setScale(2,RoundingMode.HALF_UP);
+                }
+
+                BonusOrder order = convertToBonusOrder(investInfo,(long)i,amount,bonusDate);
+                bonusOrders.add(order);
+            }
+            log.info("generate bonus orders list :{} ",bonusOrders);
+            final RevenuePlan revenuePlan = convertToRevenuePlan(investInfo,totalInterest.add(primarAmount),product);
+
+            // 记录入库
+            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                @Override
+                protected void doInTransactionWithoutResult(TransactionStatus status) {
+                    revenuePlanDao.saveRevenuePlan(revenuePlan);
+                    investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.GIVE_OUT.getCode());
+                    for (BonusOrder order: bonusOrders){
+                        bonusOrderDao.saveBonusOrder(order);
+                    }
+                }
+            });
+        }
+        log.info("generate bonus finish fro product :{}",product.getProductNo());
+        productDao.updateProductByObj(product,ProductStatus.LOCK_IN.getCode());
     }
 
     private RevenuePlan convertToRevenuePlan(InvestInfo investInfo, BigDecimal totalInterest,Product product){

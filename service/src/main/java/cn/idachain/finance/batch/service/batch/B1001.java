@@ -50,25 +50,29 @@ public class B1001 extends BaseBatch{
         List<Product> productList = productDao.getProductsByStatus(status,null);
         log.info("query product list for status for_sale/pause ,list :{}",productList);
         for(final Product product : productList){
-            //剩余投资金额为0，产品成立
-            if (new BigDecimal("0").compareTo(product.getSurplusAmount())==0){
-                log.info("product :{} off shelve due to surplus amount is zero.",product);
-                if(investConfirm(product)) { //申购确认全部完成，更新产品状态
-                    final Date valueDate = new Date();
-                    int investCycle = (product.getInterestCycle().intValue()
-                            * TimeUnit.getByCode(product.getCycleType()).getDay())-1;
-                    final Date dueDate = DateUtil.offsiteDay(valueDate, investCycle);
+            // 自动起息日
+            if (ValueMode.AUTO.getCode().equals(product.getValueMode())){
+                //剩余投资金额为0，产品成立
+                if (new BigDecimal("0").compareTo(product.getSurplusAmount())==0){
+                    log.info("product :{} off shelve due to surplus amount is zero.",product);
+                    if(investConfirm(product)) { //申购确认全部完成，更新产品状态
+                        final Date valueDate = new Date();
+                        int investCycle = (product.getInterestCycle().intValue()
+                                * TimeUnit.getByCode(product.getCycleType()).getDay())-1;
+                        final Date dueDate = DateUtil.offsiteDay(valueDate, investCycle);
 
-                    transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                        @Override
-                        protected void doInTransactionWithoutResult(TransactionStatus status) {
-                            productDao.updateProductByObj(product, ProductStatus.OFF_SHELVE.getCode());
-                            productDao.updateProductValueDate(product,valueDate,dueDate);
-                        }
-                    });
+                        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                            @Override
+                            protected void doInTransactionWithoutResult(TransactionStatus status) {
+                                productDao.updateProductByObj(product, ProductStatus.OFF_SHELVE.getCode());
+                                productDao.updateProductValueDate(product,valueDate,dueDate);
+                            }
+                        });
+                    }
+                    continue;
                 }
-                continue;
             }
+            //固定起息日
             //到达原定起息日，产品成立
             if(!BlankUtil.isBlank(product.getValueDate())){
                 log.info("product :{} off shelve due to arriving at value date.",product);

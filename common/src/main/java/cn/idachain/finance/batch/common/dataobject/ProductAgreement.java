@@ -56,7 +56,7 @@ public class ProductAgreement extends BaseDO{
 
     private BigDecimal subscribedAmount;
 
-    private Integer subscribeTimes;
+    private Integer subscribedTimes;
 
     private BigDecimal primaryRate;
 

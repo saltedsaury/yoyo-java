@@ -79,7 +79,7 @@ public class Product {
 
     private BigDecimal subscribedAmount;
 
-    private Integer subscribeTimes;
+    private Integer subscribedTimes;
 
     private BigDecimal primaryRate;
 

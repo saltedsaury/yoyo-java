@@ -47,7 +47,7 @@ public class ProductConvert {
         product.setOperator(productAgreement.getOperator());
         product.setSubscribedAmount(productAgreement.getSubscribedAmount());
         product.setSubscribedCcy(productAgreement.getSubscribedCcy());
-        product.setSubscribeTimes(productAgreement.getSubscribeTimes());
+        product.setSubscribedTimes(productAgreement.getSubscribedTimes());
         product.setQuota(productAgreement.getQuota());
         product.setLastInterest(productAgreement.getLastInterest());
         product.setPrimaryDate(productAgreement.getPrimaryDate());
