@@ -10,6 +10,9 @@ import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
 import cn.idachain.finance.batch.service.dao.*;
 import cn.idachain.finance.batch.service.dao.impl.TransferOrderDao;
 import cn.idachain.finance.batch.service.service.IReconciliationService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ import java.math.BigDecimal;
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author kun
@@ -51,7 +55,11 @@ public class ReconciliationService implements IReconciliationService {
 
     /**
      * 比对内部账户总额是否等于机构账户和用户账户之和
+     *
+     * @deprecated 不再全表扫描 balancePerson + balanceOrg，
+     * {@link ReconciliationService#checkBalanceInternal(Map, List)} 比较 Internal 快照是否和 Person + Org 一致
      */
+    @Deprecated
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
     public void checkBalanceInternal() {
@@ -188,9 +196,9 @@ public class ReconciliationService implements IReconciliationService {
 
         // step three check detail
         // k: account:ccy, v: amount
-        Map<String, BigDecimal> internalAmount = new HashMap<>(16);
-        Map<String, BigDecimal> personAmount = new HashMap<>(1024);
-        Map<String, BigDecimal> orgAmount = new HashMap<>(32);
+        Map<Token, BigDecimal> internalAmount = new HashMap<>(16);
+        Map<Token, BigDecimal> personAmount = new HashMap<>(1024);
+        Map<Token, BigDecimal> orgAmount = new HashMap<>(32);
         // 收集与上一次对账期间的订单
         detailToMap(() -> balanceDetailDao.getDetailsByTransferOrderBetweenTime(previousTime, nowTime),
                 internalAmount, personAmount, orgAmount);
@@ -214,14 +222,21 @@ public class ReconciliationService implements IReconciliationService {
         if (personAmount.size() > 10000) {
             log.info("reconcile batch size: {}", personAmount.size());
         }
-        // 前一快照结果 + 最近差值 ?= balance
-        Set<String> accountSet = new HashSet<>(personAmount.keySet());
-        accountSet.addAll(internalAmount.keySet());
-        accountSet.addAll(orgAmount.keySet());
-        List<RecAccountSnapshot> accountSnapshots = accountSnapshotDao.getSnapshotByAccounts(accountSet);
-        accountSnapshots.forEach(s ->
-                choseMap(s.getAccountType(), internalAmount, personAmount, orgAmount)
-                        .merge(s.getAccount(), s.getBalance(), BigDecimal::add)
+
+        // 比较 internal 余额和 person + org
+        checkBalanceInternal(internalAmount, Arrays.asList(personAmount, orgAmount));
+
+        // 确认预期值（前一快照结果 + 最近差值）是否等于实际余额
+        List<String> accountList = Stream
+                .of(personAmount, internalAmount, orgAmount)
+                .flatMap(map -> map.keySet().stream())
+                .map(Token::getAccountNo)
+                .collect(Collectors.toList());
+        List<RecAccountSnapshot> accountSnapshots = accountSnapshotDao.getSnapshotByAccounts(accountList);
+        accountSnapshots.forEach(s -> choseMap(s.getAccountType(), internalAmount, personAmount, orgAmount)
+                .computeIfPresent(
+                        new Token(s.getAccount(), s.getCcy()), (token, balance) -> balance.add(s.getBalance())
+                )
         );
 
         boolean ok = checkBalanceDetail(internalAmount, AccountType.INTERNAL) &
@@ -229,15 +244,42 @@ public class ReconciliationService implements IReconciliationService {
                 checkBalanceDetail(orgAmount, AccountType.ORG);
 
         if (ok) {
-            log.info("new account snapshots are inserting");
+            log.info("new account snapshots are inserting.");
             // 插入新的快照
             accountSnapshotDao.insertBatch(buildSnapshot(internalAmount, AccountType.INTERNAL, nowTime));
             accountSnapshotDao.insertBatch(buildSnapshot(personAmount, AccountType.PERSON, nowTime));
             accountSnapshotDao.insertBatch(buildSnapshot(orgAmount, AccountType.ORG, nowTime));
-            log.info("reconcile success! detail checked");
+            log.info("reconcile success! detail checked.");
             return;
         }
         throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
+    }
+
+    private void checkBalanceInternal(Map<Token, BigDecimal> internal, List<Map<Token, BigDecimal>> others) {
+//        Map<String, BigDecimal> target =
+//                new HashMap<>(others.stream().mapToInt(Map::size).map(i -> i << 1).max().orElse(16));
+//        internal.forEach((i, j) -> target.put(i.getCurrency(), j));
+        Map<String, BigDecimal> target = new HashMap<>();
+        for (Map.Entry<Token, BigDecimal> entry : internal.entrySet()) {
+            target.put(entry.getKey().getCurrency(), entry.getValue());
+        }
+
+        others.stream().flatMap(map -> map.entrySet().stream())
+                .forEach(e -> target.put(
+                        e.getKey().getCurrency(),
+                        target.getOrDefault(e.getKey().getCurrency(), BigDecimal.ZERO).subtract(e.getValue())
+                ));
+        boolean err = false;
+        for (Map.Entry<String, BigDecimal> entry : target.entrySet()) {
+            if (entry.getValue().compareTo(BigDecimal.ZERO) != 0) {
+                err = true;
+                log.error("internal balance check failed! ccy: {}, delta: {}", entry.getKey(), entry.getValue());
+            }
+        }
+        if (err) {
+            throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
+        }
+        log.info("check balance internal success!");
     }
 
     /**
@@ -249,12 +291,12 @@ public class ReconciliationService implements IReconciliationService {
      * @param orgAmount      机构明细
      */
     private void detailToMap(Supplier<List<BalanceDetail>> detailQuery,
-                             Map<String, BigDecimal> internalAmount,
-                             Map<String, BigDecimal> personAmount,
-                             Map<String, BigDecimal> orgAmount) {
+                             Map<Token, BigDecimal> internalAmount,
+                             Map<Token, BigDecimal> personAmount,
+                             Map<Token, BigDecimal> orgAmount) {
         detailQuery.get().forEach(d -> {
             choseMap(d.getAccountType(), internalAmount, personAmount, orgAmount).merge(
-                    d.getAccountNo() + SEPARATOR + d.getCurrency(),
+                    new Token(d.getAccountNo(), d.getCurrency()),
                     IN_CODE.equals(d.getTransType()) ? d.getAmount() : d.getAmount().negate(),
                     BigDecimal::add
             );
@@ -268,12 +310,12 @@ public class ReconciliationService implements IReconciliationService {
      * @param accountType   账户类型
      * @return 正确否
      */
-    private boolean checkBalanceDetail(Map<String, BigDecimal> accountAmount, AccountType accountType) {
+    private boolean checkBalanceDetail(Map<Token, BigDecimal> accountAmount, AccountType accountType) {
         if (accountAmount == null || accountAmount.isEmpty()) {
             return true;
         }
         Set<String> accounts = accountAmount.keySet().stream()
-                .map(account -> account.substring(0, account.indexOf(SEPARATOR)))
+                .map(Token::getAccountNo)
                 .collect(Collectors.toSet());
 
         List<? extends BaseBalance> balanceList;
@@ -292,29 +334,27 @@ public class ReconciliationService implements IReconciliationService {
                 log.error("account type err");
                 return false;
         }
-        List<? extends BaseBalance> errList = balanceList.stream().filter(b -> {
-            BigDecimal actualBalance = accountAmount.get(b.getAccountNo());
+        long errCount = balanceList.stream().filter(b -> {
+            BigDecimal actualBalance = accountAmount.get(new Token(b.getAccountNo(), b.getCurrency()));
             if (actualBalance == null) {
                 // 该币种未变动
                 return false;
             }
-            return b.getBalance().compareTo(actualBalance) != 0;
-        }).collect(Collectors.toList());
-
-        if (!errList.isEmpty()) {
-            errList.forEach(e ->
-                    log.error("internal balance check failed! account: {}, balance: {}, expect: {}",
-                            e.getAccountNo(), e.getBalance(), accountAmount.get(e.getAccountNo()))
-            );
+            if (b.getBalance().compareTo(actualBalance) != 0) {
+                log.error("internal balance check failed! account: {}, ccy: {}, balance: {}, expect: {}",
+                        b.getAccountNo(), b.getCurrency(), b.getBalance(), actualBalance);
+                return true;
+            }
             return false;
-        }
-        return true;
+        }).count();
+
+        return errCount == 0;
     }
 
-    private Map<String, BigDecimal> choseMap(String accountTypeCode,
-                                             Map<String, BigDecimal> internalAmount,
-                                             Map<String, BigDecimal> personAmount,
-                                             Map<String, BigDecimal> orgAmount) {
+    private Map<Token, BigDecimal> choseMap(String accountTypeCode,
+                                            Map<Token, BigDecimal> internalAmount,
+                                            Map<Token, BigDecimal> personAmount,
+                                            Map<Token, BigDecimal> orgAmount) {
         switch (AccountType.getByName(accountTypeCode)) {
             case INTERNAL:
                 return internalAmount;
@@ -336,13 +376,14 @@ public class ReconciliationService implements IReconciliationService {
      * @param snapshotTime  快照时间
      * @return 新快照集合
      */
-    private List<RecAccountSnapshot> buildSnapshot(Map<String, BigDecimal> accountAmount,
+    private List<RecAccountSnapshot> buildSnapshot(Map<Token, BigDecimal> accountAmount,
                                                    AccountType accountType,
                                                    Long snapshotTime) {
         return accountAmount.entrySet().stream()
                 .map(e -> {
                     RecAccountSnapshot s = new RecAccountSnapshot();
-                    s.setAccount(e.getKey());
+                    s.setAccount(e.getKey().getAccountNo());
+                    s.setCcy(e.getKey().getCurrency());
                     s.setAccountType(accountType.name());
                     s.setBalance(e.getValue());
                     s.setSnapshotTime(snapshotTime);
@@ -351,4 +392,15 @@ public class ReconciliationService implements IReconciliationService {
                 .collect(Collectors.toList());
     }
 
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    private static class Token {
+        private String accountNo;
+        private String currency;
+
+        private String combine() {
+            return accountNo + SEPARATOR + currency;
+        }
+    }
 }

@@ -15,10 +15,9 @@ public class RecAccountSnapshot extends BaseDO {
 
     private static final long serialVersionUID = -3538542279472259300L;
 
-    /**
-     * accountNo + ":" + ccy
-     */
     private String account;
+
+    private String ccy;
 
     private String accountType;
 

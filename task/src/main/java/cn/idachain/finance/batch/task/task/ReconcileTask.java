@@ -37,7 +37,7 @@ public class ReconcileTask {
     @Scheduled(cron = "${task.financing.reconciliation}")
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void reconcile() {
-        reconciliationService.checkBalanceInternal();
+//        reconciliationService.checkBalanceInternal();
         reconciliationService.checkBalanceSnapshot();
         reconciliationService.checkOrderDetail();
     }

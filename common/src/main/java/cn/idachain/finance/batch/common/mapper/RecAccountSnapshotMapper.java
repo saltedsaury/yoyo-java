@@ -16,9 +16,9 @@ import java.util.List;
 public interface RecAccountSnapshotMapper extends SuperMapper<RecAccountSnapshot> {
 
 
-    @Insert("<script>insert into rec_account_snapshot (account, account_type, balance, snapshot_time) " +
+    @Insert("<script>insert into rec_account_snapshot (account, ccy, account_type, balance, snapshot_time) " +
             "values <foreach collection='collection' item='item' separator=','>" +
-            "(#{item.account}, #{item.accountType}, #{item.balance}, #{item.snapshotTime})" +
+            "(#{item.account}, #{item.ccy}, #{item.accountType}, #{item.balance}, #{item.snapshotTime})" +
             "</foreach></script>")
     void insertBatch(Collection<RecAccountSnapshot> snapshots);
 

@@ -68,7 +68,8 @@ public class BalancePersonDao implements IBalancePersonDao {
     public List<BalancePerson> getBalanceSpecial(Collection<String> accounts) {
         EntityWrapper<BalancePerson> condition = new EntityWrapper<>();
         condition.setSqlSelect(
-                Column.create().column("concat(account_no, ':', currency)").as("account_no"),
+                Column.create().column("account_no"),
+                Column.create().column("currency"),
                 Column.create().column("balance")
         );
         condition.in("account_no", accounts);
