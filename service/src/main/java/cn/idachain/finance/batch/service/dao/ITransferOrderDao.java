@@ -16,7 +16,11 @@ public interface ITransferOrderDao {
                       String status,
                       String processStatus);
 
-    List<TransferOrder> getTransferOrderByStatus(String status, List<String> processStatus);
+    List<TransferOrder> getTransferOrderByStatusBeforeId(String status, List<String> processStatus, Long last);
 
     List<TransferOrder> getTransferOrderByStatus(String status, List<String> process, Page page);
+
+    List<TransferOrder> getTransferOrderBetween(Long start, Long end);
+
+    Long lastId();
 }

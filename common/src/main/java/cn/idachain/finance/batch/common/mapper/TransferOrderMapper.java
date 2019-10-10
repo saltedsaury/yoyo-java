@@ -19,4 +19,7 @@ public interface TransferOrderMapper extends SuperMapper<TransferOrder> {
             "</script>")
     List<TransferOrder> selectListForConfirm(@Param("status") String status, @Param("process") List<String> process, Page page);
 
+    @Select("select id from transfer_order order by id desc limit 1")
+    Long lastId();
+
 }

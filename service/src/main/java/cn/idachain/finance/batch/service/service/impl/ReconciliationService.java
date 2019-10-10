@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -39,7 +40,7 @@ public class ReconciliationService implements IReconciliationService {
     private static final String SEPARATOR = ":";
 
     @Autowired
-    private IRecBalanceSnapshotDao snapshotDao;
+    private IRecBalanceSnapshotDao balanceSnapshotDao;
     @Autowired
     private IBalanceInternalDao balanceInternalDao;
     @Autowired
@@ -52,6 +53,49 @@ public class ReconciliationService implements IReconciliationService {
     private IRecAccountSnapshotDao accountSnapshotDao;
     @Autowired
     private IBalanceDetailDao balanceDetailDao;
+
+    @Override
+    public long buildBalanceSnapshot() {
+        long end = System.currentTimeMillis() - 10 * 1000L;
+        List<RecBalanceSnapshot> snapshots = balanceSnapshotDao.lastSnapshot();
+        long start = snapshots.stream().mapToLong(RecBalanceSnapshot::getSnapshotTime).findAny().orElse(0);
+        if (start >= end) {
+            log.info("now {} snapshot is fresh", start);
+            return start;
+        }
+        Map<String, RecBalanceSnapshot> snapshotMap = snapshots.stream()
+                .collect(Collectors.toMap(RecBalanceSnapshot::getCurrency, Function.identity()));
+
+        List<TransferOrder> orders = transferOrderDao.getTransferOrderBetween(start + 1, end);
+        String ccy;
+        boolean in;
+        for (TransferOrder order : orders) {
+            ccy = order.getCcy();
+            in = Direction.IN.getCode().equals(order.getDeriction());
+            RecBalanceSnapshot snapshot = snapshotMap.get(ccy);
+            if (snapshot == null) {
+                snapshot = new RecBalanceSnapshot();
+                snapshot.setCurrency(ccy);
+                if (in) {
+                    snapshot.setInAmount(order.getAmount());
+                    snapshot.setOutAmount(BigDecimal.ZERO);
+                } else {
+                    snapshot.setInAmount(BigDecimal.ZERO);
+                    snapshot.setOutAmount(order.getAmount());
+                }
+                snapshot.setSnapshotTime(end);
+                snapshotMap.put(ccy, snapshot);
+            } else {
+                if (in) {
+                    snapshot.setInAmount(snapshot.getInAmount().add(order.getAmount()));
+                } else {
+                    snapshot.setOutAmount(snapshot.getOutAmount().add(order.getAmount()));
+                }
+            }
+        }
+        balanceSnapshotDao.insertSnapshotBatch(snapshotMap.values());
+        return end;
+    }
 
     /**
      * 比对内部账户总额是否等于机构账户和用户账户之和
@@ -91,39 +135,41 @@ public class ReconciliationService implements IReconciliationService {
     }
 
     /**
-     * 比较 balanceSnapshot（按要求规则插入的） 是否等于内部账户
+     * 比较 balanceSnapshot 是否等于内部账户
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
     public void checkBalanceSnapshot() {
-        // 求 balanceSnapshot 与 internal 差异
-        List<RecBalanceSnapshot> snapshots = snapshotDao.lastSnapshot();
-        // 减少系统间时间差异
-        long time = snapshots.stream().mapToLong(RecBalanceSnapshot::getSnapshotTime).max().orElse(0L);
+        // 通过查询 transferOrder 开启快照。固定最新 id
+        Long lastId = transferOrderDao.lastId();
+        // 查询 balanceSnapshot，该表的幻读问题通过单线程线程池串行保证（尽管由于时间间隔幻读可能很小）
+        List<RecBalanceSnapshot> snapshots = balanceSnapshotDao.lastSnapshot();
+        // balanceInternal 表不考虑幻读问题
+        Map<String, BigDecimal> deltaMap = getSnapshotDelta(snapshots);
 
-        Map<String, BigDecimal> snapshotDelta = getSnapshotDelta(snapshots);
-        if (snapshotDelta.isEmpty()) {
+        if (deltaMap.isEmpty()) {
             log.info("check balance snapshot success!");
             return;
         }
+
         // 有差值时需要确认 transferOrder 处理中的订单，按币种聚合
         Map<String, BigDecimal> processingMap = transferOrderDao
-                .getTransferOrderByStatus(
+                .getTransferOrderByStatusBeforeId(
                         TransferOrderStatus.PROCESSING.getCode(),
                         Arrays.asList(
                                 TransferProcessStatus.CHARGEBACK_SUCCESS.getCode(),
                                 TransferProcessStatus.TRANSFERED_FAILED.getCode()
-                        )
+                        ),
+                        lastId
                 ).stream()
-                .filter(o -> o.getTransferTime() == null ? o.getChargeTime() < time : o.getTransferTime() < time)
                 .collect(Collectors.toMap(TransferOrder::getCcy, TransferOrder::getAmount, BigDecimal::add));
-        if (processingMap.size() != snapshotDelta.size()) {
+        if (processingMap.size() != deltaMap.size()) {
             throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
         }
 
         boolean errFlag = false;
         BigDecimal deltaAmount;
-        for (Map.Entry<String, BigDecimal> entry : snapshotDelta.entrySet()) {
+        for (Map.Entry<String, BigDecimal> entry : deltaMap.entrySet()) {
             if ((deltaAmount = processingMap.get(entry.getKey())) == null ||
                     deltaAmount.compareTo(entry.getValue()) != 0) {
                 errFlag = true;
@@ -188,10 +234,14 @@ public class ReconciliationService implements IReconciliationService {
         return deltaMap;
     }
 
+    /**
+     * order == balance
+     * internal == org + person
+     */
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public void checkOrderDetail() {
-        Long nowTime = System.currentTimeMillis();
+        Long nowTime = System.currentTimeMillis() - 10 * 1000L;
         Long previousTime = accountSnapshotDao.getLastSnapshotTime() + 1L;
 
         // step three check detail
@@ -249,7 +299,7 @@ public class ReconciliationService implements IReconciliationService {
             accountSnapshotDao.insertBatch(buildSnapshot(internalAmount, AccountType.INTERNAL, nowTime));
             accountSnapshotDao.insertBatch(buildSnapshot(personAmount, AccountType.PERSON, nowTime));
             accountSnapshotDao.insertBatch(buildSnapshot(orgAmount, AccountType.ORG, nowTime));
-            log.info("reconcile success! detail checked.");
+            log.info("detail check success");
             return;
         }
         throw new BizException(BizExceptionEnum.RECONCILE_FAILED);

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -14,20 +15,12 @@ import java.util.List;
  */
 public interface RecBalanceSnapshotMapper extends SuperMapper<RecBalanceSnapshot> {
 
-    @Select("select tb.* from (select currency, max(snapshot_time) max_time " +
-            "from rec_balance_snapshot GROUP BY currency ) ta " +
-            "inner join rec_balance_snapshot tb on ta.currency = tb.currency " +
-            "where ta.max_time = tb.snapshot_time")
+    @Select("select * from rec_balance_snapshot where snapshot_time = (select max(snapshot_time) from rec_balance_snapshot)")
     List<RecBalanceSnapshot> getLastSnapshot();
 
-    @Select("select tb.* from (select currency, max(snapshot_time) max_time " +
-            "from rec_balance_snapshot where snapshot_time <= #{snapshotTime} GROUP BY currency ) ta " +
-            "inner join rec_balance_snapshot tb on ta.currency = tb.currency " +
-            "where ta.max_time = tb.snapshot_time")
-    List<RecBalanceSnapshot> getLastSnapshotBefore(Long snapshotTime);
-
-    @Insert("insert into rec_balance_snapshot (currency, in_amount, out_amount, snapshot_time) " +
-            "select currency, in_amount + #{inAmount}, out_amount + #{outAmount}, #{snapshotTime} " +
-            "from rec_balance_snapshot where currency = #{currency} order by snapshot_time desc limit 1")
-    int insertSnapshot(String currency, BigDecimal inAmount, BigDecimal outAmount, Long snapshotTime);
+    @Insert("<script>insert into rec_balance_snapshot (currency, in_amount, out_amount, snapshot_time) values " +
+            "<foreach collection='collection' item='snapshot' separator=','>" +
+            "(#{snapshot.currency}, #{snapshot.inAmount}, #{snapshot.outAmount}, #{snapshot.snapshotTime})</foreach>" +
+            "</script>")
+    int insertSnapshotBatch(Collection<RecBalanceSnapshot> snapshots);
 }

@@ -8,7 +8,6 @@ import cn.idachain.finance.batch.common.enums.TransferType;
 import cn.idachain.finance.batch.common.exception.BizException;
 import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
 import cn.idachain.finance.batch.common.exception.TryAgainException;
-import cn.idachain.finance.batch.service.dao.IRecBalanceSnapshotDao;
 import cn.idachain.finance.batch.service.dao.ITransferOrderDao;
 import cn.idachain.finance.batch.service.external.CexRespCode;
 import cn.idachain.finance.batch.service.external.CexResponse;
@@ -26,13 +25,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -48,8 +44,6 @@ public class TransferOrderService implements ITransferOrderService {
     private ExternalInterface externalInterface;
     @Autowired
     private BalanceDetailService balanceDetailService;
-    @Autowired
-    private IRecBalanceSnapshotDao balanceSnapshotDao;
 
     @Value("${task.financing.transfer-confirm.count}")
     private Integer confirmCount;
@@ -59,28 +53,18 @@ public class TransferOrderService implements ITransferOrderService {
                                           final TransferProcessStatus processStatus,
                                           final Long transferTime,
                                           final Long chargeTime) {
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-            try{
-                if (chargeTime != null) {
-                    order.setChargeTime(chargeTime);
-                }
-                if (transferTime != null) {
-                    order.setTransferTime(transferTime);
-                    transferOrderDao.updateStatus(order, orderStatus.getCode(), processStatus.getCode());
-                    balanceSnapshotDao.insertSnapshot(order.getCcy(), order.getAmount(),
-                            Direction.getByCode(order.getDeriction()), transferTime);
-                } else {
-                    transferOrderDao.updateStatus(order, orderStatus.getCode(), processStatus.getCode());
-                }
-            }catch (Exception e){
-                status.setRollbackOnly();
-                log.error("transfer order status update db error",e);
-                throw new BizException(BizExceptionEnum.DB_ERROR);
+        try{
+            if (chargeTime != null) {
+                order.setChargeTime(chargeTime);
             }
+            if (transferTime != null) {
+                order.setTransferTime(transferTime);
             }
-        });
+            transferOrderDao.updateStatus(order, orderStatus.getCode(), processStatus.getCode());
+        }catch (Exception e){
+            log.error("transfer order status update db error",e);
+            throw new BizException(BizExceptionEnum.DB_ERROR);
+        }
     }
     /**
      * 扣减余额

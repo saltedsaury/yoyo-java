@@ -62,8 +62,9 @@ public class TransferOrderDao implements ITransferOrderDao {
     }
 
     @Override
-    public List<TransferOrder> getTransferOrderByStatus(String status, List<String> processStatus) {
+    public List<TransferOrder> getTransferOrderByStatusBeforeId(String status, List<String> processStatus, Long last) {
         EntityWrapper<TransferOrder> wrapper = new EntityWrapper<>();
+        wrapper.le("id", last);
         wrapper.eq("status", status);
         wrapper.in(!processStatus.isEmpty(), "process_status", processStatus);
         return transferOrderMapper.selectList(wrapper);
@@ -72,5 +73,17 @@ public class TransferOrderDao implements ITransferOrderDao {
     @Override
     public List<TransferOrder> getTransferOrderByStatus(String status, List<String> process, Page page){
         return transferOrderMapper.selectListForConfirm(status,process,page);
+    }
+
+    @Override
+    public List<TransferOrder> getTransferOrderBetween(Long start, Long end) {
+        EntityWrapper<TransferOrder> wrapper = new EntityWrapper<>();
+        wrapper.between("transfer_time", start, end);
+        return transferOrderMapper.selectList(wrapper);
+    }
+
+    @Override
+    public Long lastId() {
+        return transferOrderMapper.lastId();
     }
 }
