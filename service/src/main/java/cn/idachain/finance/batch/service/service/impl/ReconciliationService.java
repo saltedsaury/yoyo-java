@@ -3,8 +3,6 @@ package cn.idachain.finance.batch.service.service.impl;
 import cn.idachain.finance.batch.common.dataobject.*;
 import cn.idachain.finance.batch.common.enums.AccountType;
 import cn.idachain.finance.batch.common.enums.Direction;
-import cn.idachain.finance.batch.common.enums.TransferOrderStatus;
-import cn.idachain.finance.batch.common.enums.TransferProcessStatus;
 import cn.idachain.finance.batch.common.exception.BizException;
 import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
 import cn.idachain.finance.batch.service.dao.*;
@@ -152,25 +150,23 @@ public class ReconciliationService implements IReconciliationService {
             return;
         }
 
-        // 有差值时需要确认 transferOrder 处理中的订单，按币种聚合
-        Map<String, BigDecimal> processingMap = transferOrderDao
-                .getTransferOrderByStatusBeforeId(
-                        TransferOrderStatus.PROCESSING.getCode(),
-                        Arrays.asList(
-                                TransferProcessStatus.CHARGEBACK_SUCCESS.getCode(),
-                                TransferProcessStatus.TRANSFERED_FAILED.getCode()
-                        ),
-                        lastId
-                ).stream()
-                .collect(Collectors.toMap(TransferOrder::getCcy, TransferOrder::getAmount, BigDecimal::add));
-        if (processingMap.size() != deltaMap.size()) {
+        long lastTime = snapshots.stream().mapToLong(RecBalanceSnapshot::getSnapshotTime).findAny().orElse(0L);
+        Map<String, BigDecimal> missOrders = transferOrderDao.getRecordedOrderAfterTime(lastTime, lastId).stream()
+                .collect(Collectors.toMap(
+                        TransferOrder::getCcy,
+                        o -> IN_CODE.equals(o.getDeriction()) ? o.getAmount() : o.getAmount().negate(),
+                        BigDecimal::add)
+                );
+
+
+        if (missOrders.size() != deltaMap.size()) {
             throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
         }
 
         boolean errFlag = false;
         BigDecimal deltaAmount;
         for (Map.Entry<String, BigDecimal> entry : deltaMap.entrySet()) {
-            if ((deltaAmount = processingMap.get(entry.getKey())) == null ||
+            if ((deltaAmount = missOrders.get(entry.getKey())) == null ||
                     deltaAmount.compareTo(entry.getValue()) != 0) {
                 errFlag = true;
                 log.error("balance snapshot check failed! ccy {} snapshot delta {}, order delta {}",
@@ -196,40 +192,19 @@ public class ReconciliationService implements IReconciliationService {
         Map<String, BigDecimal> internalCcyAmount = balanceInternalDao.getAllBalance().stream().collect(
                 Collectors.toMap(BalanceInternal::getCurrency, BalanceInternal::getBalance, BigDecimal::add)
         );
-        if (snapshotCcyAmount.size() != internalCcyAmount.size()) {
-            log.error("balance snapshot check failed! snapshot: {}, internal: {}", snapshotCcyAmount, internalCcyAmount);
-            throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
-        }
 
-        boolean stopFlag = false;
-        String ccy;
-        BigDecimal snapshotAmount;
         Map<String, BigDecimal> deltaMap = new HashMap<>(4);
-        for (Map.Entry<String, BigDecimal> entry : snapshotCcyAmount.entrySet()) {
+        String ccy;
+        BigDecimal internalAmount;
+        BigDecimal snapshotAmount;
+        for (Map.Entry<String, BigDecimal> entry : internalCcyAmount.entrySet()) {
             ccy = entry.getKey();
-            BigDecimal internalAmount = internalCcyAmount.get(ccy);
-            if (internalAmount == null) {
-                log.error("balance snapshot check failed! ccy {} not match!", ccy);
-                stopFlag = true;
+            internalAmount = entry.getValue();
+            snapshotAmount = snapshotCcyAmount.getOrDefault(ccy, BigDecimal.ZERO);
+            if (internalAmount.compareTo(snapshotAmount) == 0) {
                 continue;
             }
-            snapshotAmount = entry.getValue();
-            int equal = snapshotAmount.compareTo(internalAmount);
-            if (equal == 0) {
-                // good
-                continue;
-            }
-            if (equal < 0) {
-                log.error("balance snapshot check failed! ccy {} snapshot {} internal {}",
-                        ccy, snapshotAmount, internalAmount);
-                stopFlag = true;
-                continue;
-            }
-            // snapshotAmount > internalAmount 需要检查中间态 transferOrder 数据
-            deltaMap.put(ccy, snapshotAmount.subtract(internalAmount));
-        }
-        if (stopFlag) {
-            throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
+            deltaMap.put(ccy, internalAmount.subtract(snapshotAmount));
         }
         return deltaMap;
     }

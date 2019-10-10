@@ -83,6 +83,11 @@ public class TransferOrderDao implements ITransferOrderDao {
     }
 
     @Override
+    public List<TransferOrder> getRecordedOrderAfterTime(Long time, Long id) {
+        return transferOrderMapper.selectRecordedOrderAfter(time, id);
+    }
+
+    @Override
     public Long lastId() {
         return transferOrderMapper.lastId();
     }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * @author kun
  * @version 2019/10/9 11:41
@@ -18,7 +20,12 @@ public class ReconcileTaskTest {
     private ReconcileTask reconcileTask;
 
     @Test
-    public void testReconcile() {
+    public void testReconcile() throws ExecutionException, InterruptedException {
         reconcileTask.reconcile();
+    }
+
+    @Test
+    public void testBuildSnapshot() throws ExecutionException, InterruptedException {
+        reconcileTask.buildBalanceSnapshot();
     }
 }

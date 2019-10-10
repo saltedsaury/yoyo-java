@@ -44,15 +44,13 @@ public class ReconcileTask {
      */
     @Scheduled(cron = "${task.financing.reconciliation}")
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    public void reconcile() {
+    public void reconcile() throws ExecutionException, InterruptedException {
         reconciliationService.checkOrderDetail();
         try {
             executorService.submit(() -> reconciliationService.checkBalanceSnapshot()).get();
             log.info("reconciliation success.");
         } catch (RejectedExecutionException e) {
             log.error("snapshot task is blocking... abort task", e);
-        } catch (InterruptedException | ExecutionException e) {
-            log.error("reconcile task failed", e);
         }
     }
 
@@ -60,14 +58,12 @@ public class ReconcileTask {
      * 生成快照外部资金确认快照
      */
     @Scheduled(fixedDelay = 60 * 60 * 1000L, initialDelay = 60 * 1000L)
-    public void buildBalanceSnapshot() {
+    public void buildBalanceSnapshot() throws ExecutionException, InterruptedException {
         try {
             Long lastTime = executorService.submit(() -> reconciliationService.buildBalanceSnapshot()).get();
             log.info("snapshot {} saved successfully.", lastTime);
         } catch (RejectedExecutionException e) {
             log.error("snapshot task is blocking... abort task", e);
-        } catch (InterruptedException | ExecutionException e) {
-            log.error("snapshot build task failed", e);
         }
     }
 

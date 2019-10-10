@@ -22,4 +22,9 @@ public interface TransferOrderMapper extends SuperMapper<TransferOrder> {
     @Select("select id from transfer_order order by id desc limit 1")
     Long lastId();
 
+    @Select("select * from transfer_order where id > " +
+            "(select max(id) from transfer_order where transfer_time <= #{param1}) " +
+            "and id <= #{param2} and status in (1, 3)")
+    List<TransferOrder> selectRecordedOrderAfter(Long time, Long stopId);
+
 }

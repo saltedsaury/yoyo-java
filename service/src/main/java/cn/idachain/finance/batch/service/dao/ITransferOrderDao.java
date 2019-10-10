@@ -22,5 +22,7 @@ public interface ITransferOrderDao {
 
     List<TransferOrder> getTransferOrderBetween(Long start, Long end);
 
+    List<TransferOrder> getRecordedOrderAfterTime(Long time, Long id);
+
     Long lastId();
 }
