@@ -76,13 +76,6 @@ public class TransferOrderDao implements ITransferOrderDao {
     }
 
     @Override
-    public List<TransferOrder> getTransferOrderBetween(Long start, Long end) {
-        EntityWrapper<TransferOrder> wrapper = new EntityWrapper<>();
-        wrapper.between("transfer_time", start, end);
-        return transferOrderMapper.selectList(wrapper);
-    }
-
-    @Override
     public List<TransferOrder> getRecordedOrderAfterTime(Long time, Long id) {
         return transferOrderMapper.selectRecordedOrderAfter(time, id);
     }
@@ -90,5 +83,10 @@ public class TransferOrderDao implements ITransferOrderDao {
     @Override
     public Long lastId() {
         return transferOrderMapper.lastId();
+    }
+
+    @Override
+    public List<TransferOrder> getOrderByRange(Long startTime, Long lastId) {
+        return transferOrderMapper.getOrderByRange(startTime, lastId);
     }
 }

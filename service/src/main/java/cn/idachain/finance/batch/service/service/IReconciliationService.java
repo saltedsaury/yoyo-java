@@ -6,11 +6,7 @@ package cn.idachain.finance.batch.service.service;
  */
 public interface IReconciliationService {
 
-    long buildBalanceSnapshot();
-
-    void checkBalanceInternal();
-
-    void checkBalanceSnapshot();
+    void buildBalanceSnapshot();
 
     void checkOrderDetail();
 }

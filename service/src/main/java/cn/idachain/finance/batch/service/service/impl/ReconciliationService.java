@@ -3,6 +3,7 @@ package cn.idachain.finance.batch.service.service.impl;
 import cn.idachain.finance.batch.common.dataobject.*;
 import cn.idachain.finance.batch.common.enums.AccountType;
 import cn.idachain.finance.batch.common.enums.Direction;
+import cn.idachain.finance.batch.common.enums.TransferOrderStatus;
 import cn.idachain.finance.batch.common.exception.BizException;
 import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
 import cn.idachain.finance.batch.service.dao.*;
@@ -34,6 +35,7 @@ public class ReconciliationService implements IReconciliationService {
 
     private static final Logger log = LoggerFactory.getLogger(ReconciliationService.class);
 
+    private static final long RANGE = 1000L * 60 * 60;
     private static final String IN_CODE = Direction.IN.getCode();
     private static final String SEPARATOR = ":";
 
@@ -53,160 +55,79 @@ public class ReconciliationService implements IReconciliationService {
     private IBalanceDetailDao balanceDetailDao;
 
     @Override
-    public long buildBalanceSnapshot() {
-        long end = System.currentTimeMillis() - 10 * 1000L;
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void buildBalanceSnapshot() {
+        log.info("start to build balance snapshot.");
+        Long lastId = transferOrderDao.lastId();
         List<RecBalanceSnapshot> snapshots = balanceSnapshotDao.lastSnapshot();
-        long start = snapshots.stream().mapToLong(RecBalanceSnapshot::getSnapshotTime).findAny().orElse(0);
-        if (start >= end) {
-            log.info("now {} snapshot is fresh", start);
-            return start;
-        }
+        long startTime = snapshots.stream().mapToLong(RecBalanceSnapshot::getSnapshotTime).findAny().orElse(0L);
+        List<TransferOrder> orders = transferOrderDao.getOrderByRange(startTime, lastId);
+
         Map<String, RecBalanceSnapshot> snapshotMap = snapshots.stream()
                 .collect(Collectors.toMap(RecBalanceSnapshot::getCurrency, Function.identity()));
 
-        List<TransferOrder> orders = transferOrderDao.getTransferOrderBetween(start + 1, end);
-        String ccy;
-        boolean in;
-        for (TransferOrder order : orders) {
-            ccy = order.getCcy();
-            in = Direction.IN.getCode().equals(order.getDeriction());
-            RecBalanceSnapshot snapshot = snapshotMap.get(ccy);
-            if (snapshot == null) {
-                snapshot = new RecBalanceSnapshot();
-                snapshot.setCurrency(ccy);
-                if (in) {
-                    snapshot.setInAmount(order.getAmount());
-                    snapshot.setOutAmount(BigDecimal.ZERO);
-                } else {
-                    snapshot.setInAmount(BigDecimal.ZERO);
-                    snapshot.setOutAmount(order.getAmount());
-                }
-                snapshot.setSnapshotTime(end);
-                snapshotMap.put(ccy, snapshot);
-            } else {
-                if (in) {
-                    snapshot.setInAmount(snapshot.getInAmount().add(order.getAmount()));
-                } else {
-                    snapshot.setOutAmount(snapshot.getOutAmount().add(order.getAmount()));
-                }
+        long snapshotLatch = System.currentTimeMillis() - RANGE;
+        Map<Boolean, List<TransferOrder>> parts = orders.stream()
+                .collect(Collectors.partitioningBy(o -> o.getTransferTime() <= snapshotLatch));
+
+        // 1.在时间阈值前的订单需要全部确认为成功；出入金需要汇总
+        List<String> notSuccessOrders = new ArrayList<>();
+        parts.get(Boolean.TRUE).forEach(o -> {
+            if (!TransferOrderStatus.SUCCESS.getCode().equals(o.getStatus())) {
+                notSuccessOrders.add(o.getOrderNo());
+                return;
             }
+            mergeSnapshotInfo(snapshotMap, o);
+        });
+        if (!notSuccessOrders.isEmpty()) {
+            log.error("some orders before {} are not success yet: {}", RANGE, orders);
+            throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
         }
+        log.info("transfer order before {} are all succeed.", snapshotLatch);
+
+        // 2.外部确认的出入金 + 处理中资金 == balanceInternal
+        Map<String, BigDecimal> internalAmountDelta = snapshotMap.entrySet().stream().collect(Collectors.toMap(
+                Map.Entry::getKey,
+                e -> e.getValue().getInAmount().subtract(e.getValue().getOutAmount())
+        ));
+        parts.get(Boolean.FALSE).forEach(o ->
+                internalAmountDelta.merge(
+                        o.getCcy(),
+                        Direction.IN.getCode().equals(o.getDeriction()) ? o.getAmount() : o.getAmount().negate(),
+                        BigDecimal::add
+                ));
+        List<BalanceInternal> internalList = balanceInternalDao.getAllBalance();
+        Map<String, BigDecimal> errCcy = internalList.stream()
+                .filter(i -> internalAmountDelta.get(i.getCurrency()).compareTo(i.getBalance()) != 0)
+                .collect(Collectors.toMap(BaseBalance::getCurrency, BaseBalance::getBalance));
+        if (!errCcy.isEmpty()) {
+            errCcy.forEach((k, v) ->
+                    log.error("ccy {} balance is {}, but expected {}", k, v, internalAmountDelta.get(k)));
+            throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
+        }
+        log.info("balance snapshot amount is equal to internal balance.");
+
+        // 3.更新 snapshotTime 保存新快照
+        snapshotMap.values().forEach(s -> s.setSnapshotTime(snapshotLatch));
         balanceSnapshotDao.insertSnapshotBatch(snapshotMap.values());
-        return end;
+        log.info("snapshot build succeed.");
     }
 
-    /**
-     * 比对内部账户总额是否等于机构账户和用户账户之和
-     *
-     * @deprecated 不再全表扫描 balancePerson + balanceOrg，
-     * {@link ReconciliationService#checkBalanceInternal(Map, List)} 比较 Internal 快照是否和 Person + Org 一致
-     */
-    @Deprecated
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
-    public void checkBalanceInternal() {
-        Map<String, BigDecimal> internalCcyAmount = balanceInternalDao.getAllBalance().stream().collect(
-                Collectors.toMap(BalanceInternal::getCurrency, BalanceInternal::getBalance, BigDecimal::add)
-        );
-
-        Map<String, BigDecimal> personBalance = balancePersonDao.getAllCcyBalance();
-        Map<String, BigDecimal> orgBalance = balanceOrgDao.getAllCcyBalance();
-        personBalance.forEach((ccy, amount) -> orgBalance.merge(ccy, amount, BigDecimal::add));
-
-        if (orgBalance.size() != internalCcyAmount.size()) {
-            throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
-        }
-
-        boolean errFlag = false;
-        BigDecimal amount;
-        for (Map.Entry<String, BigDecimal> entry : orgBalance.entrySet()) {
-            if ((amount = internalCcyAmount.get(entry.getKey())) == null || amount.compareTo(entry.getValue()) != 0) {
-                errFlag = true;
-                log.error("check internal balance failed! ccy {} internal: {}, sum: {}",
-                        entry.getKey(), amount, entry.getValue());
+    private void mergeSnapshotInfo(Map<String, RecBalanceSnapshot> snapshotMap, TransferOrder order) {
+        boolean in = Direction.IN.getCode().equals(order.getDeriction());
+        RecBalanceSnapshot snapshot = snapshotMap.get(order.getCcy());
+        if (snapshot != null) {
+            if (in) {
+                snapshot.setInAmount(order.getAmount());
+            } else {
+                snapshot.setOutAmount(order.getAmount());
             }
-        }
-        if (errFlag) {
-            throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
-        }
-        log.info("check internal balance success!");
-    }
-
-    /**
-     * 比较 balanceSnapshot 是否等于内部账户
-     */
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
-    public void checkBalanceSnapshot() {
-        // 通过查询 transferOrder 开启快照。固定最新 id
-        Long lastId = transferOrderDao.lastId();
-        // 查询 balanceSnapshot，该表的幻读问题通过单线程线程池串行保证（尽管由于时间间隔幻读可能很小）
-        List<RecBalanceSnapshot> snapshots = balanceSnapshotDao.lastSnapshot();
-        // balanceInternal 表不考虑幻读问题
-        Map<String, BigDecimal> deltaMap = getSnapshotDelta(snapshots);
-
-        if (deltaMap.isEmpty()) {
-            log.info("check balance snapshot success!");
             return;
         }
-
-        long lastTime = snapshots.stream().mapToLong(RecBalanceSnapshot::getSnapshotTime).findAny().orElse(0L);
-        Map<String, BigDecimal> missOrders = transferOrderDao.getRecordedOrderAfterTime(lastTime, lastId).stream()
-                .collect(Collectors.toMap(
-                        TransferOrder::getCcy,
-                        o -> IN_CODE.equals(o.getDeriction()) ? o.getAmount() : o.getAmount().negate(),
-                        BigDecimal::add)
-                );
-
-
-        if (missOrders.size() != deltaMap.size()) {
-            throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
-        }
-
-        boolean errFlag = false;
-        BigDecimal deltaAmount;
-        for (Map.Entry<String, BigDecimal> entry : deltaMap.entrySet()) {
-            if ((deltaAmount = missOrders.get(entry.getKey())) == null ||
-                    deltaAmount.compareTo(entry.getValue()) != 0) {
-                errFlag = true;
-                log.error("balance snapshot check failed! ccy {} snapshot delta {}, order delta {}",
-                        entry.getKey(), entry.getValue(), deltaAmount);
-            }
-        }
-        if (errFlag) {
-            throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
-        }
-        log.info("check balance snapshot success!");
-    }
-
-    /**
-     * 计算 balanceSnapshot 与 balanceInternal 差异
-     * balanceInternal 表新增情况少，不考虑幻读导致的问题
-     *
-     * @return 差异币种-金额
-     */
-    private Map<String, BigDecimal> getSnapshotDelta(List<RecBalanceSnapshot> snapshots) {
-        Map<String, BigDecimal> snapshotCcyAmount = snapshots.stream().collect(
-                Collectors.toMap(RecBalanceSnapshot::getCurrency, s -> s.getInAmount().subtract(s.getOutAmount()))
-        );
-        Map<String, BigDecimal> internalCcyAmount = balanceInternalDao.getAllBalance().stream().collect(
-                Collectors.toMap(BalanceInternal::getCurrency, BalanceInternal::getBalance, BigDecimal::add)
-        );
-
-        Map<String, BigDecimal> deltaMap = new HashMap<>(4);
-        String ccy;
-        BigDecimal internalAmount;
-        BigDecimal snapshotAmount;
-        for (Map.Entry<String, BigDecimal> entry : internalCcyAmount.entrySet()) {
-            ccy = entry.getKey();
-            internalAmount = entry.getValue();
-            snapshotAmount = snapshotCcyAmount.getOrDefault(ccy, BigDecimal.ZERO);
-            if (internalAmount.compareTo(snapshotAmount) == 0) {
-                continue;
-            }
-            deltaMap.put(ccy, internalAmount.subtract(snapshotAmount));
-        }
-        return deltaMap;
+        snapshotMap.put(order.getCcy(), new RecBalanceSnapshot()
+                .setCurrency(order.getCcy())
+                .setInAmount(in ? order.getAmount() : BigDecimal.ZERO)
+                .setOutAmount(in ? BigDecimal.ZERO : order.getAmount()));
     }
 
     /**
@@ -214,9 +135,9 @@ public class ReconciliationService implements IReconciliationService {
      * internal == org + person
      */
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void checkOrderDetail() {
-        Long nowTime = System.currentTimeMillis() - 10 * 1000L;
+        Long nowTime = System.currentTimeMillis() - 60 * 1000L;
         Long previousTime = accountSnapshotDao.getLastSnapshotTime() + 1L;
 
         // step three check detail

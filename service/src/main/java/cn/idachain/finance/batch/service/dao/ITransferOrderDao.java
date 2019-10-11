@@ -20,9 +20,9 @@ public interface ITransferOrderDao {
 
     List<TransferOrder> getTransferOrderByStatus(String status, List<String> process, Page page);
 
-    List<TransferOrder> getTransferOrderBetween(Long start, Long end);
-
     List<TransferOrder> getRecordedOrderAfterTime(Long time, Long id);
 
     Long lastId();
+
+    List<TransferOrder> getOrderByRange(Long startTime, Long lastId);
 }

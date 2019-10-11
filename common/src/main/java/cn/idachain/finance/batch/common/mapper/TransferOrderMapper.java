@@ -27,4 +27,8 @@ public interface TransferOrderMapper extends SuperMapper<TransferOrder> {
             "and id <= #{param2} and status in (1, 3)")
     List<TransferOrder> selectRecordedOrderAfter(Long time, Long stopId);
 
+    @Select("select * from transfer_order " +
+            "where (transfer_time > #{param1} or charge_time is not null) and id <= #{param2}")
+    List<TransferOrder> getOrderByRange(Long startTime, Long lastId);
+
 }
