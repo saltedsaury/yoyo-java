@@ -42,6 +42,7 @@ public class ReconcileTask {
     public void reconcile() {
         if (!enable) {
             log.info("reconciliation is disable. skip internal checking.");
+            return;
         }
         reconciliationService.checkOrderDetail();
     }
@@ -53,6 +54,7 @@ public class ReconcileTask {
     public void buildBalanceSnapshot() {
         if (!enable) {
             log.info("reconciliation is disable. skip snapshot building.");
+            return;
         }
         reconciliationService.buildBalanceSnapshot();
     }
