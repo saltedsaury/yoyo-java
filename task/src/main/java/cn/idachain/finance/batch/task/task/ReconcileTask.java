@@ -43,7 +43,7 @@ public class ReconcileTask {
     /**
      * 生成快照外部资金确认快照
      */
-    @Scheduled(fixedDelay = 60 * 60 * 1000L, initialDelay = 60 * 1000L)
+    @Scheduled(cron = "${task.financing.snapshotbuilding}")
     public void buildBalanceSnapshot() {
         reconciliationService.buildBalanceSnapshot();
     }

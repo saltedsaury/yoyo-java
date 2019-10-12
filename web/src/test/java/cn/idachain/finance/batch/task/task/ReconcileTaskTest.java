@@ -20,12 +20,12 @@ public class ReconcileTaskTest {
     private ReconcileTask reconcileTask;
 
     @Test
-    public void testReconcile() throws ExecutionException, InterruptedException {
+    public void testReconcile() {
         reconcileTask.reconcile();
     }
 
     @Test
-    public void testBuildSnapshot() throws ExecutionException, InterruptedException {
+    public void testBuildSnapshot() {
         reconcileTask.buildBalanceSnapshot();
     }
 }

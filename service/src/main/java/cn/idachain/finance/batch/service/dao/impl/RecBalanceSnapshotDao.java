@@ -28,6 +28,9 @@ public class RecBalanceSnapshotDao implements IRecBalanceSnapshotDao {
     @Override
     @Transactional
     public int insertSnapshotBatch(Collection<RecBalanceSnapshot> snapshots) {
+        if (snapshots.isEmpty()) {
+            return 0;
+        }
         return snapshotMapper.insertSnapshotBatch(snapshots);
     }
 
