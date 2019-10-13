@@ -3,7 +3,7 @@
 
     <properties>
         <!-- 文件输出格式 -->
-        <property name="APPNAME">financing</property>
+        <property name="APPNAME">batch</property>
         <property name="BASEPATH">./log</property>
 
     </properties>
@@ -71,7 +71,7 @@
     </Appenders>
 
     <Loggers>
-        <logger name="cn.idachain.finance.financing" level="debug" additivity="false">
+        <logger name="cn.idachain.finance.batch" level="debug" additivity="false">
             <AppenderRef ref="BIZ-APPENDER"/>
             <AppenderRef ref="ERROR-APPENDER"/>
         </logger>
