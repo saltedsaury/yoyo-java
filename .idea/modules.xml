@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/batch-common.iml" filepath="$PROJECT_DIR$/common/batch-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/batch-platform-root.iml" filepath="$PROJECT_DIR$/batch-platform-root.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/batch-service.iml" filepath="$PROJECT_DIR$/service/batch-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/task/batch-task.iml" filepath="$PROJECT_DIR$/task/batch-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/batch-test.iml" filepath="$PROJECT_DIR$/test/batch-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/batch-web.iml" filepath="$PROJECT_DIR$/web/batch-web.iml" />
+    </modules>
+  </component>
+</project>

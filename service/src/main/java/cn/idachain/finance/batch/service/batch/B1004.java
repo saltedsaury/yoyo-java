@@ -12,6 +12,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Slf4j
@@ -53,6 +54,8 @@ public class B1004 extends BaseBatch {
             log.info("query invest info :{}",investInfo);
             final RevenuePlan revenuePlan = revenuePlanDao.selectPlanByNo(investInfo.getPlanNo());
             log.info("query revenue plan :{}",revenuePlan);
+            revenuePlan.setActualPrincipal(trade.getAmount().subtract(trade.getFine()).subtract(trade.getBonus()));
+            revenuePlan.setActualInterest(BigDecimal.ZERO);
 
             //修改提前赎回记录状态 以及 投资记录状态 防止自动赎回流程重复捞单
             //调用account接口记赎回
