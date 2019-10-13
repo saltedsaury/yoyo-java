@@ -61,10 +61,10 @@ public class B1002 extends BaseBatch {
         log.info("query product list for status off shelve,list :{}",productList);
         //分产品打捞投资记录
         for (Product product : productList){
-            if (ProductType.FINANCING.getCode().equals(product.getStatus())){
+            if (ProductType.FINANCING.getCode().equals(product.getProductType())){
                 financingProduct(product);
             }
-            if (ProductType.SUBSCRIBE.getCode().equals(product.getStatus())){
+            if (ProductType.SUBSCRIBE.getCode().equals(product.getProductType())){
                 subscribeProduct(product);
             }
         }
@@ -150,6 +150,15 @@ public class B1002 extends BaseBatch {
             //换算还款金额
             BigDecimal paybackAmount = BigDecimal.ZERO;
             paybackAmount = investInfo.getAmount().multiply(product.getSubscribedAmount());
+            // 计算应发收益
+            BigDecimal totalInterest = investInfo.getAmount().multiply(product.getProfitScale())
+                    .setScale(2,RoundingMode.HALF_UP);
+
+            RevenuePlan revenuePlan = convertToRevenuePlan(investInfo,totalInterest,product);
+            revenuePlan.setPrincipal(paybackAmount);
+            revenuePlan.setActualPrincipal(paybackAmount);
+            revenuePlan.setCcy(product.getSubscribedCcy());
+            investInfo.setPlanNo(revenuePlan.getPlanNo());
 
             //生成分红记录
             final List<BonusOrder> bonusOrders = new ArrayList<BonusOrder>();
@@ -163,11 +172,11 @@ public class B1002 extends BaseBatch {
                 BonusOrder primaryBonus = convertToBonusOrder(investInfo,
                         Long.parseLong("0"),primarAmount,primarDate);
                 bonusOrders.add(primaryBonus);
+                revenuePlan.setInterest(totalInterest.add(primarAmount));
+                revenuePlan.setActualInterest(totalInterest.add(primarAmount));
             }
 
-            // 计算应发收益
-            BigDecimal totalInterest = investInfo.getAmount().multiply(product.getProfitScale())
-                    .setScale(2,RoundingMode.HALF_UP);
+
             // 尾期是否计息
             int terms = product.getInterestCycle().intValue();
             if (!Boolean.parseBoolean(product.getLastInterest().toString())){
@@ -188,7 +197,6 @@ public class B1002 extends BaseBatch {
                 bonusOrders.add(order);
             }
             log.info("generate bonus orders list :{} ",bonusOrders);
-            final RevenuePlan revenuePlan = convertToRevenuePlan(investInfo,totalInterest.add(primarAmount),product);
 
             // 记录入库
             transactionTemplate.execute(new TransactionCallbackWithoutResult() {
