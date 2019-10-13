@@ -51,7 +51,7 @@ public class CompensateTradeService extends BaseService implements ICompensateTr
         log.info("query invest info :{}",info);
         //调用account解冻扣款
         if (balanceDetialService.compensate(trade.getCustomerNo(),trade.getCcy(),trade.getCompensateCcy(),
-                trade.getEffectiveAmount(),trade.getCompensateAmount(),trade.getTradeNo(),trade.getTradeNo())) {
+                trade.getEffectiveAmount(),trade.getCompensateAmount(),trade.getTradeNo(),insurance.getTradeNo())) {
             log.info("compensate confirm keeping account finish ,compensate tradeNo:{}",trade.getTradeNo());
             transactionTemplate.execute(new TransactionCallbackWithoutResult() {
                 @Override
