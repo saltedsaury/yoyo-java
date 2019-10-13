@@ -49,11 +49,9 @@ public class CompensateTradeService extends BaseService implements ICompensateTr
         InvestInfo info = investDao.selectInvestInfoByTradeNoAndStatus(
                 insurance.getInvestNo(),null,insurance.getCustomerNo());
         log.info("query invest info :{}",info);
-        RevenuePlan revenuePlan = revenuePlanDao.selectPlanByNo(info.getPlanNo());
-        log.info("query revenue plan :{}",revenuePlan);
         //调用account解冻扣款
         if (balanceDetialService.compensate(trade.getCustomerNo(),trade.getCcy(),trade.getCompensateCcy(),
-                trade.getEffectiveAmount(),trade.getCompensateAmount(),trade.getTradeNo(),revenuePlan.getPlanNo())) {
+                trade.getEffectiveAmount(),trade.getCompensateAmount(),trade.getTradeNo(),trade.getTradeNo())) {
             log.info("compensate confirm keeping account finish ,compensate tradeNo:{}",trade.getTradeNo());
             transactionTemplate.execute(new TransactionCallbackWithoutResult() {
                 @Override
