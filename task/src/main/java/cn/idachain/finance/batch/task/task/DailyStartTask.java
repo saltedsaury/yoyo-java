@@ -56,7 +56,7 @@ public class DailyStartTask {
                     while (true) {
                         boolean success = false;
                         try {
-                            Class<?> batch = Class.forName("cn.idachain.finance.financing.domainservice.batch."
+                            Class<?> batch = Class.forName("cn.idachain.finance.batch.service.batch."
                                     + systemBatch.getBatchCode());
                             //Object batchClass = batch.newInstance();
                             Object batchClass = ApplicationContextHolder.getBeanByType(batch);
