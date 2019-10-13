@@ -171,6 +171,7 @@ public class B1002 extends BaseBatch {
                 Date primarDate = product.getPrimaryDate();
                 BonusOrder primaryBonus = convertToBonusOrder(investInfo,
                         Long.parseLong("0"),primarAmount,primarDate);
+                primaryBonus.setCcy(product.getSubscribedCcy());
                 bonusOrders.add(primaryBonus);
                 revenuePlan.setInterest(totalInterest.add(primarAmount));
                 revenuePlan.setActualInterest(totalInterest.add(primarAmount));
@@ -194,6 +195,7 @@ public class B1002 extends BaseBatch {
                 }
 
                 BonusOrder order = convertToBonusOrder(investInfo,(long)i,amount,bonusDate);
+                order.setCcy(product.getSubscribedCcy());
                 bonusOrders.add(order);
             }
             log.info("generate bonus orders list :{} ",bonusOrders);
