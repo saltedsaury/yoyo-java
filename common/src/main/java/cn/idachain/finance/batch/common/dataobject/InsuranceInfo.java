@@ -42,6 +42,4 @@ public class InsuranceInfo extends BaseDO{
 
     private BigDecimal fee;
 
-    private BigDecimal overDueRate;
-
 }

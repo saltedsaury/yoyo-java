@@ -1,15 +1,15 @@
 package cn.idachain.finance.batch.service.batch;
 
 import cn.idachain.finance.batch.common.enums.*;
-import cn.idachain.finance.batch.common.model.Product;
-import cn.idachain.finance.batch.service.dao.*;
-import cn.idachain.finance.batch.service.service.IInsuranceInfoService;
 import cn.idachain.finance.batch.common.dataobject.InsuranceInfo;
 import cn.idachain.finance.batch.common.dataobject.InsuranceTrade;
 import cn.idachain.finance.batch.common.dataobject.InvestInfo;
 import cn.idachain.finance.batch.common.dataobject.RevenuePlan;
+import cn.idachain.finance.batch.common.model.Product;
 import cn.idachain.finance.batch.common.util.BlankUtil;
+import cn.idachain.finance.batch.service.dao.*;
 import cn.idachain.finance.batch.service.service.IBalanceDetialService;
+import cn.idachain.finance.batch.service.service.IInsuranceInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +28,6 @@ public class B1005 extends BaseBatch {
     private IInvestDao investDao;
     @Autowired
     private IRevenuePlanDao revenuePlanDao;
-    @Autowired
-    private IRedemptionTradeDao redemptionTradeDao;
     @Autowired
     private IBonusOrderDao bonusOrderDao;
     @Autowired
@@ -86,13 +84,13 @@ public class B1005 extends BaseBatch {
                             insuranceTrade.getInsuranceNo(),product.getProductNo());
 
                     //获取到期兑换比例
-                    BigDecimal overDueRate = insuranceInfo.getOverDueRate();
+                    BigDecimal rate = insuranceInfo.getCompensation();
                     //获取当前实际兑换比例
                     BigDecimal currentRate = exchangeRateDao
                             .getCurrentRateByPairs(insuranceInfo.getTransactionPairs()).getRate();
 
-                    //当前实际兑换比例 < 原定到期兑换比例
-                    if(currentRate.compareTo(overDueRate)<0){
+                    //当前实际兑换比例 < 保值兑换比例
+                    if(currentRate.compareTo(rate)<0){
                         //保险生效
                         //调用account进行赎回
                         log.info("pay principal with insurance,planNo:{}",record.getPlanNo());
