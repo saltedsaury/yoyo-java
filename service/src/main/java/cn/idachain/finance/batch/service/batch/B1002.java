@@ -151,7 +151,7 @@ public class B1002 extends BaseBatch {
             BigDecimal paybackAmount = BigDecimal.ZERO;
             paybackAmount = investInfo.getAmount().multiply(product.getSubscribedAmount());
             // 计算应发收益
-            BigDecimal totalInterest = investInfo.getAmount().multiply(product.getProfitScale())
+            BigDecimal totalInterest = paybackAmount.multiply(product.getProfitScale())
                     .setScale(2,RoundingMode.HALF_UP);
 
             RevenuePlan revenuePlan = convertToRevenuePlan(investInfo,totalInterest,product);
@@ -166,7 +166,7 @@ public class B1002 extends BaseBatch {
             BigDecimal primarAmount = BigDecimal.ZERO;
             if (product.getPrimaryRate().compareTo(BigDecimal.ZERO)>0){
                 // 生成第0期收益
-                primarAmount = investInfo.getAmount().multiply(product.getPrimaryRate())
+                primarAmount = paybackAmount.multiply(product.getPrimaryRate())
                         .setScale(2,RoundingMode.HALF_UP);
                 Date primarDate = product.getPrimaryDate();
                 BonusOrder primaryBonus = convertToBonusOrder(investInfo,
