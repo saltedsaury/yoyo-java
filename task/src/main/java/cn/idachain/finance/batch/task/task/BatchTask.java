@@ -28,10 +28,11 @@ public class BatchTask {
     @Autowired
     protected ISystemDateDao systemDateDao;
 
+    final private SimpleAsyncTaskExecutor cmdDispatchExecutor = new SimpleAsyncTaskExecutor();
+
     @Scheduled(cron = "${task.financing.batch-start}")
     public void execute(){
         System.out.println("Batch begin.");
-        SimpleAsyncTaskExecutor cmdDispatchExecutor = new SimpleAsyncTaskExecutor();
         cmdDispatchExecutor.setThreadNamePrefix("Batch_"+new Date(System.currentTimeMillis()).toString());
         cmdDispatchExecutor.execute(new BatchThread(systemBatchDao,systemDateDao));
     }

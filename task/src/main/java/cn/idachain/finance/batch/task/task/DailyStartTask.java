@@ -25,10 +25,11 @@ public class DailyStartTask {
     @Autowired
     protected ISystemDateDao systemDateDao;
 
+    final private SimpleAsyncTaskExecutor cmdDispatchExecutor = new SimpleAsyncTaskExecutor();
+
     @Scheduled(cron = "${task.financing.daily-start}")
     public void execute(){
         System.out.println("daily start begin.");
-        SimpleAsyncTaskExecutor cmdDispatchExecutor = new SimpleAsyncTaskExecutor();
         cmdDispatchExecutor.setThreadNamePrefix("DailyStart_"+new Date(System.currentTimeMillis()).toString());
         cmdDispatchExecutor.execute(new BatchThread(systemBatchDao,systemDateDao));
     }
