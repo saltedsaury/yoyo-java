@@ -25,10 +25,11 @@ public interface RecAccountSnapshotMapper extends SuperMapper<RecAccountSnapshot
     @Select("select max(snapshot_time) from rec_account_snapshot")
     Long lastSnapshotTime();
 
-    @Select("<script>select tb.* from (select account, max(snapshot_time) max_time from rec_account_snapshot " +
+    @Select("<script>select tb.* from (select account, ccy, max(snapshot_time) max_time from rec_account_snapshot " +
             "where account in (<foreach collection='collection' item='act' separator=','>#{act}</foreach>) " +
-            "group by account) ta " +
-            "inner join rec_account_snapshot tb on ta.account = tb.account where ta.max_time = tb.snapshot_time " +
+            "group by account, ccy) ta " +
+            "inner join rec_account_snapshot tb on ta.account = tb.account " +
+            "where ta.ccy = tb.ccy and ta.max_time = tb.snapshot_time " +
             "</script>")
     List<RecAccountSnapshot> getLatestSnapshot(Collection<String> accounts);
 
