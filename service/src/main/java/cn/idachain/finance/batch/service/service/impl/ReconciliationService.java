@@ -180,9 +180,9 @@ public class ReconciliationService implements IReconciliationService {
                 .collect(Collectors.toList());
         List<RecAccountSnapshot> accountSnapshots = accountSnapshotDao.getSnapshotByAccounts(accountList);
         accountSnapshots.forEach(s ->
-            choseMap(s.getAccountType(), internalAmount, personAmount, orgAmount)
-                    .get(s.getAccount())
-                    .computeIfPresent(s.getCcy(), (ccy, b) -> b.add(s.getBalance()))
+                choseMap(s.getAccountType(), internalAmount, personAmount, orgAmount)
+                        .get(s.getAccount())
+                        .computeIfPresent(s.getCcy(), (ccy, b) -> b.add(s.getBalance()))
         );
 
         boolean ok = checkSum &
@@ -218,7 +218,7 @@ public class ReconciliationService implements IReconciliationService {
         transferDetails.flatMap(List::stream).forEach(d -> {
             Map<String, Map<String, BigDecimal>> map =
                     choseMap(d.getAccountType(), internalAmount, personAmount, orgAmount);
-            map.getOrDefault(d.getAccountNo(), new HashMap<>()).merge(
+            map.computeIfAbsent(d.getAccountNo(), k -> new HashMap<>()).merge(
                     d.getCurrency(),
                     IN_CODE.equals(d.getTransType()) ? d.getAmount() : d.getAmount().negate(),
                     BigDecimal::add);
@@ -288,7 +288,7 @@ public class ReconciliationService implements IReconciliationService {
      * @return 正确否
      */
     private boolean checkBalanceDetail(Map<String, Map<String, BigDecimal>> accountAmount,
-                                          AccountType accountType) {
+                                       AccountType accountType) {
         if (accountAmount == null || accountAmount.isEmpty()) {
             return true;
         }
