@@ -29,4 +29,6 @@ public class CompensateTrade extends BaseDO{
 
     private Long paidTime;
 
+    private Boolean reconciled;
+
 }

@@ -5,6 +5,7 @@ import cn.idachain.finance.batch.common.dataobject.BalanceInternal;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public interface IBalanceInternalDao {
     int updateBalance(BalanceInternal balancePerson, BigDecimal amount);
@@ -13,7 +14,7 @@ public interface IBalanceInternalDao {
 
     BalanceInternal getBalance(String accountNo, String currency);
 
-    List<BalanceInternal> getAllBalance();
+    Map<String, BigDecimal> getAllCcyBalance();
 
     List<BalanceInternal> getBalanceSpecial(Collection<String> accounts);
 }

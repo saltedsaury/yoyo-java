@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -22,32 +21,38 @@ public class BalanceDetailDao extends ServiceImpl<BalanceDetailMapper,BalanceDet
     }
 
     @Override
-    public List<BalanceDetail> getDetailsByBonusOrderBetweenTime(Long start, Long end) {
-        return balanceDetailMapper.getDetailsByBonusOrderBetweenTime(start, end);
+    public List<BalanceDetail> getDetailsByBonusOrderToReconcile(Long lastId) {
+        return balanceDetailMapper.getDetailsByBonusOrderToReconciled(lastId);
     }
 
     @Override
-    public List<BalanceDetail> getDetailsByTransferOrderBetweenTime(Long start, Long end) {
-        return balanceDetailMapper.getDetailsByTransferOrderBetweenTime(start, end);
+    public List<BalanceDetail> getDetailsByTransferToReconcile(Long lastId) {
+        return balanceDetailMapper.getDetailsByTransferOrderToReconcile(lastId);
+    }
+
+
+    @Override
+    public List<BalanceDetail> getDetailsByInvestInfoToReconcile(Long lastId) {
+        return balanceDetailMapper.getDetailsByInvestInfoToReconcile(lastId);
     }
 
     @Override
-    public List<BalanceDetail> getDetailsByInvestInfoBetweenTime(Long start, Long end) {
-        return balanceDetailMapper.getDetailsByInvestInfoBetweenTime(start, end);
+    public List<BalanceDetail> getDetailsByCompensationToReconcile(Long lastId) {
+        return balanceDetailMapper.getDetailsByCompensationToReconcile(lastId);
     }
 
     @Override
-    public List<BalanceDetail> getDetailsByCompensationBetweenTime(Long start, Long end) {
-        return balanceDetailMapper.getDetailsByCompensationBetweenTime(start, end);
+    public List<BalanceDetail> getDetailsByRedemptionToReconcile(Long lastId) {
+        return balanceDetailMapper.getDetailsByRedemptionToReconcile(lastId);
     }
 
     @Override
-    public List<BalanceDetail> getDetailsByRedemptionBetweenTime(Long start, Long end) {
-        return balanceDetailMapper.getDetailsByRedemptionBetweenTime(start, end);
+    public List<BalanceDetail> getDetailsByRevenuePlanToReconcile(Long lastId) {
+        return balanceDetailMapper.getDetailsByRevenuePlanToReconcile(lastId);
     }
 
     @Override
-    public List<BalanceDetail> getDetailsByRevenuePlanBetweenTime(Long start, Long end) {
-        return balanceDetailMapper.getDetailsByRevenuePlanBetweenTime(start, end);
+    public Long getLastId() {
+        return balanceDetailMapper.getLastId();
     }
 }

@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -78,5 +79,13 @@ public class CompensateTradeDao implements ICompensateTradeDao {
         List<CompensateTrade> compensateTrades = compensateTradeMapper.selectPage(page,wrapper);
 
         return compensateTrades;
+    }
+
+    @Override
+    public void markReconciled(Collection<String> orderNos) {
+        if (orderNos.isEmpty()) {
+            return;
+        }
+        compensateTradeMapper.markReconciled(orderNos);
     }
 }

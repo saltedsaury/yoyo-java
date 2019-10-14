@@ -32,4 +32,6 @@ public class InvestInfo extends BaseDO{
 
     private Long investSuccessTime;
 
+    private Boolean reconciled;
+
 }

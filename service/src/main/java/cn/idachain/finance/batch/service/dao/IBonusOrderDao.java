@@ -4,6 +4,7 @@ import cn.idachain.finance.batch.common.dataobject.BonusOrder;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -24,4 +25,5 @@ public interface IBonusOrderDao extends IService<BonusOrder> {
 
     List<BonusOrder> getBonusOrderByPlanNo(String planNo, Page page);
 
+    void markReconciled(Collection<String> orderNos);
 }

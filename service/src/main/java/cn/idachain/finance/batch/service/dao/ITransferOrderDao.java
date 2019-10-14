@@ -3,6 +3,7 @@ package cn.idachain.finance.batch.service.dao;
 import cn.idachain.finance.batch.common.dataobject.TransferOrder;
 import com.baomidou.mybatisplus.plugins.Page;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface ITransferOrderDao {
@@ -25,4 +26,6 @@ public interface ITransferOrderDao {
     Long lastId();
 
     List<TransferOrder> getOrderByRange(Long startTime, Long lastId);
+
+    void markReconciled(Collection<String> orderNos);
 }

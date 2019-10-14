@@ -2,6 +2,7 @@ package cn.idachain.finance.batch.service.dao;
 
 import cn.idachain.finance.batch.common.dataobject.RevenuePlan;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface IRevenuePlanDao {
@@ -17,4 +18,5 @@ public interface IRevenuePlanDao {
 
     List<RevenuePlan> getRevenuePlanByCustomer(String customerNo, List<String> status);
 
+    void markReconciled(Collection<String> orderNos);
 }

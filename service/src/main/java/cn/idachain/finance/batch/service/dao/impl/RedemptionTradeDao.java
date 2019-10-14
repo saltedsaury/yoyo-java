@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -47,5 +48,13 @@ public class RedemptionTradeDao implements IRedemptionTradeDao {
     @Override
     public void saveRedemptionTrade(RedemptionTrade trade){
         redemptionTradeMapper.insert(trade);
+    }
+
+    @Override
+    public void markReconciled(Collection<String> orderNos) {
+        if (orderNos.isEmpty()) {
+            return;
+        }
+        redemptionTradeMapper.markReconciled(orderNos);
     }
 }

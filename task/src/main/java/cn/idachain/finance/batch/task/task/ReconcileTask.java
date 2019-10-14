@@ -44,6 +44,7 @@ public class ReconcileTask {
             log.info("reconciliation is disable. skip internal checking.");
             return;
         }
+        reconciliationService.checkTotalBalance();
         reconciliationService.checkOrderDetail();
     }
 

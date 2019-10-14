@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -89,4 +90,13 @@ public class TransferOrderDao implements ITransferOrderDao {
     public List<TransferOrder> getOrderByRange(Long startTime, Long lastId) {
         return transferOrderMapper.getOrderByRange(startTime, lastId);
     }
+
+    @Override
+    public void markReconciled(Collection<String> orderNos) {
+        if (orderNos.isEmpty()) {
+            return;
+        }
+        transferOrderMapper.markReconciled(orderNos);
+    }
+
 }

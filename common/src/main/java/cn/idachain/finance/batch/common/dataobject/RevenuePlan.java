@@ -48,4 +48,6 @@ public class RevenuePlan extends BaseDO{
     // 本金发放时间
     private Long paidTime;
 
+    private Boolean reconciled;
+
 }

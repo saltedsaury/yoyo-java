@@ -36,4 +36,6 @@ public class BonusOrder extends BaseDO{
     private String productNo;
 
     private Long paidTime;
+
+    private Boolean reconciled;
 }

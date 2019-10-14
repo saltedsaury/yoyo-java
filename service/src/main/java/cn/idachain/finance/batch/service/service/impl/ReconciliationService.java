@@ -7,7 +7,6 @@ import cn.idachain.finance.batch.common.enums.TransferOrderStatus;
 import cn.idachain.finance.batch.common.exception.BizException;
 import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
 import cn.idachain.finance.batch.service.dao.*;
-import cn.idachain.finance.batch.service.dao.impl.TransferOrderDao;
 import cn.idachain.finance.batch.service.service.IReconciliationService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,7 +34,8 @@ public class ReconciliationService implements IReconciliationService {
 
     private static final Logger log = LoggerFactory.getLogger(ReconciliationService.class);
 
-    private static final long RANGE = 1000L * 60 * 60;
+    private static final long CHECK_RANGE = 1000L * 60 * 10;
+    private static final long PACK_RANGE = CHECK_RANGE + 1000L * 60 * 10;
     private static final String IN_CODE = Direction.IN.getCode();
 
     @Autowired
@@ -43,7 +43,17 @@ public class ReconciliationService implements IReconciliationService {
     @Autowired
     private IBalanceInternalDao balanceInternalDao;
     @Autowired
-    private TransferOrderDao transferOrderDao;
+    private ITransferOrderDao transferOrderDao;
+    @Autowired
+    private IRevenuePlanDao revenuePlanDao;
+    @Autowired
+    private IInvestDao investDao;
+    @Autowired
+    private ICompensateTradeDao compensateTradeDao;
+    @Autowired
+    private IBonusOrderDao bonusOrderDao;
+    @Autowired
+    private IRedemptionTradeDao redemptionTradeDao;
     @Autowired
     private IBalancePersonDao balancePersonDao;
     @Autowired
@@ -60,44 +70,35 @@ public class ReconciliationService implements IReconciliationService {
         Long lastId = transferOrderDao.lastId();
         List<RecBalanceSnapshot> snapshots = balanceSnapshotDao.lastSnapshot();
         long startTime = snapshots.stream().mapToLong(RecBalanceSnapshot::getSnapshotTime).findAny().orElse(0L);
-        // success orders + processing orders
         List<TransferOrder> orders = transferOrderDao.getOrderByRange(startTime, lastId);
-
-        Map<String, RecBalanceSnapshot> snapshotMap = snapshots.stream()
-                .collect(Collectors.toMap(RecBalanceSnapshot::getCurrency, Function.identity()));
 
         // 1.在时间阈值前的订单需要全部确认为成功；出入金需要汇总
         List<String> notSuccessOrdersBeforeLatch = new ArrayList<>();
-        long snapshotLatch = System.currentTimeMillis() - RANGE;
+        long checkLatch = System.currentTimeMillis() - CHECK_RANGE;
+        long packLatch = System.currentTimeMillis() - PACK_RANGE;
         Map<Boolean, List<TransferOrder>> parts = orders.stream()
-                .collect(Collectors.partitioningBy(o -> {
-                    if (o.getTransferTime() != null) {
-                        return o.getTransferTime() <= snapshotLatch;
-                    }
-                    assert !TransferOrderStatus.SUCCESS.getCode().equals(o.getStatus());
-                    if (o.getChargeTime() < snapshotLatch) {
+                .peek(o -> {
+                    // check orders not succeed
+                    if (o.getCreateTime().getTime() < checkLatch &&
+                            !TransferOrderStatus.SUCCESS.getCode().equals(o.getStatus())) {
                         notSuccessOrdersBeforeLatch.add(o.getOrderNo());
                     }
-                    return false;
-                }));
+                })
+                .collect(Collectors.partitioningBy(o ->
+                        o.getTransferTime() != null && o.getTransferTime() <= packLatch));
 
         // 1.1 未及时完成的订单信息输出
         if (!notSuccessOrdersBeforeLatch.isEmpty()) {
             log.error("[build balance snapshot task]some orders before {} are not success yet: {}",
-                    RANGE, notSuccessOrdersBeforeLatch);
+                    checkLatch, notSuccessOrdersBeforeLatch);
             throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
         }
-        log.info("[build balance snapshot task]transfer order before {} are all succeed.", snapshotLatch);
+        log.info("[build balance snapshot task]transfer order before {} are all succeed.", checkLatch);
 
         // 2.外部确认的出入金 + 处理中资金 == balanceInternal
-        parts.get(Boolean.TRUE).forEach(o -> {
-            // below == o.getChargeTime != null
-            if (!TransferOrderStatus.SUCCESS.getCode().equals(o.getStatus())) {
-                notSuccessOrdersBeforeLatch.add(o.getOrderNo());
-                return;
-            }
-            mergeSnapshotInfo(snapshotMap, o);
-        });
+        Map<String, RecBalanceSnapshot> snapshotMap = snapshots.stream()
+                .collect(Collectors.toMap(RecBalanceSnapshot::getCurrency, Function.identity()));
+        parts.get(Boolean.TRUE).forEach(o -> mergeSnapshotInfo(snapshotMap, o));
 
         Map<String, BigDecimal> internalAmountDelta = snapshotMap.entrySet().stream().collect(Collectors.toMap(
                 Map.Entry::getKey,
@@ -109,11 +110,13 @@ public class ReconciliationService implements IReconciliationService {
                         Direction.IN.getCode().equals(o.getDeriction()) ? o.getAmount() : o.getAmount().negate(),
                         BigDecimal::add
                 ));
-        List<BalanceInternal> internalList = balanceInternalDao.getAllBalance();
-        Map<String, BigDecimal> errCcy = internalList.stream()
-                .filter(i -> internalAmountDelta.getOrDefault(i.getCurrency(), BigDecimal.ZERO)
-                        .compareTo(i.getBalance()) != 0)
-                .collect(Collectors.toMap(BaseBalance::getCurrency, BaseBalance::getBalance));
+
+        Map<String, BigDecimal> errCcy = new HashMap<>();
+        balanceInternalDao.getAllCcyBalance().forEach((ccy, b) -> {
+            if (internalAmountDelta.getOrDefault(ccy, BigDecimal.ZERO).compareTo(b) != 0) {
+                errCcy.put(ccy, b);
+            }
+        });
         if (!errCcy.isEmpty()) {
             errCcy.forEach((k, v) ->
                     log.error("ccy {} balance is {}, but expected {}",
@@ -123,7 +126,7 @@ public class ReconciliationService implements IReconciliationService {
         log.info("[build balance snapshot task]balance snapshot amount is equal to internal balance.");
 
         // 3.更新 snapshotTime 保存新快照
-        snapshotMap.values().forEach(s -> s.setSnapshotTime(snapshotLatch));
+        snapshotMap.values().forEach(s -> s.setSnapshotTime(packLatch));
         balanceSnapshotDao.insertSnapshotBatch(snapshotMap.values());
         log.info("[build balance snapshot task]snapshot build succeed.");
     }
@@ -153,8 +156,7 @@ public class ReconciliationService implements IReconciliationService {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void checkOrderDetail() {
         log.info("[check order balance task]start to check orders and balance.");
-        Long nowTime = System.currentTimeMillis() - 60 * 1000L;
-        Long previousTime = accountSnapshotDao.getLastSnapshotTime() + 1L;
+        Long lastId = balanceDetailDao.getLastId();
 
         // step three check detail
         // k: account:ccy, v: amount
@@ -162,24 +164,15 @@ public class ReconciliationService implements IReconciliationService {
         Map<Token, BigDecimal> personAmount = new HashMap<>(1024);
         Map<Token, BigDecimal> orgAmount = new HashMap<>(32);
         // 收集与上一次对账期间的订单
-        detailToMap(() -> balanceDetailDao.getDetailsByTransferOrderBetweenTime(previousTime, nowTime),
-                internalAmount, personAmount, orgAmount);
-        detailToMap(() -> balanceDetailDao.getDetailsByBonusOrderBetweenTime(previousTime, nowTime),
-                internalAmount, personAmount, orgAmount);
-        detailToMap(() -> balanceDetailDao.getDetailsByRevenuePlanBetweenTime(previousTime, nowTime),
-                internalAmount, personAmount, orgAmount);
-        detailToMap(() -> balanceDetailDao.getDetailsByCompensationBetweenTime(previousTime, nowTime),
-                internalAmount, personAmount, orgAmount);
-        detailToMap(() -> balanceDetailDao.getDetailsByInvestInfoBetweenTime(previousTime, nowTime),
-                internalAmount, personAmount, orgAmount);
-        detailToMap(() -> balanceDetailDao.getDetailsByRedemptionBetweenTime(previousTime, nowTime),
-                internalAmount, personAmount, orgAmount);
+        List<BalanceDetail> transferDetails = balanceDetailDao.getDetailsByTransferToReconcile(lastId);
+        List<BalanceDetail> bonusDetails = balanceDetailDao.getDetailsByBonusOrderToReconcile(lastId);
+        List<BalanceDetail> revenueDetails = balanceDetailDao.getDetailsByRevenuePlanToReconcile(lastId);
+        List<BalanceDetail> compensationDetails = balanceDetailDao.getDetailsByCompensationToReconcile(lastId);
+        List<BalanceDetail> investDetails = balanceDetailDao.getDetailsByInvestInfoToReconcile(lastId);
+        List<BalanceDetail> redemptionDetails = balanceDetailDao.getDetailsByRedemptionToReconcile(lastId);
 
-        // 前一快照之后没有新资金变动
-        if (internalAmount.isEmpty() && personAmount.isEmpty() && orgAmount.isEmpty()) {
-            log.info("[check order balance task]reconcile success! no fresh orders ");
-            return;
-        }
+        detailToMap(internalAmount, personAmount, orgAmount, Stream.of(transferDetails,
+                bonusDetails, revenueDetails, compensationDetails, investDetails, redemptionDetails));
 
         // 比较 internal 余额和 person + org
         checkBalanceInternal(internalAmount, Arrays.asList(personAmount, orgAmount));
@@ -202,8 +195,16 @@ public class ReconciliationService implements IReconciliationService {
                 checkBalanceDetail(orgAmount, AccountType.ORG);
 
         if (ok) {
+            // 插入新的快照并标记已对账订单
             log.info("[check order balance task]new account snapshots are inserting.");
-            // 插入新的快照
+            transferOrderDao.markReconciled(transferDetails.stream().map(BalanceDetail::getTradeNo).collect(Collectors.toList()));
+            revenuePlanDao.markReconciled(transferDetails.stream().map(BalanceDetail::getTradeNo).collect(Collectors.toList()));
+            compensateTradeDao.markReconciled(transferDetails.stream().map(BalanceDetail::getTradeNo).collect(Collectors.toList()));
+            redemptionTradeDao.markReconciled(transferDetails.stream().map(BalanceDetail::getTradeNo).collect(Collectors.toList()));
+            investDao.markReconciled(transferDetails.stream().map(BalanceDetail::getTradeNo).collect(Collectors.toList()));
+            bonusOrderDao.markReconciled(transferDetails.stream().map(BalanceDetail::getTradeNo).collect(Collectors.toList()));
+
+            long nowTime = System.currentTimeMillis();
             accountSnapshotDao.insertBatch(buildSnapshot(internalAmount, AccountType.INTERNAL, nowTime));
             accountSnapshotDao.insertBatch(buildSnapshot(personAmount, AccountType.PERSON, nowTime));
             accountSnapshotDao.insertBatch(buildSnapshot(orgAmount, AccountType.ORG, nowTime));
@@ -212,6 +213,43 @@ public class ReconciliationService implements IReconciliationService {
         }
         log.error("[check order balance task]orders info are not match with balance");
         throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
+    }
+
+    private void detailToMap(Map<Token, BigDecimal> internalAmount,
+                             Map<Token, BigDecimal> personAmount,
+                             Map<Token, BigDecimal> orgAmount,
+                             Stream<List<BalanceDetail>> transferDetails) {
+        transferDetails.flatMap(List::stream).forEach(d ->
+                choseMap(d.getAccountType(), internalAmount, personAmount, orgAmount).merge(
+                        new Token(d.getAccountNo(), d.getCurrency()),
+                        IN_CODE.equals(d.getTransType()) ? d.getAmount() : d.getAmount().negate(),
+                        BigDecimal::add
+                )
+        );
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+    public void checkTotalBalance() {
+        // check sum
+        Map<String, BigDecimal> personCcyBalance = balancePersonDao.getAllCcyBalance();
+        Map<String, BigDecimal> internalCcyBalance = balanceInternalDao.getAllCcyBalance();
+        Map<String, BigDecimal> orgCcyBalance = balanceOrgDao.getAllCcyBalance();
+        boolean totalBalanceErr = false;
+        for (Map.Entry<String, BigDecimal> entry : internalCcyBalance.entrySet()) {
+            String ccy = entry.getKey();
+            BigDecimal actual = personCcyBalance.getOrDefault(ccy, BigDecimal.ZERO)
+                    .add(orgCcyBalance.getOrDefault(ccy, BigDecimal.ZERO));
+            if (entry.getValue().compareTo(actual) == 0) {
+                continue;
+            }
+            totalBalanceErr = true;
+            log.error("[check order balance task]check total balance failed. ccy {}, except {}, actual {}.",
+                    ccy, entry.getValue(), actual);
+        }
+        if (totalBalanceErr) {
+            throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
+        }
     }
 
     private void checkBalanceInternal(Map<Token, BigDecimal> internal, List<Map<Token, BigDecimal>> others) {
@@ -237,27 +275,6 @@ public class ReconciliationService implements IReconciliationService {
             throw new BizException(BizExceptionEnum.RECONCILE_FAILED);
         }
         log.info("[check order balance task]check balance internal success!");
-    }
-
-    /**
-     * 收集不同交易类型产生的金额明细
-     *
-     * @param detailQuery    查询方案
-     * @param internalAmount 内部明细
-     * @param personAmount   用户明细
-     * @param orgAmount      机构明细
-     */
-    private void detailToMap(Supplier<List<BalanceDetail>> detailQuery,
-                             Map<Token, BigDecimal> internalAmount,
-                             Map<Token, BigDecimal> personAmount,
-                             Map<Token, BigDecimal> orgAmount) {
-        detailQuery.get().forEach(d -> {
-            choseMap(d.getAccountType(), internalAmount, personAmount, orgAmount).merge(
-                    new Token(d.getAccountNo(), d.getCurrency()),
-                    IN_CODE.equals(d.getTransType()) ? d.getAmount() : d.getAmount().negate(),
-                    BigDecimal::add
-            );
-        });
     }
 
     /**

@@ -5,7 +5,10 @@ import cn.idachain.finance.batch.common.dataobject.TransferOrder;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public interface TransferOrderMapper extends SuperMapper<TransferOrder> {
@@ -28,7 +31,11 @@ public interface TransferOrderMapper extends SuperMapper<TransferOrder> {
     List<TransferOrder> selectRecordedOrderAfter(Long time, Long stopId);
 
     @Select("select * from transfer_order " +
-            "where (transfer_time > #{param1} or charge_time is not null) and id <= #{param2}")
+            "where (transfer_time > #{param1} or transfer_time is null) and id <= #{param2}")
     List<TransferOrder> getOrderByRange(Long startTime, Long lastId);
 
+    @Update("<script>update transfer_order set reconciled = 1 where order_no in " +
+            "<foreach collection='collection' item='no' separator=',' open='(' close=')'>" +
+            "#{no}</foreach></script>")
+    int markReconciled(Collection<String> orderNos);
 }

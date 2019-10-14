@@ -31,4 +31,6 @@ public class RedemptionTrade extends BaseDO{
 
     private Long paidTime;
 
+    private Boolean reconciled;
+
 }

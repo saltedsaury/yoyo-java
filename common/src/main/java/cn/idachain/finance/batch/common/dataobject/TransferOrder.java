@@ -36,4 +36,6 @@ public class TransferOrder extends BaseDO {
 
     private Long chargeTime;
 
+    private Boolean reconciled;
+
 }

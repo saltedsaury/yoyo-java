@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -118,5 +119,13 @@ public class InvestDao implements IInvestDao {
     @Override
     public BigDecimal sumTotalAmountByStatus(List<String> status, String uid, String ccy){
         return investInfoMapper.sumTotalAmountByStatus(status,uid,ccy);
+    }
+
+    @Override
+    public void markReconciled(Collection<String> orderNos) {
+        if (orderNos.isEmpty()) {
+            return;
+        }
+        investInfoMapper.markReconciled(orderNos);
     }
 }

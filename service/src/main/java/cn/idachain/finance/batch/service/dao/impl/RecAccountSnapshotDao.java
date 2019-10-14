@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,6 +36,9 @@ public class RecAccountSnapshotDao implements IRecAccountSnapshotDao {
 
     @Override
     public List<RecAccountSnapshot> getSnapshotByAccounts(Collection<String> accounts) {
+        if (accounts.isEmpty()) {
+            return Collections.emptyList();
+        }
         return snapshotMapper.getLatestSnapshot(accounts);
     }
 

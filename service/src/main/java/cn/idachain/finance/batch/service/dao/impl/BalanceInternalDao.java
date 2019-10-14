@@ -1,10 +1,10 @@
 package cn.idachain.finance.batch.service.dao.impl;
 
 import cn.idachain.finance.batch.common.dataobject.BalanceInternal;
+import cn.idachain.finance.batch.common.dataobject.BaseBalance;
 import cn.idachain.finance.batch.common.mapper.BalanceInternalMapper;
 import cn.idachain.finance.batch.service.dao.IBalanceInternalDao;
 import com.baomidou.mybatisplus.entity.Column;
-import com.baomidou.mybatisplus.entity.Columns;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class BalanceInternalDao implements IBalanceInternalDao {
@@ -53,8 +55,12 @@ public class BalanceInternalDao implements IBalanceInternalDao {
     }
 
     @Override
-    public List<BalanceInternal> getAllBalance() {
-        return balanceInternalMapper.selectList(null);
+    public Map<String, BigDecimal> getAllCcyBalance() {
+        EntityWrapper<BalanceInternal> condition = new EntityWrapper<BalanceInternal>();
+        condition.groupBy("currency");
+        condition.setSqlSelect("currency", "sum(balance) as balance");
+        return balanceInternalMapper.selectList(condition).stream()
+                .collect(Collectors.toMap(BaseBalance::getCurrency, BaseBalance::getBalance));
     }
 
     @Override

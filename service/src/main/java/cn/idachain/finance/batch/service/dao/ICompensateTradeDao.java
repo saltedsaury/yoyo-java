@@ -3,6 +3,7 @@ package cn.idachain.finance.batch.service.dao;
 import cn.idachain.finance.batch.common.dataobject.CompensateTrade;
 import com.baomidou.mybatisplus.plugins.Page;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface ICompensateTradeDao {
@@ -19,4 +20,6 @@ public interface ICompensateTradeDao {
     CompensateTrade selectTradeByTradeNo(String tradeNo);
 
     List<CompensateTrade> getCompensateTradeForPage(String userNo, Page page);
+
+    void markReconciled(Collection<String> orderNos);
 }

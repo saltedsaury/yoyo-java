@@ -10,15 +10,18 @@ public interface IBalanceDetailDao extends IService<BalanceDetail> {
 
     int saveBalanceDetail(BalanceDetail balanceDetail);
 
-    List<BalanceDetail> getDetailsByBonusOrderBetweenTime(Long start, Long end);
 
-    List<BalanceDetail> getDetailsByTransferOrderBetweenTime(Long start, Long end);
+    List<BalanceDetail> getDetailsByBonusOrderToReconcile(Long lastId);
 
-    List<BalanceDetail> getDetailsByInvestInfoBetweenTime(Long start, Long end);
+    List<BalanceDetail> getDetailsByTransferToReconcile(Long lastId);
 
-    List<BalanceDetail> getDetailsByCompensationBetweenTime(Long start, Long end);
+    List<BalanceDetail> getDetailsByInvestInfoToReconcile(Long lastId);
 
-    List<BalanceDetail> getDetailsByRedemptionBetweenTime(Long start, Long end);
+    List<BalanceDetail> getDetailsByCompensationToReconcile(Long lastId);
 
-    List<BalanceDetail> getDetailsByRevenuePlanBetweenTime(Long start, Long end);
+    List<BalanceDetail> getDetailsByRedemptionToReconcile(Long lastId);
+
+    List<BalanceDetail> getDetailsByRevenuePlanToReconcile(Long lastId);
+
+    Long getLastId();
 }
