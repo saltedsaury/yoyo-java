@@ -41,11 +41,10 @@ public class B1006 extends BaseBatch {
 
         Date currentDate = new Date(System.currentTimeMillis());
         //获取到理赔截至日启的保险产品
-        List<InsuranceInfo> products = insuranceInfoDao.getInsuranceByDate(currentDate);
+        List<InsuranceInfo> products = insuranceInfoDao.getAllInsurance();
         log.info("do batch B1006 on date :{} for insurance product list:{}",currentDate.toString(),products);
         for (InsuranceInfo info : products){
-            List<InsuranceTrade> insuranceTrades = insuranceTradeDao.selectInsuranceTradeByCustomer(
-                    null,info.getInsuranceNo());
+            List<InsuranceTrade> insuranceTrades = insuranceTradeDao.getInsuranceTradeOverDue(info.getInsuranceNo(),currentDate);
             log.info("get insurance trade need finish for product {},trade list :{},size:{}",
                     info.getInsuranceNo(),insuranceTrades,insuranceTrades.size());
             for (InsuranceTrade trade :insuranceTrades){

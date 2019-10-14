@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @ToString
 @Data
@@ -24,5 +25,7 @@ public class InsuranceTrade extends BaseDO{
     private String status;
 
     private String subStatus;
+
+    private Date compensateEnd;
 
 }

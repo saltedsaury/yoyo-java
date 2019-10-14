@@ -2,10 +2,10 @@ package cn.idachain.finance.batch.service.dao;
 
 import cn.idachain.finance.batch.common.dataobject.InsuranceTrade;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IInsuranceTradeDao {
-    void saveInsuranceTrade(InsuranceTrade insuranceTrade);
 
     void updateInsuranceTradeStatusByObj(InsuranceTrade trade, String status);
 
@@ -13,7 +13,7 @@ public interface IInsuranceTradeDao {
 
     InsuranceTrade getTradeByInvestNo(String investNo,String status);
 
-    List<InsuranceTrade> selectInsuranceTradeByCustomer(String curtomerNo,String insuranceNo);
-
     void updateInsuranceSubStatusByObj(InsuranceTrade trade, String status);
+
+    List<InsuranceTrade> getInsuranceTradeOverDue(String insuranceNo, Date currentDate);
 }

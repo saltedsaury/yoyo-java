@@ -10,6 +10,7 @@ import cn.idachain.finance.batch.common.util.BlankUtil;
 import cn.idachain.finance.batch.service.dao.*;
 import cn.idachain.finance.batch.service.service.IBalanceDetialService;
 import cn.idachain.finance.batch.service.service.IInsuranceInfoService;
+import cn.idachain.finance.batch.service.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,6 +83,9 @@ public class B1005 extends BaseBatch {
                     //获取保险产品
                     InsuranceInfo insuranceInfo = insuranceInfoService.getInsuranceInfoByNoAndProduct(
                             insuranceTrade.getInsuranceNo(),product.getProductNo());
+                    //更新投保记录的索赔截至时间
+                    int date = insuranceInfo.getTimeLimit() * TimeUnit.getByCode(insuranceInfo.getLimitUnit()).getDay();
+                    insuranceTrade.setCompensateEnd(DateUtil.offsiteDay(product.getDueDate(),date - 1));
 
                     //获取到期兑换比例
                     BigDecimal rate = insuranceInfo.getCompensation();

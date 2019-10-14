@@ -16,14 +16,7 @@ public class InsuranceTradeDao implements IInsuranceTradeDao {
 
     @Autowired
     private InsuranceTradeMapper insuranceTradeMapper;
-    /**
-     * 记录入库
-     * @param insuranceTrade
-     */
-    @Override
-    public void saveInsuranceTrade(InsuranceTrade insuranceTrade){
-        insuranceTradeMapper.insert(insuranceTrade);
-    }
+
 
     @Override
     public void updateInsuranceTradeStatusByObj(InsuranceTrade trade, String status){
@@ -66,23 +59,6 @@ public class InsuranceTradeDao implements IInsuranceTradeDao {
         return trade;
     }
 
-    /**
-     * 根据用户查询投资记录
-     * @param curtomerNo
-     * @return
-     */
-    @Override
-    public List<InsuranceTrade> selectInsuranceTradeByCustomer(String curtomerNo,String insuranceNo){
-        EntityWrapper<InsuranceTrade> wrapper = new EntityWrapper<InsuranceTrade>();
-        if (null != curtomerNo) {
-            wrapper.eq("customer_no", curtomerNo);
-        }
-        if (null != insuranceNo) {
-            wrapper.eq("insurance_no",insuranceNo);
-        }
-        List<InsuranceTrade> trades = insuranceTradeMapper.selectList(wrapper);
-        return trades;
-    }
 
     @Override
     public void updateInsuranceSubStatusByObj(InsuranceTrade trade, String status){
@@ -94,5 +70,13 @@ public class InsuranceTradeDao implements IInsuranceTradeDao {
         trade.setSubStatus(status);
         trade.setModifiedTime(new Date(System.currentTimeMillis()));
         insuranceTradeMapper.update(trade,infoWrapper);
+    }
+
+    @Override
+    public List<InsuranceTrade> getInsuranceTradeOverDue(String insuranceNo, Date currentDate) {
+        EntityWrapper<InsuranceTrade> wrapper = new EntityWrapper<InsuranceTrade>();
+        wrapper.eq("insurance_no",insuranceNo);
+        wrapper.le("compensate_end",currentDate);
+        return insuranceTradeMapper.selectList(wrapper);
     }
 }

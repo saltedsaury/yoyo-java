@@ -14,8 +14,6 @@ public class InsuranceInfo extends BaseDO{
 
     private String insuranceName;
 
-    private String productNo;
-
     private String compensationType;
 
     private BigDecimal compensation;
@@ -34,12 +32,15 @@ public class InsuranceInfo extends BaseDO{
 
     private Date expiredDate;
 
-    private Date compensationBegin;
+    private Integer timeLimit;
 
-    private Date compensationEnd;
+    private String limitUnit;
 
     private String feeType;
 
     private BigDecimal fee;
+
+    private String operator;
+
 
 }
