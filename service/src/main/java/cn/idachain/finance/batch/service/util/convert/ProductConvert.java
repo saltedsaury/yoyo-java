@@ -41,6 +41,7 @@ public class ProductConvert {
         product.setDueDate(productAgreement.getDueDate());
         product.setRules(productAgreement.getRules());
         product.setIntroduction(productAgreement.getIntroduction());
+        product.setInsuranceFlag(productAgreement.getInsuranceFlag());
 
         return product;
     }

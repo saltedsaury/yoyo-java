@@ -66,4 +66,6 @@ public class Product {
     private String rules;
 
     private String introduction;
+
+    private String insuranceFlag;
 }

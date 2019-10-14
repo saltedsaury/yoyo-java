@@ -46,4 +46,5 @@ public class ProductAgreement extends BaseDO{
 
     private String introduction;
 
+    private String insuranceFlag;
 }
