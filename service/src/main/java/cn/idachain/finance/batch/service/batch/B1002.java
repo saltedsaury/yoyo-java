@@ -180,7 +180,7 @@ public class B1002 extends BaseBatch {
 
             // 尾期是否计息
             int terms = product.getInterestCycle().intValue();
-            if (!Boolean.parseBoolean(product.getLastInterest().toString())){
+            if (!BoolType.TRUE.getCode().equals(product.getLastInterest().toString())){
                 terms = terms - 1;
             }
             for (int i = 1;i<=terms;i++){
