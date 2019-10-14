@@ -4,6 +4,7 @@ import cn.idachain.finance.batch.common.dataobject.InvestInfo;
 import com.baomidou.mybatisplus.plugins.Page;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 
 public interface IInvestDao {
@@ -24,4 +25,6 @@ public interface IInvestDao {
                                          String status, List<String> statusList);
 
     BigDecimal sumTotalAmountByStatus(List<String> status, String uid,String ccy);
+
+    void markReconciled(Collection<String> orderNos);
 }

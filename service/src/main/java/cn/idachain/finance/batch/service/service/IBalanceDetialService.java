@@ -3,7 +3,7 @@ package cn.idachain.finance.batch.service.service;
 import java.math.BigDecimal;
 
 public interface IBalanceDetialService {
-    boolean transfer(String customerNo, String currency, String direction, String tradeNo, BigDecimal amount);
+    Long transfer(String customerNo, String currency, String direction, String tradeNo, BigDecimal amount);
 
     //boolean investFreeze(String customerNo, String currency, String tradeNo, BigDecimal principal, BigDecimal insuranceFee);
 
@@ -24,6 +24,6 @@ public interface IBalanceDetialService {
 
     boolean giveUpCompensation(String freezeCode, String tradeNo, String customerNo, String currency);
 
-    boolean systemTransfer(String customerNo, String currency, String direction,
+    Long systemTransfer(String customerNo, String currency, String direction,
                            String tradeNo, BigDecimal amount, String accountType);
 }

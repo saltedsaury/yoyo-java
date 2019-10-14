@@ -26,4 +26,6 @@ public class BalanceDetail {
     private String status;
 
     private String remark;
+
+    private String accountType;
 }

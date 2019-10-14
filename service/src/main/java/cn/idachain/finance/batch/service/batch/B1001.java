@@ -4,10 +4,10 @@ import cn.idachain.finance.batch.common.dataobject.InvestInfo;
 import cn.idachain.finance.batch.common.enums.*;
 import cn.idachain.finance.batch.common.model.Product;
 import cn.idachain.finance.batch.common.util.BlankUtil;
-import cn.idachain.finance.batch.service.util.DateUtil;
 import cn.idachain.finance.batch.service.dao.IInvestDao;
 import cn.idachain.finance.batch.service.dao.IProductDao;
 import cn.idachain.finance.batch.service.service.IBalanceDetialService;
+import cn.idachain.finance.batch.service.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,6 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -100,6 +99,7 @@ public class B1001 extends BaseBatch{
                     protected void doInTransactionWithoutResult(TransactionStatus status) {
                         balanceDetialService.invest(info.getTradeNo(),info.getProductNo());
                         log.info("invest charged amount success,invest info:{}",info);
+                        info.setInvestSuccessTime(System.currentTimeMillis());
                         investDao.updateInvestInfoStatusByObj(info, InvestStatus.INVEST_SUCCESS.getCode());
 
                     }

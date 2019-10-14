@@ -2,8 +2,8 @@ package cn.idachain.finance.batch.service.batch;
 
 import cn.idachain.finance.batch.common.dataobject.*;
 import cn.idachain.finance.batch.common.enums.*;
-import cn.idachain.finance.batch.service.dao.*;
 import cn.idachain.finance.batch.common.util.BlankUtil;
+import cn.idachain.finance.batch.service.dao.*;
 import cn.idachain.finance.batch.service.service.IBalanceDetialService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +71,7 @@ public class B1004 extends BaseBatch {
                             trade.getBonus(),investInfo.getProductNo());
                     log.info("pay redemption success,orderNo:{},amount:{}",trade.getTradeNo(),trade.getAmount());
                     investDao.updateInvestInfoStatusByObj(investInfo, InvestStatus.ALREADY_REDEEMED.getCode());
+                    trade.setPaidTime(System.currentTimeMillis());
                     redemptionTradeDao.updateTradeStatusByObj(trade, RedemptionStatus.FINISH.getCode());
                     revenuePlanDao.updatePlanStatusByObj(revenuePlan, PlanStatus.ALREADY_REDEEMED.getCode());
                     //购买保险产品需将保险产品失效

@@ -2,6 +2,7 @@ package cn.idachain.finance.batch.service.dao;
 
 import cn.idachain.finance.batch.common.dataobject.RedemptionTrade;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface IRedemptionTradeDao {
@@ -10,4 +11,6 @@ public interface IRedemptionTradeDao {
     void updateTradeStatusByObj(RedemptionTrade trade, String status);
 
     void saveRedemptionTrade(RedemptionTrade trade);
+
+    void markReconciled(Collection<String> orderNos);
 }

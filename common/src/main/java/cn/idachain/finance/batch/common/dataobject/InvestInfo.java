@@ -30,5 +30,8 @@ public class InvestInfo extends BaseDO{
 
     private String operatorNo;
 
+    private Long investSuccessTime;
+
+    private Boolean reconciled;
 
 }

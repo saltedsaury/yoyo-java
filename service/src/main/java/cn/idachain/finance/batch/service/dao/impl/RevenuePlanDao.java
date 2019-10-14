@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -61,6 +62,14 @@ public class RevenuePlanDao implements IRevenuePlanDao {
         wrapper.orderBy("effective_date",false);
         List<RevenuePlan> revenuePlans = revenuePlanMapper.selectList(wrapper);
         return revenuePlans;
+    }
+
+    @Override
+    public void markReconciled(Collection<String> orderNos) {
+        if (orderNos.isEmpty()) {
+            return;
+        }
+        revenuePlanMapper.markReconciled(orderNos);
     }
 
 }
