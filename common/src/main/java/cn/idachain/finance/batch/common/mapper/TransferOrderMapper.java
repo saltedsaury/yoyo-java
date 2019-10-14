@@ -31,7 +31,7 @@ public interface TransferOrderMapper extends SuperMapper<TransferOrder> {
     List<TransferOrder> selectRecordedOrderAfter(Long time, Long stopId);
 
     @Select("select * from transfer_order " +
-            "where (transfer_time > #{param1} or transfer_time is null) and id <= #{param2}")
+            "where (transfer_time > #{param1} or `status` in ('0', '1')) and id <= #{param2}")
     List<TransferOrder> getOrderByRange(Long startTime, Long lastId);
 
     @Update("<script>update transfer_order set reconciled = 1 where order_no in " +
