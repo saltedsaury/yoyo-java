@@ -27,6 +27,7 @@ public class ProductForSale {
         List<String> status = new ArrayList<String>();
         status.add(ProductStatus.INIT.getCode());
         List<Product> initProduct = productDao.getProductsByStatus(status,null);
+        log.info("init product list :{}",initProduct);
         for (Product prod:initProduct){
             if (DateUtil.isSameDay(prod.getEffectiveDate(),currentDate)){
                 productDao.updateProductByObj(prod,ProductStatus.FOR_SALE.getCode());
