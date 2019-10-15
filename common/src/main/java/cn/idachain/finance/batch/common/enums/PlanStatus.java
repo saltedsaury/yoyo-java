@@ -4,6 +4,7 @@ public enum PlanStatus {
     INIT("0","待发放"),
     REDEMPT("1","提前赎回本金"),
     FINISH("2","已到期"),
+    ALREADY_REDEEMED("3","提前赎回本金"),
 
     //以下用于统一界面显示，不存在于数据库中
     PAY("4","已发放");

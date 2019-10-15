@@ -67,7 +67,7 @@ public class B1004 extends BaseBatch {
                     protected void doInTransactionWithoutResult(TransactionStatus status) {
                         investDao.updateInvestInfoStatusByObj(investInfo, InvestStatus.ALREADY_REDEEMED.getCode());
                         redemptionTradeDao.updateTradeStatusByObj(trade, RedemptionStatus.FINISH.getCode());
-                        revenuePlanDao.updatePlanStatusByObj(revenuePlan, PlanStatus.REDEMPT.getCode());
+                        revenuePlanDao.updatePlanStatusByObj(revenuePlan, PlanStatus.ALREADY_REDEEMED.getCode());
                         //购买保险产品需将保险产品失效
                         InsuranceTrade insuranceTrade = insuranceTradeDao.getTradeByInvestNo(
                                 investInfo.getTradeNo(), InsuranceTradeStatus.INIT.getCode());
