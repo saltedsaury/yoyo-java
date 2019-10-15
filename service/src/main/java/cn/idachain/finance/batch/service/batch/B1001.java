@@ -45,6 +45,7 @@ public class B1001 extends BaseBatch{
         List<String> status = new ArrayList<String>();
         status.add(ProductStatus.FOR_SALE.getCode());
         status.add(ProductStatus.PAUSE.getCode());
+        status.add(ProductStatus.OFF_SHELVE.getCode());
         List<Product> productList = productDao.getProductsByStatus(status,null);
         log.info("query product list for status for_sale/pause ,list :{}",productList);
         for(final Product product : productList){

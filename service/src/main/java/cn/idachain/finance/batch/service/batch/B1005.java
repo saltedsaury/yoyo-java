@@ -81,8 +81,8 @@ public class B1005 extends BaseBatch {
                 log.info("query insurance trade prepared :{}",insuranceTrade);
                 if (!BlankUtil.isBlank(insuranceTrade)){
                     //获取保险产品
-                    InsuranceInfo insuranceInfo = insuranceInfoService.getInsuranceInfoByNoAndProduct(
-                            insuranceTrade.getInsuranceNo(),product.getProductNo());
+                    InsuranceInfo insuranceInfo = insuranceInfoService.getInsuranceInfoBy(
+                            insuranceTrade.getInsuranceNo());
                     //更新投保记录的索赔截至时间
                     int date = insuranceInfo.getTimeLimit() * TimeUnit.getByCode(insuranceInfo.getLimitUnit()).getDay();
                     insuranceTrade.setCompensateEnd(DateUtil.offsiteDay(product.getDueDate(),date - 1));

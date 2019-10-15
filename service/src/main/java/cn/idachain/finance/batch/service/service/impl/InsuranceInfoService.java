@@ -1,6 +1,7 @@
 package cn.idachain.finance.batch.service.service.impl;
 
 import cn.idachain.finance.batch.common.dataobject.InsuranceInfo;
+import cn.idachain.finance.batch.common.enums.InsuranceStatus;
 import cn.idachain.finance.batch.common.enums.ProductStatus;
 import cn.idachain.finance.batch.service.dao.IInsuranceInfoDao;
 import cn.idachain.finance.batch.service.service.IInsuranceInfoService;
@@ -16,11 +17,10 @@ public class InsuranceInfoService implements IInsuranceInfoService {
     private IInsuranceInfoDao insuranceInfoDao;
 
     @Override
-    public InsuranceInfo getInsuranceInfoByNoAndProduct(String insuranceNo,String productNo){
+    public InsuranceInfo getInsuranceInfoBy(String insuranceNo){
         InsuranceInfo insuranceInfo = new InsuranceInfo();
         insuranceInfo.setInsuranceNo(insuranceNo);
-        insuranceInfo.setProductNo(productNo);
-        insuranceInfo.setStatus(ProductStatus.FOR_SALE.getCode());
+        insuranceInfo.setStatus(InsuranceStatus.ACTIVE.getCode());
 
         return insuranceInfoDao.getInsurenceInfoByEntity(insuranceInfo);
     }
