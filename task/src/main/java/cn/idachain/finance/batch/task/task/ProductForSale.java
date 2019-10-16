@@ -20,7 +20,7 @@ public class ProductForSale {
     @Autowired
     private IProductDao productDao;
 
-    @Scheduled(cron = "${\ttask.financing.push-prod-status}")
+    @Scheduled(cron = "${task.financing.push-prod-status}")
     public boolean execute(){
         Date currentDate = new Date(System.currentTimeMillis());
         log.info("push product status to for_sale on date :{}",currentDate);
@@ -31,6 +31,16 @@ public class ProductForSale {
         for (Product prod:initProduct){
             if (prod.getEffectiveDate().compareTo(currentDate)<=0){
                 productDao.updateProductByObj(prod,ProductStatus.FOR_SALE.getCode());
+            }
+        }
+        log.info("push init product to for sale success");
+        status = new ArrayList<String>();
+        status.add(ProductStatus.FOR_SALE.getCode());
+        List<Product> saleProduct = productDao.getProductsByStatus(status,null);
+        log.info("for sale product list :{}",saleProduct);
+        for (Product prod:saleProduct){
+            if (prod.getExpiryDate().compareTo(currentDate)<=0){
+                productDao.updateProductByObj(prod,ProductStatus.OFF_SHELVE.getCode());
             }
         }
         log.info("push product status finished!");
