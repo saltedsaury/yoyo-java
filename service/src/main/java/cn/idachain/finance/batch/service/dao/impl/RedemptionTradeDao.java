@@ -40,7 +40,6 @@ public class RedemptionTradeDao implements IRedemptionTradeDao {
         infoWrapper.eq("status",trade.getStatus());
 
         trade.setStatus(status);
-        trade.setModifiedTime(new Date(System.currentTimeMillis()));
         redemptionTradeMapper.update(trade,infoWrapper);
     }
 

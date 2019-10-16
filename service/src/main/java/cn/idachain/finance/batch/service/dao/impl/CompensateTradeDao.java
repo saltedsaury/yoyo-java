@@ -34,7 +34,6 @@ public class CompensateTradeDao implements ICompensateTradeDao {
         wrapper.eq("status",trade.getStatus());
 
         trade.setStatus(status);
-        trade.setModifiedTime(new Date(System.currentTimeMillis()));
         compensateTradeMapper.update(trade,wrapper);
     }
 

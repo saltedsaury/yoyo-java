@@ -87,7 +87,6 @@ public class BatchTask {
                 calendar.setTime(systemDate.getSystemDate());
                 calendar.add(Calendar.DATE, 1);
                 systemDate.setSystemDate(calendar.getTime());
-                systemDate.setModifiedTime(new Date(System.currentTimeMillis()));
                 systemDateDao.updateSystemDate(systemDate);
                 log.info("batch task cost time :"+watch.prettyPrint());
 

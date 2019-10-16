@@ -39,7 +39,6 @@ public class SystemBatchDao implements ISystemBatchDao {
         wrapper.eq("status",systemBatch.getStatus());
 
         systemBatch.setStatus(status);
-        systemBatch.setModifiedTime(new Date(System.currentTimeMillis()));
         systemBatchMapper.update(systemBatch,wrapper);
     }
 }

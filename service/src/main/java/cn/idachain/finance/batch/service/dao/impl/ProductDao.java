@@ -72,7 +72,6 @@ public class ProductDao implements IProductDao {
 
         ProductInfo info = new ProductInfo();
         info.setStatus(status);
-        info.setModifiedTime(new Date(System.currentTimeMillis()));
         productInfoMapper.update(info,infoWrapper);
     }
 
@@ -104,7 +103,6 @@ public class ProductDao implements IProductDao {
         ProductAgreement agreement = new ProductAgreement();
         agreement.setValueDate(valueDate);
         agreement.setDueDate(dueDate);
-        agreement.setModifiedTime(new Date(System.currentTimeMillis()));
         productAgreementMapper.update(agreement,wrapper);
     }
 }

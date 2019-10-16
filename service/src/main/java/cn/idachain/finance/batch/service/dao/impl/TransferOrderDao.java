@@ -31,7 +31,6 @@ public class TransferOrderDao implements ITransferOrderDao {
         wrapper.eq("status",transferOrder.getStatus());
 
         transferOrder.setStatus(status);
-        transferOrder.setModifiedTime(new Date(System.currentTimeMillis()));
         transferOrderMapper.update(transferOrder,wrapper);
     }
 
@@ -42,7 +41,6 @@ public class TransferOrderDao implements ITransferOrderDao {
         wrapper.eq("process_status",transferOrder.getProcessStatus());
 
         transferOrder.setProcessStatus(status);
-        transferOrder.setModifiedTime(new Date(System.currentTimeMillis()));
         transferOrderMapper.update(transferOrder,wrapper);
     }
 

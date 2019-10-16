@@ -30,7 +30,6 @@ public class RevenuePlanDao implements IRevenuePlanDao {
         wrapper.eq("status",revenuePlan.getStatus());
 
         revenuePlan.setStatus(status);
-        revenuePlan.setModifiedTime(new Date(System.currentTimeMillis()));
         revenuePlanMapper.update(revenuePlan,wrapper);
     }
 

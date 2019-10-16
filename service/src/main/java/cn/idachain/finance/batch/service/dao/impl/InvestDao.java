@@ -68,7 +68,6 @@ public class InvestDao implements IInvestDao {
         wrapper.eq("status",investInfo.getStatus());
 
         investInfo.setStatus(status);
-        investInfo.setModifiedTime(new Date(System.currentTimeMillis()));
         investInfoMapper.update(investInfo,wrapper);
     }
 

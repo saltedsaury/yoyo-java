@@ -759,4 +759,17 @@ public class DateUtil {
         System.out.println(DateUtil.getEndTimeOfYear(new DateTime()));
 
     }
+
+    public static Date getUtcDate(Date localTime){
+        // 1、设置本地时间时间：
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(localTime);
+        // 2、取得时间偏移量：
+        int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);
+        // 3、取得夏令时差：
+        int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);
+        // 4、从本地时间里扣除这些差量，即可以取得UTC时间：
+        cal.add(java.util.Calendar.MILLISECOND, -(zoneOffset + dstOffset));
+        return cal.getTime();
+    }
 }

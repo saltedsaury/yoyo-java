@@ -68,7 +68,6 @@ public class B1003 extends BaseBatch {
             BigDecimal amount = revenuePlan.getPayingInterest().add(order.getAmount());
             revenuePlan.setLastBonusDate(order.getBonusDate());
             revenuePlan.setPayingInterest(amount);
-            revenuePlan.setModifiedTime(new Date(System.currentTimeMillis()));
 
             //调用account接口记录分红
 
@@ -80,7 +79,6 @@ public class B1003 extends BaseBatch {
                     balanceDetialService.payBonus(order.getCustomerNo(),order.getCcy(),
                             order.getAmount(),order.getTradeNo(),order.getProductNo());
                     log.info("pay bonus success,orderNo:{},amount:{}",order.getTradeNo(),order.getAmount());
-                    order.setModifiedTime(new Date(System.currentTimeMillis()));
                     bonusOrderDao.updateBonusByStatus(order, BonusStatus.FINISH.getCode());
                     revenuePlanDao.updatePlanById(revenuePlan);
                 }
