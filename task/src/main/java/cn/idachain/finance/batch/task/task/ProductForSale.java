@@ -29,7 +29,7 @@ public class ProductForSale {
         List<Product> initProduct = productDao.getProductsByStatus(status,null);
         log.info("init product list :{}",initProduct);
         for (Product prod:initProduct){
-            if (DateUtil.isSameDay(prod.getEffectiveDate(),currentDate)){
+            if (prod.getEffectiveDate().compareTo(currentDate)<=0){
                 productDao.updateProductByObj(prod,ProductStatus.FOR_SALE.getCode());
             }
         }
