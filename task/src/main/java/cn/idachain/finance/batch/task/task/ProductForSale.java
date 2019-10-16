@@ -20,7 +20,7 @@ public class ProductForSale {
     @Autowired
     private IProductDao productDao;
 
-    @Scheduled(cron = "${task.financing.begin-of-day}")
+    @Scheduled(cron = "${\ttask.financing.push-prod-status}")
     public boolean execute(){
         Date currentDate = new Date(System.currentTimeMillis());
         log.info("push product status to for_sale on date :{}",currentDate);
