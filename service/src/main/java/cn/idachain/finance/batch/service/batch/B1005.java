@@ -70,11 +70,12 @@ public class B1005 extends BaseBatch {
                 //收益率>0，校验全部期数，收益率=0，无分红记录，不校验
                 if (product.getProfitScale().compareTo(BigDecimal.ZERO) > 0) {
                     expectCount = product.getInterestCycle().intValue();
+                    //尾期不计息，校验期数-1
+                    if (BoolType.FALSE.getCode().equals(product.getLastInterest().toString())){
+                        expectCount = expectCount - 1;
+                    }
                 }
-                //尾期不计息，校验期数-1
-                if (BoolType.FALSE.getCode().equals(product.getLastInterest().toString())){
-                    expectCount = expectCount - 1;
-                }
+
                 //包含第0期收益率 校验期数+1
                 if (product.getPrimaryRate().compareTo(BigDecimal.ZERO) > 0){
                     expectCount = expectCount + 1;
