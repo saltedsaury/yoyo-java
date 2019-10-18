@@ -3,14 +3,14 @@ package cn.idachain.finance.batch.service.service.impl;
 import cn.idachain.finance.batch.common.dataobject.CompensateTrade;
 import cn.idachain.finance.batch.common.dataobject.InsuranceTrade;
 import cn.idachain.finance.batch.common.dataobject.InvestInfo;
-import cn.idachain.finance.batch.common.dataobject.RevenuePlan;
 import cn.idachain.finance.batch.common.enums.CompensationStatus;
 import cn.idachain.finance.batch.common.enums.InsuranceTradeStatus;
 import cn.idachain.finance.batch.common.enums.InsuranceTradeSubStatus;
-import cn.idachain.finance.batch.service.dao.*;
+import cn.idachain.finance.batch.service.dao.ICompensateTradeDao;
+import cn.idachain.finance.batch.service.dao.IInsuranceTradeDao;
+import cn.idachain.finance.batch.service.dao.IInvestDao;
 import cn.idachain.finance.batch.service.service.IBalanceDetialService;
 import cn.idachain.finance.batch.service.service.ICompensateTradeService;
-import cn.idachain.finance.batch.service.service.IInsuranceInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,13 +31,7 @@ public class CompensateTradeService extends BaseService implements ICompensateTr
     @Autowired
     private IInvestDao investDao;
     @Autowired
-    private IInsuranceInfoService insuranceInfoService;
-    @Autowired
     private TransactionTemplate transactionTemplate;
-    @Autowired
-    private IProductDao productDao;
-    @Autowired
-    private IRevenuePlanDao revenuePlanDao;
     @Autowired
     private IBalanceDetialService balanceDetialService;
 
@@ -58,6 +52,7 @@ public class CompensateTradeService extends BaseService implements ICompensateTr
                         trade.getEffectiveAmount(),trade.getCompensateAmount(),
                         trade.getTradeNo(),insurance.getTradeNo(),insurance.getInsuranceNo());
                 log.info("compensate confirm keeping account finish ,compensate tradeNo:{}",trade.getTradeNo());
+                trade.setPaidTime(System.currentTimeMillis());
                 compensateTradeDao.updateCompensateTradeStatusByObj(trade, CompensationStatus.FINISH.getCode());
                 insuranceTradeDao.updateInsuranceTradeStatusByObj(insurance, InsuranceTradeStatus.FINISH.getCode());
                 insuranceTradeDao.updateInsuranceSubStatusByObj(insurance, InsuranceTradeSubStatus.FINISHI_COMPENSATION.getCode());

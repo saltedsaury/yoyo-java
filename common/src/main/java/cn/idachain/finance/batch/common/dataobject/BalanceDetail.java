@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 @Data
 public class BalanceDetail {
 
+    private Long id;
+
     private String bizNo;
 
     private String tradeNo;
@@ -26,4 +28,6 @@ public class BalanceDetail {
     private String status;
 
     private String remark;
+
+    private String accountType;
 }

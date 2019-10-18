@@ -6,7 +6,6 @@ import cn.idachain.finance.batch.common.enums.BatchCode;
 import cn.idachain.finance.batch.common.enums.BonusStatus;
 import cn.idachain.finance.batch.common.enums.PlanStatus;
 import cn.idachain.finance.batch.service.dao.IBonusOrderDao;
-import cn.idachain.finance.batch.service.dao.IProductDao;
 import cn.idachain.finance.batch.service.dao.IRevenuePlanDao;
 import cn.idachain.finance.batch.service.service.IBalanceDetialService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,8 +31,6 @@ public class B1003 extends BaseBatch {
     private IBonusOrderDao bonusOrderDao;
     @Autowired
     private IRevenuePlanDao revenuePlanDao;
-    @Autowired
-    private IProductDao productDao;
     @Autowired
     private TransactionTemplate transactionTemplate;
     @Autowired
@@ -79,6 +76,8 @@ public class B1003 extends BaseBatch {
                     balanceDetialService.payBonus(order.getCustomerNo(),order.getCcy(),
                             order.getAmount(),order.getTradeNo(),order.getProductNo());
                     log.info("pay bonus success,orderNo:{},amount:{}",order.getTradeNo(),order.getAmount());
+                    order.setModifiedTime(new Date(System.currentTimeMillis()));
+                    order.setPaidTime(System.currentTimeMillis());
                     bonusOrderDao.updateBonusByStatus(order, BonusStatus.FINISH.getCode());
                     revenuePlanDao.updatePlanById(revenuePlan);
                 }

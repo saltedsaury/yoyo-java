@@ -29,4 +29,8 @@ public class RedemptionTrade extends BaseDO{
 
     private String operatorNo;
 
+    private Long paidTime;
+
+    private Boolean reconciled;
+
 }

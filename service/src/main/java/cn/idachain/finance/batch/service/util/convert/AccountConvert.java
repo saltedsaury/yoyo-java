@@ -4,6 +4,7 @@ import cn.idachain.finance.batch.common.dataobject.AccountPerson;
 import cn.idachain.finance.batch.common.dataobject.BalanceDetail;
 import cn.idachain.finance.batch.common.dataobject.BalancePerson;
 import cn.idachain.finance.batch.common.dataobject.FreezeDetail;
+import cn.idachain.finance.batch.common.enums.AccountType;
 import cn.idachain.finance.batch.service.util.GenerateIdUtil;
 
 import java.math.BigDecimal;
@@ -12,8 +13,10 @@ public class AccountConvert {
 
     public static BalanceDetail convertToBalanceDetail (String tradeNo, String direction,
                                                         String accountNo, String currency,
-                                                        BigDecimal amount,BigDecimal beforeBal,String remark){
+                                                        BigDecimal amount, BigDecimal beforeBal,
+                                                        AccountType accountType, String remark){
         BalanceDetail detail = new BalanceDetail();
+        detail.setAccountType(accountType.name());
         detail.setBizNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.ACCOUNTDETAIL)));
         detail.setTradeNo(tradeNo);
         detail.setTransType(direction);

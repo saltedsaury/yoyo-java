@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +46,55 @@ public class TransferOrderDao implements ITransferOrderDao {
     }
 
     @Override
+    public void updateStatus(TransferOrder order,
+                             String status,
+                             String processStatus) {
+        EntityWrapper<TransferOrder> wrapper = new EntityWrapper<TransferOrder>();
+        wrapper.eq("order_no",order.getOrderNo());
+        wrapper.eq("status", order.getStatus());
+        wrapper.eq("process_status",order.getProcessStatus());
+
+        order.setStatus(status);
+        order.setProcessStatus(processStatus);
+        order.setModifiedTime(new Date(System.currentTimeMillis()));
+        transferOrderMapper.update(order, wrapper);
+    }
+
+    @Override
+    public List<TransferOrder> getTransferOrderByStatusBeforeId(String status, List<String> processStatus, Long last) {
+        EntityWrapper<TransferOrder> wrapper = new EntityWrapper<>();
+        wrapper.le("id", last);
+        wrapper.eq("status", status);
+        wrapper.in(!processStatus.isEmpty(), "process_status", processStatus);
+        return transferOrderMapper.selectList(wrapper);
+    }
+
+    @Override
     public List<TransferOrder> getTransferOrderByStatus(String status, List<String> process, Page page){
         return transferOrderMapper.selectListForConfirm(status,process,page);
     }
+
+    @Override
+    public List<TransferOrder> getRecordedOrderAfterTime(Long time, Long id) {
+        return transferOrderMapper.selectRecordedOrderAfter(time, id);
+    }
+
+    @Override
+    public Long lastId() {
+        return transferOrderMapper.lastId();
+    }
+
+    @Override
+    public List<TransferOrder> getOrderByRange(Long startTime, Long lastId) {
+        return transferOrderMapper.getOrderByRange(startTime, lastId);
+    }
+
+    @Override
+    public void markReconciled(Collection<String> orderNos) {
+        if (orderNos.isEmpty()) {
+            return;
+        }
+        transferOrderMapper.markReconciled(orderNos);
+    }
+
 }

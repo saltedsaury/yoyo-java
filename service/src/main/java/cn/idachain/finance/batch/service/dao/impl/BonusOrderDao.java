@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -97,6 +98,14 @@ public class BonusOrderDao extends ServiceImpl<BonusOrderMapper,BonusOrder> impl
         wrapper.orderBy("periods",true);
         List<BonusOrder> bonusOrders = bonusOrderMapper.selectPage(page,wrapper);
         return bonusOrders;
+    }
+
+    @Override
+    public void markReconciled(Collection<String> orderNos) {
+        if (orderNos.isEmpty()) {
+            return;
+        }
+        bonusOrderMapper.markReconciled(orderNos);
     }
 
 }

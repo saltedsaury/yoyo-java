@@ -2,6 +2,7 @@ package cn.idachain.finance.batch.service.service.impl;
 
 import cn.idachain.finance.batch.common.dataobject.*;
 import cn.idachain.finance.batch.common.enums.AccountTransType;
+import cn.idachain.finance.batch.common.enums.AccountType;
 import cn.idachain.finance.batch.common.enums.Direction;
 import cn.idachain.finance.batch.common.exception.BizException;
 import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
@@ -57,7 +58,7 @@ public class BalanceDetailService implements IBalanceDetialService {
      * @return
      */
     @Override
-    public boolean transfer(String customerNo, String currency, String direction, String tradeNo, BigDecimal amount){
+    public Long transfer(String customerNo, String currency, String direction, String tradeNo, BigDecimal amount){
         AccountPerson userAccount = accountService.getCustomerAccount(customerNo,null);
         AccountInternal finAccount = accountInternalDao.getAccountByTransType(
                 AccountTransType.FINANCING.getCode(),null);
@@ -82,10 +83,10 @@ public class BalanceDetailService implements IBalanceDetialService {
 
         final BalanceDetail userDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,direction,userAccount.getAccountNo(),currency,
-                amount,userBalance.getBalance(),"资金划转");
+                amount,userBalance.getBalance(), AccountType.PERSON, "资金划转");
         final BalanceDetail finDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,direction,finAccount.getAccountNo(),currency,
-                amount,userBalance.getBalance(),"资金划转");
+                amount,userBalance.getBalance(), AccountType.INTERNAL, "资金划转");
 
         if (userAmount.subtract(userBalance.getFreeze()).compareTo(BigDecimal.ZERO)<0){
             log.error("user balance is not enough,user id:{}",customerNo);
@@ -111,7 +112,7 @@ public class BalanceDetailService implements IBalanceDetialService {
             }
         });
 
-        return true;
+        return System.currentTimeMillis();
     }
 
     /**
@@ -227,10 +228,10 @@ public class BalanceDetailService implements IBalanceDetialService {
         }
         final BalanceDetail userDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.IN.getCode(),userAccount.getAccountNo(),currency,
-                amount,userBalance.getBalance(),"收益发放");
+                amount,userBalance.getBalance(), AccountType.PERSON, "收益发放");
         final BalanceDetail bonusDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.OUT.getCode(),accOrg.getAccountNo(),currency,
-                amount,bonusBalance.getBalance(),"收益发放");
+                amount,bonusBalance.getBalance(), AccountType.ORG, "收益发放");
 
         final BigDecimal userAmount = userBalance.getBalance().add(amount);
         final BigDecimal bonusAmount = bonusBalance.getBalance().subtract(amount);
@@ -275,10 +276,10 @@ public class BalanceDetailService implements IBalanceDetialService {
 
         final BalanceDetail userDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.IN.getCode(),userAccount.getAccountNo(),currency,
-                amount,userBalance.getBalance(),"到期还本");
+                amount,userBalance.getBalance(), AccountType.PERSON, "到期还本");
         final BalanceDetail payableDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.OUT.getCode(),accountOrg.getAccountNo(),currency,
-                amount,payableBalance.getBalance(),"到期还本");
+                amount,payableBalance.getBalance(), AccountType.ORG, "到期还本");
 
         final BigDecimal userAmount = userBalance.getBalance().add(amount);
         final BigDecimal payableAmount = payableBalance.getBalance().subtract(amount);
@@ -346,10 +347,10 @@ public class BalanceDetailService implements IBalanceDetialService {
         log.info("get compensate account balance in :{}",cmpBalanceIn);
         final BalanceDetail userDetailOut = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.OUT.getCode(),userAccount.getAccountNo(),currency,
-                amount,userBalanceOut.getBalance(),"理赔收款");
+                amount,userBalanceOut.getBalance(), AccountType.PERSON, "理赔收款");
         final BalanceDetail cmpDetailIn = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.IN.getCode(),accountOrg.getAccountNo(),currency,
-                amount,cmpBalanceIn.getBalance(),"理赔收款");
+                amount,cmpBalanceIn.getBalance(), AccountType.ORG, "理赔收款");
         List<FreezeDetail>  freezeDetails = freezeDetailDao.getFreezeByCode(freezeCode);
         //todo 需要加金额校验以及冻结信息正确
         List<FreezeDetail>  unfreezeDetails = new ArrayList<>();
@@ -369,10 +370,10 @@ public class BalanceDetailService implements IBalanceDetialService {
         log.info("get compensate account balance out :{}",cmpBalanceOut);
         final BalanceDetail userDetailIn = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.IN.getCode(),userAccount.getAccountNo(),compensateCcy,
-                compensateAmt,userBalanceIn.getBalance(),"理赔放款");
+                compensateAmt,userBalanceIn.getBalance(), AccountType.PERSON, "理赔放款");
         final BalanceDetail cmpDetailOut = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.OUT.getCode(),accountOrg.getAccountNo(),compensateCcy,
-                compensateAmt,cmpBalanceIn.getBalance(),"理赔放款");
+                compensateAmt,cmpBalanceIn.getBalance(), AccountType.ORG, "理赔放款");
         final BigDecimal userAmountIn = userBalanceIn.getBalance().add(compensateAmt);
         final BigDecimal cmpAmountOut = cmpBalanceOut.getBalance().subtract(compensateAmt);
         if (cmpAmountOut.compareTo(BigDecimal.ZERO)<0){
@@ -417,11 +418,11 @@ public class BalanceDetailService implements IBalanceDetialService {
             log.info("get biz balance :{}",bal);
             userBal = balanceService.getAccBalance(detail.getAccountNo(),detail.getCurrency());
             userAmount = userAmount.add(detail.getFreezeAmt());
-            map.put(bal,detail.getFreezeAmt());
+            map.merge(bal, detail.getFreezeAmt(), BigDecimal::add);
 
             final BalanceDetail finDtl = AccountConvert.convertToBalanceDetail(
                     tradeNo,Direction.IN.getCode(),acc.getAccountNo(),detail.getCurrency(),
-                    detail.getFreezeAmt(),bal.getBalance(),"投资收款");
+                    detail.getFreezeAmt(),bal.getBalance(), AccountType.ORG, "投资收款");
             final FreezeDetail unFreeze = AccountConvert.convertToFreezeDetail(tradeNo,tradeNo,
                     detail.getAccountNo(),detail.getCurrency(),new BigDecimal("0"),detail.getFreezeAmt(),
                     "解冻扣款",detail.getFreezeType());
@@ -432,7 +433,7 @@ public class BalanceDetailService implements IBalanceDetialService {
         final BalanceDetail userDtl = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.OUT.getCode(),freezeDetails.get(0).getAccountNo(),
                 freezeDetails.get(0).getCurrency(),userAmount,userBal.getBalance(),
-                "投资扣款");
+                AccountType.PERSON, "投资扣款");
         balanceDetails.add(userDtl);
 
         final BalancePerson finalUserBal = userBal;
@@ -450,7 +451,7 @@ public class BalanceDetailService implements IBalanceDetialService {
                     log.error("unfreeze user balance error,account no:{}",finalUserBal.getAccountNo());
                     throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);
                 }
-                map.forEach( (k,v)->{
+                map.forEach((k,v)->{
                     if(balanceOrgDao.updateBalance(k,k.getBalance().add(v))<=0){
                         log.error("update internal account {} balance error",k.getAccountNo());
                         throw new TryAgainException(BizExceptionEnum.UPDATE_BALANCE_FAILED);
@@ -490,13 +491,13 @@ public class BalanceDetailService implements IBalanceDetialService {
         List<BalanceDetail>  details = new ArrayList<>();
         BalanceDetail userDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.IN.getCode(),userAccount.getAccountNo(),currency,
-                actralAmount,userBalance.getBalance(),"提前赎回");
+                actralAmount,userBalance.getBalance(), AccountType.PERSON, "提前赎回");
         BalanceDetail finDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.OUT.getCode(),accFin.getAccountNo(),currency,
-                principal,finBalance.getBalance(),"提前赎回");
+                principal,finBalance.getBalance(), AccountType.ORG, "提前赎回");
         BalanceDetail feeDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.IN.getCode(),accFee.getAccountNo(),currency,
-                fine,feeBalance.getBalance(),"提前赎回");
+                fine,feeBalance.getBalance(), AccountType.ORG, "提前赎回");
         details.add(finDetail);
         details.add(feeDetail);
         details.add(userDetail);
@@ -556,7 +557,7 @@ public class BalanceDetailService implements IBalanceDetialService {
     }
 
     @Override
-    public boolean systemTransfer(String customerNo, String currency, String direction,
+    public Long systemTransfer(String customerNo, String currency, String direction,
                                   String tradeNo, BigDecimal amount,String accountNo){
         AccountOrg orgAccount = accountService.getOrgAccount(null,accountNo);
         AccountInternal finAccount = accountInternalDao.getAccountByTransType(
@@ -585,10 +586,10 @@ public class BalanceDetailService implements IBalanceDetialService {
 
         final BalanceDetail finDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,direction,finAccount.getAccountNo(),currency,
-                amount,finBalance.getBalance(),"机构资金划转");
+                amount,finBalance.getBalance(), AccountType.INTERNAL, "机构资金划转");
         final BalanceDetail orgDetail = AccountConvert.convertToBalanceDetail(
                 tradeNo,direction,orgAccount.getAccountNo(),currency,
-                amount,orgBalance.getBalance(),"机构资金划转");
+                amount,orgBalance.getBalance(), AccountType.ORG, "机构资金划转");
 
 
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
@@ -605,7 +606,7 @@ public class BalanceDetailService implements IBalanceDetialService {
             }
         });
 
-        return true;
+        return System.currentTimeMillis();
 
     }
 }
