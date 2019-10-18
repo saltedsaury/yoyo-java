@@ -1,9 +1,6 @@
 package cn.idachain.finance.batch.service.batch;
 
-import cn.idachain.finance.batch.common.dataobject.InsuranceInfo;
-import cn.idachain.finance.batch.common.dataobject.InsuranceTrade;
-import cn.idachain.finance.batch.common.dataobject.InvestInfo;
-import cn.idachain.finance.batch.common.dataobject.RevenuePlan;
+import cn.idachain.finance.batch.common.dataobject.*;
 import cn.idachain.finance.batch.common.enums.*;
 import cn.idachain.finance.batch.common.model.Product;
 import cn.idachain.finance.batch.common.util.BlankUtil;
@@ -69,8 +66,15 @@ public class B1005 extends BaseBatch {
             log.info("query revenue plan for product {},list:{}",product.getProductNo(),records);
             for (final RevenuePlan record : records){
                 //分红记录是否全部完成
+                int expectCount = product.getInterestCycle().intValue();
+                if (BoolType.FALSE.getCode().equals(product.getLastInterest().toString())){
+                    expectCount = expectCount - 1;
+                }
+                if (product.getPrimaryRate().compareTo(BigDecimal.ZERO) > 0){
+                    expectCount = expectCount + 1;
+                }
                 int terms = bonusOrderDao.countBonusByPlanAndStatus(record.getPlanNo(),BonusStatus.FINISH.getCode());
-                if(terms != product.getInterestCycle().intValue()){
+                if(terms != expectCount){
                     log.error("bonus haven't finished，plan_no：{}",record.getPlanNo());
                     //增加报警信息
                     continue;
@@ -127,7 +131,7 @@ public class B1005 extends BaseBatch {
                             @Override
                             protected void doInTransactionWithoutResult(TransactionStatus status) {
                             balanceDetialService.payPrincipal(record.getCustomerNo(),
-                                    investInfo.getCcy(),record.getPrincipal(),
+                                    record.getCcy(),record.getPrincipal(),
                                     record.getPlanNo(),null,false,investInfo.getProductNo());
                             insuranceTradeDao.updateInsuranceTradeStatusByObj(
                                     insuranceTrade, InsuranceTradeStatus.FINISH.getCode());
@@ -145,7 +149,7 @@ public class B1005 extends BaseBatch {
                         @Override
                         protected void doInTransactionWithoutResult(TransactionStatus status) {
                             balanceDetialService.payPrincipal(record.getCustomerNo(),
-                                    investInfo.getCcy(),record.getPrincipal(),
+                                    record.getCcy(),record.getPrincipal(),
                                     record.getPlanNo(),null,false,investInfo.getProductNo());
                             investDao.updateInvestInfoStatusByObj(investInfo,InvestStatus.OVER_DUE.getCode());
                             record.setPaidTime(System.currentTimeMillis());
