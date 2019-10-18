@@ -106,7 +106,7 @@ public class B1005 extends BaseBatch {
                             @Override
                             protected void doInTransactionWithoutResult(TransactionStatus status) {
                                 balanceDetialService.payPrincipal(record.getCustomerNo(),
-                                        investInfo.getCcy(),record.getPrincipal(),
+                                        record.getCcy(),record.getPrincipal(),
                                         record.getPlanNo(),insuranceTrade.getTradeNo(),
                                         true,investInfo.getProductNo());
                                 insuranceTradeDao.updateInsuranceTradeStatusByObj(insuranceTrade,
