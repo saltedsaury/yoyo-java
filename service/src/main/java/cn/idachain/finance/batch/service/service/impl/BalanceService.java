@@ -1,5 +1,7 @@
 package cn.idachain.finance.batch.service.service.impl;
 
+import cn.idachain.finance.batch.common.dataobject.BalanceOrg;
+import cn.idachain.finance.batch.service.dao.IBalanceOrgDao;
 import cn.idachain.finance.batch.service.dao.IBalancePersonDao;
 import cn.idachain.finance.batch.common.dataobject.AccountPerson;
 import cn.idachain.finance.batch.common.dataobject.BalancePerson;
@@ -18,7 +20,8 @@ public class BalanceService extends BaseService implements IBalanceService {
     private IBalancePersonDao balancePersonDao;
     @Autowired
     private IAccountService accountService;
-
+    @Autowired
+    private IBalanceOrgDao balanceOrgDao;
 
     @Override
     public BalancePerson getBalance(String customerNo, String currency){
@@ -37,6 +40,16 @@ public class BalanceService extends BaseService implements IBalanceService {
         if (null == bal){
             bal = AccountConvert.convertToBalancePerson(accountNo,currency);
             balancePersonDao.saveBalancePerson(bal);
+        }
+        return bal;
+    }
+
+    @Override
+    public BalanceOrg getOrgBalance(String accountNo, String currency){
+        BalanceOrg bal = balanceOrgDao.getBalance(accountNo,currency);
+        if (null == bal){
+            bal = AccountConvert.convertToBalanceOrg(accountNo,currency);
+            balanceOrgDao.saveBalanceOrg(bal);
         }
         return bal;
     }

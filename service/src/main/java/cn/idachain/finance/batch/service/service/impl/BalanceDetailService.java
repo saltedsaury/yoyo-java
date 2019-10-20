@@ -219,7 +219,7 @@ public class BalanceDetailService implements IBalanceDetialService {
         final BalancePerson userBalance = balanceService.getAccBalance(userAccount.getAccountNo(),currency);
         log.info("get user balance :{}",userBalance);
 
-        final BalanceOrg bonusBalance = balanceOrgDao.getBalance(accOrg.getAccountNo(),currency);
+        final BalanceOrg bonusBalance = balanceService.getOrgBalance(accOrg.getAccountNo(),currency);
         log.info("get bonus account balance :{}",bonusBalance);
 
         if (bonusBalance.getBalance().subtract(amount).compareTo(BigDecimal.ZERO)<0){
@@ -271,7 +271,7 @@ public class BalanceDetailService implements IBalanceDetialService {
         final BalancePerson userBalance = balanceService.getAccBalance(userAccount.getAccountNo(),currency);
         log.info("get user balance :{}",userBalance);
 
-        final BalanceOrg payableBalance = balanceOrgDao.getBalance(accountOrg.getAccountNo(),currency);
+        final BalanceOrg payableBalance = balanceService.getOrgBalance(accountOrg.getAccountNo(),currency);
         log.info("get payable account balance :{}",payableBalance);
 
         final BalanceDetail userDetail = AccountConvert.convertToBalanceDetail(
@@ -343,7 +343,7 @@ public class BalanceDetailService implements IBalanceDetialService {
         AccountOrg accountOrg = accountService.getOrgAccByInsurance(insuranceNo,AccountTransType.INSURANCE.getCode());
         final BalancePerson userBalanceOut = balanceService.getAccBalance(userAccount.getAccountNo(),currency);
         log.info("get user balance out :{}",userBalanceOut);
-        final BalanceOrg cmpBalanceIn = balanceOrgDao.getBalance(accountOrg.getAccountNo(),currency);
+        final BalanceOrg cmpBalanceIn = balanceService.getOrgBalance(accountOrg.getAccountNo(),currency);
         log.info("get compensate account balance in :{}",cmpBalanceIn);
         final BalanceDetail userDetailOut = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.OUT.getCode(),userAccount.getAccountNo(),currency,
@@ -366,7 +366,7 @@ public class BalanceDetailService implements IBalanceDetialService {
         //理赔支付
         final BalancePerson userBalanceIn = balanceService.getAccBalance(userAccount.getAccountNo(),compensateCcy);
         log.info("get user balance in :{}",userBalanceIn);
-        final BalanceOrg cmpBalanceOut = balanceOrgDao.getBalance(accountOrg.getAccountNo(),compensateCcy);
+        final BalanceOrg cmpBalanceOut = balanceService.getOrgBalance(accountOrg.getAccountNo(),compensateCcy);
         log.info("get compensate account balance out :{}",cmpBalanceOut);
         final BalanceDetail userDetailIn = AccountConvert.convertToBalanceDetail(
                 tradeNo,Direction.IN.getCode(),userAccount.getAccountNo(),compensateCcy,
@@ -414,7 +414,7 @@ public class BalanceDetailService implements IBalanceDetialService {
         final Map<BalanceOrg,BigDecimal> map = new HashMap<BalanceOrg,BigDecimal>();
         for (FreezeDetail detail : freezeDetails){
             AccountOrg acc = accountService.getOrgAccountByProd(prod,detail.getFreezeType());
-            BalanceOrg bal = balanceOrgDao.getBalance(acc.getAccountNo(),detail.getCurrency());
+            BalanceOrg bal = balanceService.getOrgBalance(acc.getAccountNo(),detail.getCurrency());
             log.info("get biz balance :{}",bal);
             userBal = balanceService.getAccBalance(detail.getAccountNo(),detail.getCurrency());
             userAmount = userAmount.add(detail.getFreezeAmt());
@@ -481,9 +481,9 @@ public class BalanceDetailService implements IBalanceDetialService {
 
         final BalancePerson userBalance = balanceService.getAccBalance(userAccount.getAccountNo(),currency);
         log.info("get user balance :{}",userBalance);
-        final BalanceOrg finBalance = balanceOrgDao.getBalance(accFin.getAccountNo(),currency);
+        final BalanceOrg finBalance = balanceService.getOrgBalance(accFin.getAccountNo(),currency);
         log.info("get bonus account balance :{}",finBalance);
-        final BalanceOrg feeBalance = balanceOrgDao.getBalance(accFee.getAccountNo(),currency);
+        final BalanceOrg feeBalance = balanceService.getOrgBalance(accFee.getAccountNo(),currency);
         log.info("get fine account balance :{}",feeBalance);
 
         BigDecimal actralAmount = amount.subtract(bonus).subtract(fine);
@@ -563,7 +563,7 @@ public class BalanceDetailService implements IBalanceDetialService {
         AccountInternal finAccount = accountInternalDao.getAccountByTransType(
                 AccountTransType.FINANCING.getCode(),null);
 
-        final BalanceOrg orgBalance = balanceOrgDao.getBalance(orgAccount.getAccountNo(),currency);
+        final BalanceOrg orgBalance = balanceService.getOrgBalance(orgAccount.getAccountNo(),currency);
         final BalanceInternal finBalance = balanceInternalDao.getBalance(finAccount.getAccountNo(),currency);
 
         final BigDecimal orgAmount;

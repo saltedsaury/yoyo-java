@@ -1,9 +1,6 @@
 package cn.idachain.finance.batch.service.util.convert;
 
-import cn.idachain.finance.batch.common.dataobject.AccountPerson;
-import cn.idachain.finance.batch.common.dataobject.BalanceDetail;
-import cn.idachain.finance.batch.common.dataobject.BalancePerson;
-import cn.idachain.finance.batch.common.dataobject.FreezeDetail;
+import cn.idachain.finance.batch.common.dataobject.*;
 import cn.idachain.finance.batch.common.enums.AccountType;
 import cn.idachain.finance.batch.service.util.GenerateIdUtil;
 
@@ -76,5 +73,16 @@ public class AccountConvert {
         balancePerson.setRemark("");
 
         return balancePerson;
+    }
+
+    public static BalanceOrg convertToBalanceOrg(String accountNo, String currency) {
+        BalanceOrg balanceOrg = new BalanceOrg();
+        balanceOrg.setAccountNo(accountNo);
+        balanceOrg.setCurrency(currency);
+        balanceOrg.setBalance(BigDecimal.ZERO);
+        balanceOrg.setFreeze(BigDecimal.ZERO);
+        balanceOrg.setStatus("0");
+        balanceOrg.setRemark("");
+        return balanceOrg;
     }
 }
