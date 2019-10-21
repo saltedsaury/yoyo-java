@@ -61,10 +61,13 @@ public class B1002 extends BaseBatch {
         log.info("query product list for status off shelve,list :{}",productList);
         //分产品打捞投资记录
         for (Product product : productList){
-            if (ProductType.FINANCING.getCode().equals(product.getProductType())){
+            if(new Date(System.currentTimeMillis()).compareTo(product.getValueDate()) < 0) {
+                break;
+            }
+            if (ProductType.FINANCING.getCode().equals(product.getProductType())) {
                 financingProduct(product);
             }
-            if (ProductType.SUBSCRIBE.getCode().equals(product.getProductType())){
+            if (ProductType.SUBSCRIBE.getCode().equals(product.getProductType())) {
                 subscribeProduct(product);
             }
         }
@@ -177,26 +180,28 @@ public class B1002 extends BaseBatch {
                 revenuePlan.setActualInterest(totalInterest.add(primarAmount));
             }
 
-
-            // 尾期是否计息
-            int terms = product.getInterestCycle().intValue();
-            if (!BoolType.TRUE.getCode().equals(product.getLastInterest().toString())){
-                terms = terms - 1;
-            }
-            for (int i = 1;i<=terms;i++){
-                Date bonusDate = DateUtil.offsiteDay(product.getValueDate(),
-                        (TimeUnit.getByCode(product.getCycleType()).getDay()*i)-1);
-                BigDecimal amount = totalInterest.divide(
-                        BigDecimal.valueOf(terms), 2, RoundingMode.HALF_UP);
-                if (i == terms){
-                    amount = totalInterest.subtract(
-                            amount.multiply(new BigDecimal(i-1)))
-                            .setScale(2,RoundingMode.HALF_UP);
+            //收益率>0 生产收益计划，否则不生成收益计划
+            if(product.getProfitScale().compareTo(BigDecimal.ZERO) > 0){
+                // 尾期是否计息
+                int terms = product.getInterestCycle().intValue();
+                if (!BoolType.TRUE.getCode().equals(product.getLastInterest().toString())){
+                    terms = terms - 1;
                 }
+                for (int i = 1;i<=terms;i++){
+                    Date bonusDate = DateUtil.offsiteDay(product.getValueDate(),
+                            (TimeUnit.getByCode(product.getCycleType()).getDay()*i)-1);
+                    BigDecimal amount = totalInterest.divide(
+                            BigDecimal.valueOf(terms), 2, RoundingMode.HALF_UP);
+                    if (i == terms){
+                        amount = totalInterest.subtract(
+                                amount.multiply(new BigDecimal(i-1)))
+                                .setScale(2,RoundingMode.HALF_UP);
+                    }
 
-                BonusOrder order = convertToBonusOrder(investInfo,(long)i,amount,bonusDate);
-                order.setCcy(product.getSubscribedCcy());
-                bonusOrders.add(order);
+                    BonusOrder order = convertToBonusOrder(investInfo,(long)i,amount,bonusDate);
+                    order.setCcy(product.getSubscribedCcy());
+                    bonusOrders.add(order);
+                }
             }
             log.info("generate bonus orders list :{} ",bonusOrders);
 

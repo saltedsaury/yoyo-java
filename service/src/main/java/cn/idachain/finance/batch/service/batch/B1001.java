@@ -74,9 +74,10 @@ public class B1001 extends BaseBatch{
             //固定起息日
             //到达原定起息日，产品成立
             if(!BlankUtil.isBlank(product.getValueDate())){
-                log.info("product :{} off shelve due to arriving at value date.",product);
                 if(new Date(System.currentTimeMillis()).compareTo(product.getValueDate())>0){
+                    log.info("product :{} off shelve due to arriving at value date.",product);
                     if(investConfirm(product)) { //申购确认全部完成，更新产品状态
+                        log.error("do invest confirm success");
                         productDao.updateProductByObj(product, ProductStatus.OFF_SHELVE.getCode());
                     }
                 }
