@@ -62,7 +62,7 @@ public class B1002 extends BaseBatch {
         //分产品打捞投资记录
         for (Product product : productList){
             if(new Date(System.currentTimeMillis()).compareTo(product.getValueDate()) < 0) {
-                break;
+                continue;
             }
             if (ProductType.FINANCING.getCode().equals(product.getProductType())) {
                 financingProduct(product);

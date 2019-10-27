@@ -77,7 +77,7 @@ public class B1001 extends BaseBatch{
                 if(new Date(System.currentTimeMillis()).compareTo(product.getValueDate())>0){
                     log.info("product :{} off shelve due to arriving at value date.",product);
                     if(investConfirm(product)) { //申购确认全部完成，更新产品状态
-                        log.error("do invest confirm success");
+                        log.info("do invest confirm success");
                         productDao.updateProductByObj(product, ProductStatus.OFF_SHELVE.getCode());
                     }
                 }
