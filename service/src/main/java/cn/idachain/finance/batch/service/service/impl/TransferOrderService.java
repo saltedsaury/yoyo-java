@@ -249,7 +249,7 @@ public class TransferOrderService implements ITransferOrderService {
                 deduct = TransferProcessDTO.fail();
             } catch (BizException e){
                 //更新订单状态  扣款失败
-                updateOrderByTransaction(order, TransferOrderStatus.PROCESSING,
+                updateOrderByTransaction(order, TransferOrderStatus.FAILED,
                         TransferProcessStatus.CHARGEBACK_FAILED, null, null);
                 log.info("update transfer order status to chargeback failed:{}",order.toString());
                 deduct = TransferProcessDTO.fail();
