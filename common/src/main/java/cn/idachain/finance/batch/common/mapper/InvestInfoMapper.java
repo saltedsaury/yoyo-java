@@ -28,4 +28,8 @@ public interface InvestInfoMapper extends SuperMapper<InvestInfo> {
             "<foreach collection='collection' item='no' separator=',' open='(' close=')'>" +
             "#{no}</foreach></script>")
     int markReconciled(Collection<String> orderNos);
+
+    @Select("select sum(amount) from invest_info " +
+            "where `status` = #{status} and product_no = #{productNo}")
+    BigDecimal getSurplusAmount(@Param("status") String status,@Param("productNo") String productNo);
 }

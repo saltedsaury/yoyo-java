@@ -1,9 +1,12 @@
 package cn.idachain.finance.batch.task.task;
 
 import cn.idachain.finance.batch.common.enums.ProductStatus;
+import cn.idachain.finance.batch.common.exception.BizException;
+import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
 import cn.idachain.finance.batch.common.model.Product;
+import cn.idachain.finance.batch.common.util.BaseCacheClient;
+import cn.idachain.finance.batch.common.util.DateUtil;
 import cn.idachain.finance.batch.service.dao.IProductDao;
-import cn.idachain.finance.batch.service.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,6 +22,8 @@ public class ProductForSale {
 
     @Autowired
     private IProductDao productDao;
+    @Autowired
+    private BaseCacheClient baseCacheClient;
 
     @Scheduled(cron = "${task.financing.push-prod-status}")
     public boolean execute(){
@@ -30,6 +35,12 @@ public class ProductForSale {
         log.info("init product list :{}",initProduct);
         for (Product prod:initProduct){
             if (prod.getEffectiveDate().compareTo(currentDate)<=0){
+                long expire = DateUtil.diff(new Date(),prod.getExpiryDate(),DateUtil.MS);
+                boolean add = baseCacheClient.addValueNX("surplusAmount"+prod.getProductNo()
+                        ,prod.getSurplusAmount(),expire);
+                if (!add){
+                    log.error("unknown surplus amount,productNo:{}",prod.getProductNo());
+                }
                 productDao.updateProductByObj(prod,ProductStatus.FOR_SALE.getCode());
             }
         }
@@ -40,6 +51,7 @@ public class ProductForSale {
         log.info("for sale product list :{}",saleProduct);
         for (Product prod:saleProduct){
             if (prod.getExpiryDate().compareTo(currentDate)<=0){
+                baseCacheClient.delete("surplusAmount"+prod.getProductNo());
                 productDao.updateProductByObj(prod,ProductStatus.OFF_SHELVE.getCode());
             }
         }

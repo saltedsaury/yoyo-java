@@ -127,4 +127,9 @@ public class InvestDao implements IInvestDao {
         }
         investInfoMapper.markReconciled(orderNos);
     }
+
+    @Override
+    public BigDecimal getSurplusAmount(String status, String productNo){
+        return investInfoMapper.getSurplusAmount(status,productNo);
+    }
 }

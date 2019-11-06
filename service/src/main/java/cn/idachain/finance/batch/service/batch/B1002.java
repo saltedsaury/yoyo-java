@@ -7,8 +7,8 @@ import cn.idachain.finance.batch.common.dataobject.RevenuePlan;
 import cn.idachain.finance.batch.common.enums.*;
 import cn.idachain.finance.batch.common.model.Product;
 import cn.idachain.finance.batch.service.dao.*;
-import cn.idachain.finance.batch.service.util.DateUtil;
-import cn.idachain.finance.batch.service.util.GenerateIdUtil;
+import cn.idachain.finance.batch.common.util.DateUtil;
+import cn.idachain.finance.batch.common.util.GenerateIdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,6 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -224,7 +223,7 @@ public class B1002 extends BaseBatch {
     private RevenuePlan convertToRevenuePlan(InvestInfo investInfo, BigDecimal totalInterest,Product product){
         //生成收益计划
         RevenuePlan revenuePlan = new RevenuePlan();
-        revenuePlan.setPlanNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.REVENUEPLAN)));
+        revenuePlan.setPlanNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.BATCH)));
         revenuePlan.setInvestNo(investInfo.getTradeNo());
         revenuePlan.setProductNo(investInfo.getProductNo());
         revenuePlan.setCustomerNo(investInfo.getCustomerNo());
@@ -247,7 +246,7 @@ public class B1002 extends BaseBatch {
     private BonusOrder convertToBonusOrder(InvestInfo investInfo,Long terms,BigDecimal amount,Date bonusDate){
         //生成分红单
         BonusOrder bonusOrder = new BonusOrder();
-        bonusOrder.setTradeNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.BONUS)));
+        bonusOrder.setTradeNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.BATCH)));
         bonusOrder.setCustomerNo(investInfo.getCustomerNo());
         bonusOrder.setInvestNo(investInfo.getTradeNo());
         bonusOrder.setPlanNo(investInfo.getPlanNo());

@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.service.util;
+package cn.idachain.finance.batch.common.util;
 
 
 import java.sql.Timestamp;
@@ -76,6 +76,7 @@ public class DateUtil {
             return new SimpleDateFormat(NORM_DATE_PATTERN);
         }
 
+        ;
     };
     /**
      * 标准时间格式化器
@@ -86,6 +87,7 @@ public class DateUtil {
             return new SimpleDateFormat(NORM_TIME_PATTERN);
         }
 
+        ;
     };
     /**
      * 标准时间格式化器
@@ -96,6 +98,7 @@ public class DateUtil {
             return new SimpleDateFormat(NORM_DATETIME_MINUTE_PATTERN);
         }
 
+        ;
     };
     /**
      * 标准日期时间格式化器
@@ -106,6 +109,7 @@ public class DateUtil {
             return new SimpleDateFormat(NORM_DATETIME_PATTERN);
         }
 
+        ;
     };
     /**
      * HTTP日期时间格式化器
@@ -116,6 +120,7 @@ public class DateUtil {
             return new SimpleDateFormat(HTTP_DATETIME_PATTERN, Locale.US);
         }
 
+        ;
     };
     /**
      * 缩写时间格式化器
@@ -125,6 +130,7 @@ public class DateUtil {
             return new SimpleDateFormat(SHORT_DATE_PATTERN);
         }
 
+        ;
     };
 
     /**
@@ -723,6 +729,13 @@ public class DateUtil {
             throw new IllegalArgumentException("The date must not be null");
         }
     }
+
+    public static Date getBiggerDate(Date date1, Date date2){
+        if (BlankUtil.isBlank(date1) || BlankUtil.isBlank(date2)){
+            throw new IllegalArgumentException("The date must not be null");
+        }
+        return date1.compareTo(date2)>0?date1:date2;
+    }
     /**
      * 缩写.时间格式化器
      */
@@ -731,6 +744,7 @@ public class DateUtil {
             return new SimpleDateFormat(SHORT_DOT_DATE_PATTERN);
         }
 
+        ;
     };
 
     /**
@@ -765,11 +779,11 @@ public class DateUtil {
         Calendar cal = Calendar.getInstance();
         cal.setTime(localTime);
         // 2、取得时间偏移量：
-        int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);
+        int zoneOffset = cal.get(Calendar.ZONE_OFFSET);
         // 3、取得夏令时差：
-        int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);
+        int dstOffset = cal.get(Calendar.DST_OFFSET);
         // 4、从本地时间里扣除这些差量，即可以取得UTC时间：
-        cal.add(java.util.Calendar.MILLISECOND, -(zoneOffset + dstOffset));
+        cal.add(Calendar.MILLISECOND, -(zoneOffset + dstOffset));
         return cal.getTime();
     }
 }

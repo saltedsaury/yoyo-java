@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.service.util;
+package cn.idachain.finance.batch.common.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

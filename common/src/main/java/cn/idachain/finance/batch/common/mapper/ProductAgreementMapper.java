@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 public interface ProductAgreementMapper extends SuperMapper<ProductAgreement> {
 
-    @Update("update product_agreement set surplus_amount = surplus_amount - #{amount} " +
-            "where product_no = #{productNo} and surplus_amount - #{amount} >=0;")
+    @Update("update product_agreement set surplus_amount = #{amount} " +
+            "where product_no = #{productNo} and surplus_amount > #{amount};")
     int updateSurplusAmount(@Param("amount") BigDecimal amount,@Param("productNo") String productNo);
 }

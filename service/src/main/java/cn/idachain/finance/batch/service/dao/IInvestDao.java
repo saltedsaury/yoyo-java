@@ -27,4 +27,6 @@ public interface IInvestDao {
     BigDecimal sumTotalAmountByStatus(List<String> status, String uid,String ccy);
 
     void markReconciled(Collection<String> orderNos);
+
+    BigDecimal getSurplusAmount(String status, String productNo);
 }

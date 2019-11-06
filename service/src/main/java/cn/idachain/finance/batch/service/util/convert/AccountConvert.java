@@ -2,7 +2,7 @@ package cn.idachain.finance.batch.service.util.convert;
 
 import cn.idachain.finance.batch.common.dataobject.*;
 import cn.idachain.finance.batch.common.enums.AccountType;
-import cn.idachain.finance.batch.service.util.GenerateIdUtil;
+import cn.idachain.finance.batch.common.util.GenerateIdUtil;
 
 import java.math.BigDecimal;
 
@@ -14,7 +14,7 @@ public class AccountConvert {
                                                         AccountType accountType, String remark){
         BalanceDetail detail = new BalanceDetail();
         detail.setAccountType(accountType.name());
-        detail.setBizNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.ACCOUNTDETAIL)));
+        detail.setBizNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.ACCOUNT)));
         detail.setTradeNo(tradeNo);
         detail.setTransType(direction);
         detail.setAccountNo(accountNo);
@@ -33,7 +33,7 @@ public class AccountConvert {
                                                       String remark,String freezeType){
 
         FreezeDetail detail = new FreezeDetail();
-        detail.setBizNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.ACCOUNTDETAIL)));
+        detail.setBizNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.ACCOUNT)));
         detail.setTradeNo(tradeNo);
         detail.setFreezeCode(freezeCode);
         detail.setAccountNo(accountNo);
@@ -51,7 +51,7 @@ public class AccountConvert {
     public static AccountPerson convertToAccountPerson(String customerNo,String currency){
         AccountPerson accountPerson = new AccountPerson();
         accountPerson.setCustomerNo(customerNo);
-        accountPerson.setAccountNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.ACCOUNTDETAIL)));
+        accountPerson.setAccountNo(Long.toString(GenerateIdUtil.getId(GenerateIdUtil.ModuleEnum.ACCOUNT)));
         if (null == currency){
             accountPerson.setCurrency("DEFAULT");
         }else {

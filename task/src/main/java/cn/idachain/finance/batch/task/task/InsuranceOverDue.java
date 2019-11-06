@@ -7,7 +7,7 @@ import cn.idachain.finance.batch.common.enums.InsuranceTradeSubStatus;
 import cn.idachain.finance.batch.service.dao.IInsuranceInfoDao;
 import cn.idachain.finance.batch.service.dao.IInsuranceTradeDao;
 import cn.idachain.finance.batch.service.service.IBalanceDetialService;
-import cn.idachain.finance.batch.service.util.DateUtil;
+import cn.idachain.finance.batch.common.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

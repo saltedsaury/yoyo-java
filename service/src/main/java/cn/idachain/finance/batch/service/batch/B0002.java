@@ -5,12 +5,10 @@ import cn.idachain.finance.batch.common.enums.ProductStatus;
 import cn.idachain.finance.batch.common.model.Product;
 import cn.idachain.finance.batch.service.dao.IInvestDao;
 import cn.idachain.finance.batch.service.dao.IProductDao;
-import cn.idachain.finance.batch.service.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

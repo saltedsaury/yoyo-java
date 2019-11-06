@@ -2,7 +2,7 @@ package cn.idachain.finance.batch.service.batch;
 
 import cn.idachain.finance.batch.common.exception.BizException;
 import cn.idachain.finance.batch.common.exception.BizExceptionEnum;
-import cn.idachain.finance.batch.service.util.DateUtil;
+import cn.idachain.finance.batch.common.util.DateUtil;
 import cn.idachain.finance.batch.common.constants.BizConstants;
 import cn.idachain.finance.batch.common.enums.BatchCode;
 import cn.idachain.finance.batch.common.enums.BatchStatus;

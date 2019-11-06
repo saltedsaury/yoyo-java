@@ -7,7 +7,7 @@ import cn.idachain.finance.batch.common.util.BlankUtil;
 import cn.idachain.finance.batch.service.dao.IInvestDao;
 import cn.idachain.finance.batch.service.dao.IProductDao;
 import cn.idachain.finance.batch.service.service.IBalanceDetialService;
-import cn.idachain.finance.batch.service.util.DateUtil;
+import cn.idachain.finance.batch.common.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
