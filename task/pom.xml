@@ -4,23 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>cn.idachain.finance.batch</groupId>
-        <artifactId>batch-platform-root</artifactId>
+        <groupId>com.yoyo.base</groupId>
+        <artifactId>yoyo-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>batch-task</artifactId>
-    <version>${batch.version}</version>
-    <name>batch task</name>
+    <artifactId>yoyo-task</artifactId>
+    <version>${yoyo.version}</version>
+    <name>yoyo task</name>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>cn.idachain.finance.batch</groupId>
-            <artifactId>batch-service</artifactId>
+            <groupId>com.yoyo.base</groupId>
+            <artifactId>yoyo-service</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.idachain.finance.batch</groupId>
-            <artifactId>batch-common</artifactId>
+            <groupId>com.yoyo.base</groupId>
+            <artifactId>yoyo-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -28,8 +28,19 @@
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
         </dependency>
+        <dependency>
+            <groupId>com.youzan.cloud</groupId>
+            <artifactId>open-sdk-core</artifactId>
+            <version>1.0.7-RELEASE</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.youzan.cloud</groupId>
+            <artifactId>open-sdk-gen</artifactId>
+            <version>1.0.7.202010161206-RELEASE</version>
+        </dependency>
     </dependencies>
+
 
     <build>
         <plugins>

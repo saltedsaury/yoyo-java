@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cn.idachain.finance.batch</groupId>
-        <artifactId>batch-platform-root</artifactId>
+        <groupId>com.yoyo.base</groupId>
+        <artifactId>yoyo-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>batch-service</artifactId>
-    <version>${batch.version}</version>
-    <name>batch service</name>
+    <artifactId>yoyo-service</artifactId>
+    <version>${yoyo.version}</version>
+    <name>yoyo service</name>
     <packaging>jar</packaging>
 
 	<dependencies>
@@ -49,13 +49,24 @@
             <version>2.1.6.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>cn.idachain.finance.batch</groupId>
-            <artifactId>batch-common</artifactId>
+            <groupId>com.yoyo.base</groupId>
+            <artifactId>yoyo-common</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>2.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.youzan.cloud</groupId>
+            <artifactId>open-sdk-core</artifactId>
+            <version>1.0.7-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.youzan.cloud</groupId>
+            <artifactId>open-sdk-gen</artifactId>
+            <version>1.0.7.202010161206-RELEASE</version>
         </dependency>
     </dependencies>
 

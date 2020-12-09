@@ -1,62 +1,42 @@
 package com.yoyo.base.task.task;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.youzan.cloud.open.sdk.common.exception.SDKException;
 import com.youzan.cloud.open.sdk.core.client.auth.Token;
 import com.youzan.cloud.open.sdk.core.client.core.DefaultYZClient;
 import com.youzan.cloud.open.sdk.core.oauth.model.OAuthToken;
 import com.youzan.cloud.open.sdk.core.oauth.token.TokenParameter;
-import com.youzan.cloud.open.sdk.gen.v3_0_0.api.YouzanItemGet;
-import com.youzan.cloud.open.sdk.gen.v3_0_0.model.YouzanItemGetParams;
-import com.youzan.cloud.open.sdk.gen.v3_0_0.model.YouzanItemGetResult;
-import com.youzan.cloud.open.sdk.gen.v4_0_1.api.YouzanTradesSoldGet;
-import com.youzan.cloud.open.sdk.gen.v4_0_1.model.YouzanTradesSoldGetParams;
-import com.youzan.cloud.open.sdk.gen.v4_0_1.model.YouzanTradesSoldGetResult;
-import com.yoyo.base.common.dataobject.DailyProfit;
-import com.yoyo.base.common.dataobject.ProfitDetail;
-import com.yoyo.base.common.dataobject.Relationship;
-import com.yoyo.base.common.dataobject.SystemParam;
-import com.yoyo.base.common.util.DateUtil;
-import com.yoyo.base.service.service.IDailyProfitService;
-import com.yoyo.base.service.service.IProfitDetailService;
-import com.yoyo.base.service.service.IRelationshipService;
-import com.yoyo.base.service.service.ISystemParamService;
+import com.youzan.cloud.open.sdk.gen.v3_0_0.api.YouzanItemsOnsaleGet;
+import com.youzan.cloud.open.sdk.gen.v3_0_0.model.*;
+import com.yoyo.base.common.dataobject.Product;
+import com.yoyo.base.service.service.impl.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Service
-public class Statistics {
+public class GetProductDetail {
 
-    @Autowired
-    private IProfitDetailService profitDetailService;
+
     @Autowired
     private DefaultYZClient yzClient;
     @Autowired
-    private ISystemParamService systemParamService;
-    @Autowired
-    private IRelationshipService relationshipService;
-    @Autowired
-    private IDailyProfitService dailyProfitService;
+    private ProductService productService;
 
 
     /**
-     * 保险产品逾期
      * @throws Exception
      */
-    @Scheduled(cron = "${task.statistics}")
+    @Scheduled(cron = "${task.getProduct}")
     public boolean execute() throws Exception {
         log.info("insurance over due task begin.");
-        //任务启动时的时间戳
-        Date currentDate = new Date(System.currentTimeMillis());
-        //获取历史时间戳
-        SystemParam systemParam = systemParamService.getSystemParam("HistoryDate");
-        Date historyDate = DateUtil.date(Long.parseLong(systemParam.getValue()));
+
         //获取有赞云凭证access_token
         TokenParameter tokenParameter = TokenParameter.self()
                 .clientId("3beba2d95f888e14d9")
@@ -68,44 +48,14 @@ public class Statistics {
         Token token = new Token(oAuthToken.getAccessToken());
 
         try {
-            //获取订单（24小时内的订单，分页获取）
+            //获取全部商品（分页获取）
 
-            YouzanTradesSoldGetParams youzanTradesSoldGetParams = new YouzanTradesSoldGetParams();
-            youzanTradesSoldGetParams.setStartCreated(currentDate);
-            youzanTradesSoldGetParams.setEndCreated(historyDate);
-            youzanTradesSoldGetParams.setPageNo(1);
-            dealOrder(youzanTradesSoldGetParams,token);
+            //创建参数对象,并设置参数
+            YouzanItemsOnsaleGetParams youzanItemsOnsaleGetParams = new YouzanItemsOnsaleGetParams();
+            youzanItemsOnsaleGetParams.setPageNo(1);
 
+            dealProduct(youzanItemsOnsaleGetParams,token);
 
-            //遍历频道，计算当日收益汇总 （销售收益 分成收益两条数据）
-            List<Relationship> relationships = relationshipService.getRelationshipList(null);
-            for (Relationship relationship : relationships){
-                //统计销售收益
-                BigDecimal totalProfit = profitDetailService.sumProfit(
-                        relationship.getChannelId(),historyDate,currentDate)
-                        .multiply(new BigDecimal("0.25"));
-
-                //统计分成收益
-                Relationship where = new Relationship();
-                where.setParentId(relationship.getChannelId());
-                List<Relationship> children = relationshipService.getRelationshipList(where);
-                BigDecimal totalDividend = BigDecimal.ZERO;
-                for (Relationship child : children){
-                    totalDividend = totalDividend.add(profitDetailService.sumProfit(
-                            relationship.getChannelId(),historyDate,currentDate));
-                }
-                totalDividend = totalDividend.multiply(new BigDecimal("0.05"))
-                        .setScale(2, BigDecimal.ROUND_DOWN);
-                //当日统计插入数据库
-                DailyProfit dailyProfit = new DailyProfit();
-                dailyProfit.setChannelId(relationship.getChannelId());
-                dailyProfit.setDividend(totalDividend);
-                dailyProfit.setProfit(totalProfit);
-                dailyProfitService.setDailyProfit(dailyProfit);
-            }
-            //将currentDate更新到系统配置信息表
-            systemParam.setValue(String.valueOf(currentDate.getTime()));
-            systemParamService.updateSystemParam(systemParam);
 
         }catch (Exception e){
             log.error("insurance over due task failed.");
@@ -116,52 +66,55 @@ public class Statistics {
         return true;
     }
 
-    private void dealOrder(YouzanTradesSoldGetParams youzanTradesSoldGetParams,Token token) throws SDKException {
-        YouzanTradesSoldGet youzanTradesSoldGet = new YouzanTradesSoldGet();
-        youzanTradesSoldGet.setAPIParams(youzanTradesSoldGetParams);
-        YouzanTradesSoldGetResult result = yzClient.invoke(youzanTradesSoldGet, token, YouzanTradesSoldGetResult.class);
+    private void dealProduct(YouzanItemsOnsaleGetParams youzanItemsOnsaleGetParams,Token token) throws SDKException {
+        YouzanItemsOnsaleGet youzanItemsOnsaleGet = new YouzanItemsOnsaleGet();
+        youzanItemsOnsaleGet.setAPIParams(youzanItemsOnsaleGetParams);
 
-        log.info("deal order for page {},data size: {}",youzanTradesSoldGetParams.getPageNo(),result.getData().getFullOrderInfoList().size());
+        YouzanItemsOnsaleGetResult result = yzClient.invoke(youzanItemsOnsaleGet, token, YouzanItemsOnsaleGetResult.class);
+
+        log.info("deal product for page {},data size: {}",youzanItemsOnsaleGetParams.getPageNo(),result.getData().getCount());
 
         //计算订单收益，订单时间，频道id 生成收益明细记入数据库
-        if(result.getData().getFullOrderInfoList()!=null
-                && result.getData().getFullOrderInfoList().size()>0){
-            for (YouzanTradesSoldGetResult.YouzanTradesSoldGetResultFullorderinfolist info
-                    : result.getData().getFullOrderInfoList()){
-                String payment = info.getFullOrderInfo().getPayInfo().getPayment();  //订单支付金额
-                Date created = info.getFullOrderInfo().getOrderInfo().getCreated();  //订单创建时间
-                String tid = info.getFullOrderInfo().getOrderInfo().getTid();  //订单编号
-                BigDecimal profit = new BigDecimal(0);
-                BigDecimal cost = BigDecimal.ZERO;   //总成本
-                String channelId = "";
-                for (YouzanTradesSoldGetResult.YouzanTradesSoldGetResultOrders item
-                        :info.getFullOrderInfo().getOrders()){
-                    Long num = item.getNum();
-                    Long itemId = item.getItemId();
-                    channelId = item.getBuyerMessages().split(":")[1];  //买家留言
-                    //获取商品信息
-                    YouzanItemGet youzanItemGet = new YouzanItemGet();
+        if(result.getData().getItems()!=null
+                && result.getData().getItems().size()>0){
+            List<Product> addList = new ArrayList<>();
+            List<Product> updateList = new ArrayList<>();
+            for (YouzanItemsOnsaleGetResult.YouzanItemsOnsaleGetResultItems item
+                    : result.getData().getItems()){
 
-                    YouzanItemGetParams youzanItemGetParams = new YouzanItemGetParams();
-                    youzanItemGetParams.setItemId(itemId);
-                    youzanItemGet.setAPIParams(youzanItemGetParams);
+                Product product = new Product();
+                product.setItemId(item.getItemId().toString());
+                product.setItemName(item.getTitle());
+                product.setPrice(item.getPrice().toString());
+                product.setPicUrl(item.getImage());
+                product.setAlias(item.getAlias());
 
-                    YouzanItemGetResult goods = yzClient.invoke(youzanItemGet, token, YouzanItemGetResult.class);
-                    Long itemCost = goods.getData().getItem().getCostPrice();  //单商品成本
-                    cost = cost.add(new BigDecimal(num*itemCost));
+                EntityWrapper<Product> where = new EntityWrapper<>();
+                where.eq("item_id",product.getItemId());
+                Product old = productService.selectOne(where);
+                if (null == old){
+                    addList.add(product);
+                    continue;
                 }
 
-                profit = new BigDecimal(payment).subtract(cost);  //单笔订单收益
-                ProfitDetail detail = new ProfitDetail();
-                detail.setTid(tid);
-                detail.setChannelId(channelId);
-                detail.setProfit(profit);
-                detail.setOrderCreated(created);
+                if (!product.getPicUrl().equals(old.getPicUrl())
+                        || !product.getItemName().equals(old.getItemName())
+                        || !product.getPrice().equals(old.getPrice())){
+                    old.setPicUrl(product.getPicUrl());
+                    old.setPrice(product.getPrice());
+                    old.setItemName(product.getItemName());
+                    updateList.add(old);
+                }
 
-                profitDetailService.setProfitDetail(detail);
             }
-            youzanTradesSoldGetParams.setPageNo(youzanTradesSoldGetParams.getPageNo()+1);
-            dealOrder(youzanTradesSoldGetParams,token);
+            if (addList.size()>0) {
+                productService.insertBatch(addList);
+            }
+            if (updateList.size()>0) {
+                productService.updateBatchById(updateList);
+            }
+            youzanItemsOnsaleGetParams.setPageNo(youzanItemsOnsaleGetParams.getPageNo()+1);
+            dealProduct(youzanItemsOnsaleGetParams,token);
         }
 
     }

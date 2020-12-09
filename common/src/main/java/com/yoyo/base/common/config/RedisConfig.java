@@ -1,4 +1,5 @@
-package cn.idachain.finance.batch.common.config;
+/*
+package com.yoyo.base.common.config;
 
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -17,12 +18,14 @@ import redis.clients.jedis.JedisPoolConfig;
 @Setter
 public class RedisConfig extends RedisConnectionProperties {
 
-    /**
+    */
+/**
      * Jedis客户端连接配置
      * RedisHttpSession 默认连接池
      *
      * @return
-     */
+     *//*
+
     @Bean(name = "redisConnectionFactory")
     @Primary
     public RedisConnectionFactory redisConnectionFactory() {
@@ -56,4 +59,4 @@ public class RedisConfig extends RedisConnectionProperties {
         template.setHashKeySerializer(stringSerializer);
     }
 
-}
+}*/

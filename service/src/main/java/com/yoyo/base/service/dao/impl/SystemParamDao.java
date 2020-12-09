@@ -1,33 +1,32 @@
 package com.yoyo.base.service.dao.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.yoyo.base.common.dataobject.ProfitDetail;
+import com.yoyo.base.common.dataobject.SystemParam;
 import com.yoyo.base.common.mapper.ProfitDetailMapper;
+import com.yoyo.base.common.mapper.SystemParamMapper;
 import com.yoyo.base.service.dao.IProfitDetailDao;
+import com.yoyo.base.service.dao.ISystemParamDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Slf4j
 @Component
-public class ProfitDetailDao implements IProfitDetailDao {
+public class SystemParamDao implements ISystemParamDao {
 
     @Autowired
-    private ProfitDetailMapper profitDetailMapper;
-
-   /* public List<com.yoyo.base.common.dataobject.ProfitDetail> getProductsByActivityId(String activityId) {
-        EntityWrapper<com.yoyo.base.common.dataobject.ProfitDetail> wrapper = new EntityWrapper<com.yoyo.base.common.dataobject.ProfitDetail>();
-        wrapper.eq("activity_id",activityId);
-        activityMappingMapper.selectList(wrapper);
-        return activityMappingMapper.selectList(wrapper);
-    }*/
+    private SystemParamMapper systemParamMapper;
 
 
     @Override
-    public Integer setProfitDetail(ProfitDetail profitDetail) {
+    public Integer updateSystemParam(SystemParam systemParam) {
+        return systemParamMapper.updateById(systemParam);
+    }
 
-        return profitDetailMapper.insert(profitDetail);
+    @Override
+    public SystemParam getSystemParam(String paramId) {
+        SystemParam where = new SystemParam();
+        where.setParamId(paramId);
+        return systemParamMapper.selectOne(where);
     }
 }

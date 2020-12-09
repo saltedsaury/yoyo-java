@@ -1,4 +1,4 @@
-package cn.yoyo.base.web.resp;
+package com.yoyo.base.web.resp;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

@@ -1,8 +1,8 @@
 package com.yoyo.base.service.service.impl;
 
-import com.yoyo.base.common.dataobject.ProfitDetail;
-import com.yoyo.base.service.dao.IProfitDetailDao;
-import com.yoyo.base.service.service.IProfitDetailService;
+import com.yoyo.base.common.dataobject.Relationship;
+import com.yoyo.base.service.dao.IRelationshipDao;
+import com.yoyo.base.service.service.IRelationshipService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,17 +11,14 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class ProfitDetailService implements IProfitDetailService {
+public class RelationshipService implements IRelationshipService {
 
     @Autowired
-    private IProfitDetailDao profitDetailDao;
+    private IRelationshipDao relationshipDao;
 
     @Override
-    public boolean setProfitDetail(ProfitDetail profitDetail) {
-        if (profitDetailDao.setProfitDetail(profitDetail)>0){
-            return true;
-        }
-        return false;
+    public List<Relationship> getRelationshipList(Relationship relationship) {
+        return relationshipDao.getRelationshipList(relationship);
     }
 
 }

@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common.util;
+package com.yoyo.base.common.util;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;

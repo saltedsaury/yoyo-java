@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common.util;
+package com.yoyo.base.common.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

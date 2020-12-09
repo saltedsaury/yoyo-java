@@ -2,11 +2,13 @@ package com.yoyo.base.service.service;
 
 import com.yoyo.base.common.dataobject.ProfitDetail;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
-public interface IActivityMappingService {
+public interface IProfitDetailService {
 
-    boolean setActivityMapping(String activityId, String productId);
+    boolean setProfitDetail(ProfitDetail profitDetail);
 
-    List<ProfitDetail> getProductsByActivityId(String activityId);
+    BigDecimal sumProfit(String channelId, Date start, Date end);
 }

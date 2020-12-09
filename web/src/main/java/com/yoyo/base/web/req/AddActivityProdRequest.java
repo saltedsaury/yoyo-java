@@ -3,13 +3,20 @@ package com.yoyo.base.web.req;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @ToString
-public class BatchExecuteRequest {
+public class AddActivityProdRequest {
 
     /**
-     * 任务编号
+     * 活动id
      */
-    private String channelId;
+    private String activityId;
 
+
+    /**
+     * 商品编号列表
+     */
+    private List<String> products;
 }

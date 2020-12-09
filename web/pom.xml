@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<parent>
-		<groupId>cn.idachain.finance.batch</groupId>
-		<artifactId>batch-platform-root</artifactId>
+		<groupId>com.yoyo.base</groupId>
+		<artifactId>yoyo-root</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>batch-web</artifactId>
-	<version>${batch.version}</version>
+	<artifactId>yoyo-web</artifactId>
+	<version>${yoyo.version}</version>
     <build>
-		<finalName>wallet-batch</finalName>
+		<finalName>yoyo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -27,7 +27,7 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<move file="${basedir}/target/wallet-batch.jar" tofile="../wallet-batch.jar"/>
+								<move file="${basedir}/target/yoyo.jar" tofile="../yoyo.jar"/>
 							</tasks>
 						</configuration>
 						<goals>
@@ -38,8 +38,8 @@
 			</plugin>
         </plugins>
     </build>
-    <name>batch-web</name>
-	<description>batch application</description>
+    <name>yoyo-web</name>
+	<description>yoyo application</description>
 	<packaging>jar</packaging>
 
 	<dependencies>
@@ -71,8 +71,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>cn.idachain.finance.batch</groupId>
-			<artifactId>batch-task</artifactId>
+			<groupId>com.yoyo.base</groupId>
+			<artifactId>yoyo-task</artifactId>
 		</dependency>
 
 		<!--<dependency>

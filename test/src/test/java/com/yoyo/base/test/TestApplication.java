@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.test;
+package com.yoyo.base.test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;

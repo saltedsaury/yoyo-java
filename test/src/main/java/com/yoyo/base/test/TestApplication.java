@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.test;
+package com.yoyo.base.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -2,8 +2,11 @@ package com.yoyo.base.service.dao.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.yoyo.base.common.dataobject.ActivityProduct;
+import com.yoyo.base.common.dataobject.Product;
 import com.yoyo.base.common.mapper.ActivityProductMapper;
+import com.yoyo.base.common.mapper.ProductMapper;
 import com.yoyo.base.service.dao.IActivityProductDao;
+import com.yoyo.base.service.dao.IProductDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,30 +16,10 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class ActivityProductDao implements IActivityProductDao {
+public class ProductDao implements IProductDao {
 
     @Autowired
-    private ActivityProductMapper activityProductMapper;
-
-    @Override
-    public List<ActivityProduct> getProductList(String activityId) {
-        EntityWrapper<ActivityProduct> wrapper = new EntityWrapper<ActivityProduct>();
-        wrapper.eq("activity_id",activityId);
-        return activityProductMapper.selectList(wrapper);
-    }
+    private ProductMapper productMapper;
 
 
-    @Override
-    @Transactional
-    public void setActivityProduct(String activityId, List<String> products) {
-        EntityWrapper<ActivityProduct> wrapper = new EntityWrapper<ActivityProduct>();
-        wrapper.eq("activity_id",activityId);
-        activityProductMapper.delete(wrapper);
-        for (String itemId : products) {
-            ActivityProduct item = new ActivityProduct();
-            item.setActivityId(activityId);
-            item.setItemId(itemId);
-            activityProductMapper.insert(item);
-        }
-    }
 }

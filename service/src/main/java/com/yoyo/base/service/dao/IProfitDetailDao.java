@@ -2,11 +2,13 @@ package com.yoyo.base.service.dao;
 
 import com.yoyo.base.common.dataobject.ProfitDetail;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
-public interface IActivityMappingDao {
-    List<ProfitDetail> getProductsByActivityId(String activityId);
+public interface IProfitDetailDao {
 
-    Integer setActivityMapping(String activityId, String productId);
+    Integer setProfitDetail(ProfitDetail profitDetail);
 
+    BigDecimal sumProfit(String channelId, Date start, Date end);
 }

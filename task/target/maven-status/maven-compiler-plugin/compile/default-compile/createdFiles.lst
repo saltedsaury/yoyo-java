@@ -1,12 +1,3 @@
-cn/idachain/finance/batch/task/task/ProductForSale.class
-cn/idachain/finance/batch/task/task/InsuranceOverDue.class
-cn/idachain/finance/batch/task/TaskApplication.class
-cn/idachain/finance/batch/task/task/BatchTask$1.class
-cn/idachain/finance/batch/task/task/BatchTask$BatchThread.class
-cn/idachain/finance/batch/task/task/CompensateConfirm.class
-cn/idachain/finance/batch/task/task/DailyStartTask.class
-cn/idachain/finance/batch/task/task/InsuranceOverDue$1.class
-cn/idachain/finance/batch/task/task/TransferConfirm.class
-cn/idachain/finance/batch/task/task/BatchTask.class
-cn/idachain/finance/batch/task/task/DailyStartTask$BatchThread.class
-cn/idachain/finance/batch/task/task/DailyStartTask$1.class
+com/yoyo/base/task/task/Statistics.class
+com/yoyo/base/task/TaskApplication.class
+com/yoyo/base/task/task/GetProductDetail.class

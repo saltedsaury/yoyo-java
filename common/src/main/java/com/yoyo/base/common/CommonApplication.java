@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common;
+package com.yoyo.base.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

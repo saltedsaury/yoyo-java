@@ -1,5 +1,7 @@
-package cn.yoyo.base.web;
+package com.yoyo.base.web;
 
+import com.youzan.cloud.open.sdk.core.client.core.DefaultYZClient;
+import com.youzan.cloud.open.sdk.core.client.core.YouZanClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -31,7 +33,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Slf4j
 @SpringBootApplication
-@ComponentScan(basePackages = {"cn.idachain.finance.batch"})
+@ComponentScan(basePackages = {"com.yoyo.base"})
 @EnableTransactionManagement
 @ServletComponentScan
 public class YoyoApplication extends WebMvcConfigurerAdapter implements InitializingBean {
@@ -77,5 +79,10 @@ public class YoyoApplication extends WebMvcConfigurerAdapter implements Initiali
                 .setDefaultRequestConfig(requestConfig)
                 .setConnectionManager(connectionManager)
                 .build();
+    }
+
+    @Bean
+    public DefaultYZClient youZanClient() {
+        return new DefaultYZClient();
     }
 }

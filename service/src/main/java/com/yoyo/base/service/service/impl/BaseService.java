@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.service.service.impl;
+package com.yoyo.base.service.service.impl;
 
 import org.springframework.stereotype.Service;
 

@@ -1,14 +1,14 @@
 package com.yoyo.base.service.dao;
 
-import com.yoyo.base.common.dataobject.DailyProfit;
-import com.yoyo.base.common.dataobject.ProfitDetail;
+import com.yoyo.base.common.dataobject.ActivityProduct;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
-public interface IDailyProfitDao {
+public interface IActivityProductDao {
 
-    List<DailyProfit> getDailyProfitList(String channelId, Date start, Date end);
+    List<ActivityProduct> getProductList(String activityId);
 
-    Integer setDailyProfit(DailyProfit dailyProfit);
+    @Transactional
+    void setActivityProduct(String activityId, List<String> products);
 }

@@ -1,7 +1,6 @@
-package cn.idachain.finance.batch.common.util;
+package com.yoyo.base.common.util;
 
 import com.alibaba.fastjson.JSON;
-import org.apache.commons.beanutils.BeanMap;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -142,47 +141,6 @@ public class SignUtil {
 //    public static String getResponseSignData(RespData response) {
 //        return getSignData(response, responseFieldsToSign);
 //    }
-
-    /***
-     * 生产要签名的json串
-     * @param clazz
-     * @param <T>
-     * @return
-     */
-    public static <T> String getSignData(Object clazz, String[] fieldToSign) {
-        //todo 将属性字段安装字母排序，链接成字符串
-
-        BeanMap clazzMap = new BeanMap(clazz);
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < fieldToSign.length; i++) {
-            // 如果这个字段为空，那么跳过签名
-            if (null == clazzMap.get(fieldToSign[i])) {
-                continue;
-            }
-            sb.append(JSON.toJSONString(fieldToSign[i]));
-            sb.append(JSON.toJSONString(clazzMap.get(fieldToSign[i])));
-        }
-        String dataStrToSign = sb.toString();
-        LOGGER.info(clazz.toString() + " the data need to sign:" + dataStrToSign);
-        return dataStrToSign;
-    }
-
-
-    public static boolean checkResponseSign(String signature, Object content, String pubKey) {
-        //todo 验签
-
-
-        String signData = SignUtil.getSignData(content, responseFieldsToSign);
-        LOGGER.info("SignData:" + signData + "\nSignature:" + signature);
-        try {
-            return checkSign(signData, pubKey, signature);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        //解密
-    }
 
     public static void main(String[] args) throws Exception {
 //        Map map = initKey();

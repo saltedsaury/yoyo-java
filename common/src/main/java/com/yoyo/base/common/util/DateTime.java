@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common.util;
+package com.yoyo.base.common.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

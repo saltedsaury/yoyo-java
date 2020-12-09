@@ -1,8 +1,11 @@
 package com.yoyo.base.service.dao;
 
 import com.yoyo.base.common.dataobject.ProfitDetail;
+import com.yoyo.base.common.dataobject.Relationship;
 
-public interface RelationshipDao {
+import java.util.List;
 
-    Integer setProfitDetail(ProfitDetail profitDetail);
+public interface IRelationshipDao {
+
+    List<Relationship> getRelationshipList(Relationship relationship);
 }

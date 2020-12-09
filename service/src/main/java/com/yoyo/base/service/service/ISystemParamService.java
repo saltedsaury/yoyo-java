@@ -1,10 +1,11 @@
 package com.yoyo.base.service.service;
 
 import com.yoyo.base.common.dataobject.ProfitDetail;
+import com.yoyo.base.common.dataobject.SystemParam;
 
-import java.util.List;
+public interface ISystemParamService {
 
-public interface IProfitDetailService {
+    boolean updateSystemParam(SystemParam systemParam);
 
-    boolean setProfitDetail(ProfitDetail profitDetail);
+    SystemParam getSystemParam(String paramId);
 }

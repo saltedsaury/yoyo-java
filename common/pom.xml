@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cn.idachain.finance.batch</groupId>
-        <artifactId>batch-platform-root</artifactId>
+        <groupId>com.yoyo.base</groupId>
+        <artifactId>yoyo-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>batch-common</artifactId>
-    <version>${batch.version}</version>
-    <name>batch common</name>
+    <artifactId>yoyo-common</artifactId>
+    <version>${yoyo.version}</version>
+    <name>yoyo common</name>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -48,26 +48,7 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <!-- commons -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
+
         <!--guava-->
         <dependency>
             <groupId>com.google.guava</groupId>

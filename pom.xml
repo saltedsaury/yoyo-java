@@ -7,11 +7,11 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.7.RELEASE</version>
 	</parent>
-	<groupId>cn.idachain.finance.batch</groupId>
-	<artifactId>batch-platform-root</artifactId>
+	<groupId>com.yoyo.base</groupId>
+	<artifactId>yoyo-root</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>batch Root</name>
-	<description>batch application</description>
+	<name>yoyo Root</name>
+	<description>yoyo application</description>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -33,11 +33,6 @@
 		<hibernate.validator.version>5.0.1.Final</hibernate.validator.version>
 		<lombok.version>1.16.18</lombok.version>
 		<swagger2.version>2.7.0</swagger2.version>
-		<commons-lang3>3.5</commons-lang3>
-		<commons-collections4>4.1</commons-collections4>
-		<commons-io>2.5</commons-io>
-		<commons-beanutils>1.9.3</commons-beanutils>
-		<commons-beanutils-core>1.8.3</commons-beanutils-core>
 		<guava.version>23.0</guava.version>
 		<fastjson.version>1.2.38</fastjson.version>
 		<jodd.version>3.6.1</jodd.version>
@@ -45,7 +40,7 @@
 		<aspectj.version>1.7.4</aspectj.version>
 		<httpclient.version>4.5.5</httpclient.version>
 
-		<batch.version>0.0.1-SNAPSHOT</batch.version>
+		<yoyo.version>0.0.1-SNAPSHOT</yoyo.version>
 	</properties>
 
 	<!--子模块不用再额外添加这些依赖-->
@@ -94,31 +89,7 @@
 	<dependencyManagement>
 		<dependencies>
 			<!-- basic -->
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-collections4</artifactId>
-				<version>${commons-collections4}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>${commons-lang3}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-beanutils</groupId>
-				<artifactId>commons-beanutils</artifactId>
-				<version>${commons-beanutils}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-beanutils</groupId>
-				<artifactId>commons-beanutils-core</artifactId>
-				<version>${commons-beanutils-core}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>${commons-io}</version>
-			</dependency>
+
 			<!--guava-->
 			<dependency>
 				<groupId>com.google.guava</groupId>
@@ -270,28 +241,45 @@
 
 			<!--self-->
 			<dependency>
-				<groupId>cn.idachain.finance.batch</groupId>
-				<artifactId>batch-web</artifactId>
-				<version>${batch.version}</version>
+				<groupId>com.yoyo.base</groupId>
+				<artifactId>yoyo-web</artifactId>
+				<version>${yoyo.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>cn.idachain.finance.batch</groupId>
-				<artifactId>batch-task</artifactId>
-				<version>${batch.version}</version>
+				<groupId>com.yoyo.base</groupId>
+				<artifactId>yoyo-task</artifactId>
+				<version>${yoyo.version}</version>
 			</dependency>
 
 			<dependency>
-				<groupId>cn.idachain.finance.batch</groupId>
-				<artifactId>batch-service</artifactId>
-				<version>${batch.version}</version>
+				<groupId>com.yoyo.base</groupId>
+				<artifactId>yoyo-service</artifactId>
+				<version>${yoyo.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>cn.idachain.finance.batch</groupId>
-				<artifactId>batch-common</artifactId>
-				<version>${batch.version}</version>
-			</dependency> 
+				<groupId>com.yoyo.base</groupId>
+				<artifactId>yoyo-common</artifactId>
+				<version>${yoyo.version}</version>
+			</dependency>
+
+			<!--youzan -->
+
 		</dependencies>
 	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>nexus-aliyun</id>
+			<name>nexus-aliyun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>

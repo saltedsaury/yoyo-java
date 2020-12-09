@@ -8,14 +8,12 @@ import java.util.Date;
 
 @ToString
 @Data
-public class ProfitDetail extends BaseDO {
-
-    private String tid;
+public class Relationship extends BaseDO {
 
     private String channelId;
 
-    private BigDecimal profit;
+    private String parentId;
 
-    private Date orderCreated;
+    private String mobileNum;
 
 }

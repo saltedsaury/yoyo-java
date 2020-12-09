@@ -1,4 +1,4 @@
-package io.dplatform.relationship.service.impl;
+package com.yoyo.base.service.external;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,16 +7,14 @@ import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
-/**
- * Created by liuhailin on 2019/1/30.
- */
 @Slf4j
 @Component
 public class BizRestTemplate {
 
-    @Value("${profit.server}")
+    @Value("${yz.server}")
     private String server;
 
     private static final String SLASH = "/";

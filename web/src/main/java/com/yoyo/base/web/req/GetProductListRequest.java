@@ -5,11 +5,11 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class BatchExecuteRequest {
+public class GetProductListRequest {
 
     /**
-     * 任务编号
+     * 活动id
      */
-    private String channelId;
+    private String activityId;
 
 }

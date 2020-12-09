@@ -1,8 +1,8 @@
 package com.yoyo.base.common.mapper;
 
 import com.yoyo.base.common.base.SuperMapper;
-import com.yoyo.base.common.dataobject.ProfitDetail;
+import com.yoyo.base.common.dataobject.Relationship;
 
-public interface ProfitDetailMapper extends SuperMapper<com.yoyo.base.common.dataobject.ProfitDetail> {
+public interface RelationshipMapper extends SuperMapper<Relationship> {
 
 }

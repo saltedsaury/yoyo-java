@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common.exception;
+package com.yoyo.base.common.exception;
 
 public enum BizExceptionEnum implements ServiceExceptionEnum {
     //参数异常

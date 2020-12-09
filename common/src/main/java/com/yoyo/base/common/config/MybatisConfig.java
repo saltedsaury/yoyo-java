@@ -1,6 +1,6 @@
-package cn.idachain.finance.batch.common.config;
+package com.yoyo.base.common.config;
 
-import cn.idachain.finance.batch.common.util.BlankUtil;
+import com.yoyo.base.common.util.BlankUtil;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.entity.GlobalConfiguration;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
@@ -28,7 +28,7 @@ import java.util.List;
  */
 @Slf4j
 @Configuration
-@MapperScan(basePackages={"cn.idachain.finance.batch.common.mapper"})
+@MapperScan(basePackages={"com.yoyo.base.common.mapper"})
 public class MybatisConfig {
 
     //    mybatisPlus全局配置
@@ -78,7 +78,7 @@ public class MybatisConfig {
                                                       @Qualifier(value = "dataSource") DruidDataSource dataSource) throws Exception {
         log.info("初始化SqlSessionFactory");
         String mapperLocations = "classpath:/META-INF/sqlmap/*.xml";
-        String typeAliasesPackage = "cn.idachain.finance.batch.common.dataobject.**";
+        String typeAliasesPackage = "com.yoyo.base.common.dataobject.**";
         String configLocation = "classpath:/META-INF/mybatis/mybatis-sqlconfig.xml";
         List<Interceptor> interceptors = new ArrayList<Interceptor>();
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();

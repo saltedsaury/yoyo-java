@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common.model.page;
+package com.yoyo.base.common.model.page;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import lombok.AllArgsConstructor;

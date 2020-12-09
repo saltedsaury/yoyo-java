@@ -1,7 +1,3 @@
-/Users/sue/Projects/batch/task/src/main/java/cn/idachain/finance/batch/task/task/DailyStartTask.java
-/Users/sue/Projects/batch/task/src/main/java/cn/idachain/finance/batch/task/task/ProductForSale.java
-/Users/sue/Projects/batch/task/src/main/java/cn/idachain/finance/batch/task/task/BatchTask.java
-/Users/sue/Projects/batch/task/src/main/java/cn/idachain/finance/batch/task/task/TransferConfirm.java
-/Users/sue/Projects/batch/task/src/main/java/cn/idachain/finance/batch/task/task/InsuranceOverDue.java
-/Users/sue/Projects/batch/task/src/main/java/cn/idachain/finance/batch/task/task/CompensateConfirm.java
-/Users/sue/Projects/batch/task/src/main/java/cn/idachain/finance/batch/task/TaskApplication.java
+/Users/sue/Projects/yoyo/task/src/main/java/com/yoyo/base/task/task/GetProductDetail.java
+/Users/sue/Projects/yoyo/task/src/main/java/com/yoyo/base/task/task/Statistics.java
+/Users/sue/Projects/yoyo/task/src/main/java/com/yoyo/base/task/TaskApplication.java

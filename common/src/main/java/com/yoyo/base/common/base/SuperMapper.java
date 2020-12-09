@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common.base;
+package com.yoyo.base.common.base;
 
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;

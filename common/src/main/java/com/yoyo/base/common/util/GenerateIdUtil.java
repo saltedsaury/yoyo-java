@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common.util;
+package com.yoyo.base.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common.config;
+package com.yoyo.base.common.config;
 
 import lombok.Data;
 

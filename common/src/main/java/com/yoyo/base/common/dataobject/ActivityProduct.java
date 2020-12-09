@@ -7,10 +7,12 @@ import java.math.BigDecimal;
 
 @ToString
 @Data
-public class ActivityProdcut extends BaseDO {
+public class ActivityProduct extends BaseDO {
 
     private String activityId;
 
     private String itemId;
+
+    private String voucherUrl;
 
 }

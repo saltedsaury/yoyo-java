@@ -1,16 +1,22 @@
-package com.yoyo.base.common.dataobject;
+package com.yoyo.base.common.model.VO;
 
 import lombok.Data;
 import lombok.ToString;
 
-import java.math.BigDecimal;
-
 @ToString
 @Data
-public class ActivityProduct extends BaseDO {
+public class ProductDetail {
 
-    private String activityId;
+    private String productId;
 
-    private String itemId;
+    private String productName;
+
+    private String price;
+
+    private String picUrl;
+
+    private String shareUrl;
+
+    private String voucherUrl;
 
 }

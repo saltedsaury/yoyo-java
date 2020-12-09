@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common.config;
+package com.yoyo.base.common.config;
 
 import com.alibaba.druid.filter.Filter;
 import com.alibaba.druid.filter.logging.Slf4jLogFilter;

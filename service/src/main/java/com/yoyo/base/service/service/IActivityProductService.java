@@ -1,14 +1,15 @@
 package com.yoyo.base.service.service;
 
-import com.yoyo.base.common.dataobject.DailyProfit;
-import com.yoyo.base.common.dataobject.ProfitDetail;
+import com.baomidou.mybatisplus.service.IService;
+import com.youzan.cloud.open.sdk.common.exception.SDKException;
+import com.yoyo.base.common.dataobject.ActivityProduct;
+import com.yoyo.base.common.model.VO.ProductDetail;
 
-import java.util.Date;
 import java.util.List;
 
-public interface IDailyProfitService {
+public interface IActivityProductService extends IService<ActivityProduct> {
 
-    boolean setDailyProfit(DailyProfit dailyProfit);
+    void setActivityProduct(String activityId, List<String> products);
 
-    List<DailyProfit> getDailyProfit(String channelId, Date start, Date end);
+    List<ProductDetail> getProductList(String activityId) throws SDKException;
 }

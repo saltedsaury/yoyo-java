@@ -1,4 +1,4 @@
-package cn.yoyo.base.web.req;
+package com.yoyo.base.web.req;
 
 import lombok.Data;
 import lombok.ToString;
@@ -10,20 +10,6 @@ public class BatchExecuteRequest {
     /**
      * 任务编号
      */
-    private String batchCode;
+    private String channelId;
 
-    /**
-     * 任务类型
-     */
-    private String batchType;
-
-    /**
-     * 任务编号
-     */
-    private String taskName;
-
-    /**
-     * 任务类型
-     */
-    private String date;
 }

@@ -1,9 +1,8 @@
 package com.yoyo.base.common.mapper;
 
 import com.yoyo.base.common.base.SuperMapper;
-import com.yoyo.base.common.dataobject.DailyProfit;
-import com.yoyo.base.common.dataobject.Relationship;
+import com.yoyo.base.common.dataobject.ActivityProduct;
 
-public interface DailyProfitMapper extends SuperMapper<DailyProfit> {
+public interface ActivityProductMapper extends SuperMapper<ActivityProduct> {
 
 }

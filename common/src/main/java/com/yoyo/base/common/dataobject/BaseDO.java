@@ -1,4 +1,4 @@
-package cn.idachain.finance.batch.common.dataobject;
+package com.yoyo.base.common.dataobject;
 
 import lombok.Getter;
 import lombok.Setter;
