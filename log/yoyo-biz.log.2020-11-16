@@ -1,0 +1,141 @@
+18:13:08.830, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarting:48 - Starting YoyoApplication on sueMacBookPro.local with PID 26604 (/Users/sue/Projects/yoyo/web/target/classes started by sue in /Users/sue/Projects/yoyo) 
+18:13:08.831, [,] [main] DEBUG [] com.yoyo.base.web.YoyoApplication logStarting:51 - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE 
+18:13:08.833, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStartupProfileInfo:593 - No active profile set, falling back to default profiles: default 
+18:13:12.466, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig globalConfig:45 - 初始化GlobalConfiguration 
+18:13:12.556, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig initDataSource:72 - 初始化DruidDataSource 
+18:13:13.588, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig sqlSessionFactory:79 - 初始化SqlSessionFactory 
+18:13:15.339, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig transactionManager:112 - 初始化DataSourceTransactionManager 
+18:13:19.152, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarted:57 - Started YoyoApplication in 10.692 seconds (JVM running for 11.671) 
+18:14:00.017, [f3fd2e379418933a,f3fd2e379418933a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+18:14:20.271, [f3fd2e379418933a,f3fd2e379418933a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 1,data size: 9 
+18:14:50.233, [f3fd2e379418933a,f3fd2e379418933a] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:69 - insurance over due task failed. 
+18:16:05.680, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarting:48 - Starting YoyoApplication on sueMacBookPro.local with PID 26642 (/Users/sue/Projects/yoyo/web/target/classes started by sue in /Users/sue/Projects/yoyo) 
+18:16:05.681, [,] [main] DEBUG [] com.yoyo.base.web.YoyoApplication logStarting:51 - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE 
+18:16:05.683, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStartupProfileInfo:593 - No active profile set, falling back to default profiles: default 
+18:16:10.892, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig globalConfig:45 - 初始化GlobalConfiguration 
+18:16:10.988, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig initDataSource:72 - 初始化DruidDataSource 
+18:16:12.247, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig sqlSessionFactory:79 - 初始化SqlSessionFactory 
+18:16:14.139, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig transactionManager:112 - 初始化DataSourceTransactionManager 
+18:16:19.420, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarted:57 - Started YoyoApplication in 14.53 seconds (JVM running for 16.167) 
+18:17:00.018, [897963570ad65cd0,897963570ad65cd0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+18:17:00.608, [897963570ad65cd0,897963570ad65cd0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 1,data size: 9 
+18:17:00.828, [897963570ad65cd0,897963570ad65cd0] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:69 - insurance over due task failed. 
+18:18:00.006, [b86382cec6ae35e2,b86382cec6ae35e2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+18:18:00.224, [b86382cec6ae35e2,b86382cec6ae35e2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 1,data size: 9 
+18:18:00.312, [b86382cec6ae35e2,b86382cec6ae35e2] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:69 - insurance over due task failed. 
+18:41:48.602, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarting:48 - Starting YoyoApplication on sueMacBookPro.local with PID 27807 (/Users/sue/Projects/yoyo/web/target/classes started by sue in /Users/sue/Projects/yoyo) 
+18:41:48.604, [,] [main] DEBUG [] com.yoyo.base.web.YoyoApplication logStarting:51 - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE 
+18:41:48.607, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStartupProfileInfo:593 - No active profile set, falling back to default profiles: default 
+18:41:56.111, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig globalConfig:45 - 初始化GlobalConfiguration 
+18:41:56.298, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig initDataSource:72 - 初始化DruidDataSource 
+18:41:58.360, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig sqlSessionFactory:79 - 初始化SqlSessionFactory 
+18:42:01.503, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig transactionManager:112 - 初始化DataSourceTransactionManager 
+18:42:10.090, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarted:57 - Started YoyoApplication in 22.126 seconds (JVM running for 25.759) 
+18:43:00.026, [d774f6de90c00a54,d774f6de90c00a54] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+18:43:09.301, [d774f6de90c00a54,d774f6de90c00a54] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 1,data size: 9 
+18:43:29.899, [d774f6de90c00a54,d774f6de90c00a54] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:69 - insurance over due task failed. 
+18:44:00.005, [24ff9fd640079ce3,24ff9fd640079ce3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+18:44:07.945, [24ff9fd640079ce3,24ff9fd640079ce3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 1,data size: 9 
+18:45:17.854, [24ff9fd640079ce3,24ff9fd640079ce3] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:69 - insurance over due task failed. 
+18:46:00.004, [721e5ee72af5b4f6,721e5ee72af5b4f6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+18:46:06.093, [721e5ee72af5b4f6,721e5ee72af5b4f6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 1,data size: 9 
+18:46:30.686, [721e5ee72af5b4f6,721e5ee72af5b4f6] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:69 - insurance over due task failed. 
+18:47:00.012, [e112a419fcbcf56a,e112a419fcbcf56a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+18:47:03.510, [e112a419fcbcf56a,e112a419fcbcf56a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 1,data size: 9 
+18:47:32.678, [e112a419fcbcf56a,e112a419fcbcf56a] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:69 - insurance over due task failed. 
+18:48:00.006, [bfd7a6644e8c0272,bfd7a6644e8c0272] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+18:48:48.957, [bfd7a6644e8c0272,bfd7a6644e8c0272] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 1,data size: 9 
+18:48:53.056, [bfd7a6644e8c0272,bfd7a6644e8c0272] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:69 - insurance over due task failed. 
+18:49:00.002, [d459fdea8f36d86a,d459fdea8f36d86a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+18:49:01.718, [d459fdea8f36d86a,d459fdea8f36d86a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 1,data size: 9 
+18:49:08.328, [d459fdea8f36d86a,d459fdea8f36d86a] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:69 - insurance over due task failed. 
+18:49:49.656, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarting:48 - Starting YoyoApplication on sueMacBookPro.local with PID 27832 (/Users/sue/Projects/yoyo/web/target/classes started by sue in /Users/sue/Projects/yoyo) 
+18:49:49.656, [,] [main] DEBUG [] com.yoyo.base.web.YoyoApplication logStarting:51 - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE 
+18:49:49.657, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStartupProfileInfo:593 - No active profile set, falling back to default profiles: default 
+18:49:53.139, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig globalConfig:45 - 初始化GlobalConfiguration 
+18:49:53.222, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig initDataSource:72 - 初始化DruidDataSource 
+18:49:54.100, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig sqlSessionFactory:79 - 初始化SqlSessionFactory 
+18:49:55.275, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig transactionManager:112 - 初始化DataSourceTransactionManager 
+18:49:58.596, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarted:57 - Started YoyoApplication in 9.284 seconds (JVM running for 10.375) 
+18:50:00.015, [f7077cd3e516d713,f7077cd3e516d713] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+18:50:10.523, [f7077cd3e516d713,f7077cd3e516d713] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 1,data size: 9 
+18:50:40.635, [f7077cd3e516d713,f7077cd3e516d713] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:83 - deal product for page 2,data size: 9 
+18:50:49.232, [f7077cd3e516d713,f7077cd3e516d713] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:73 - insurance over due task end. 
+18:52:00.010, [29405e46317eb183,29405e46317eb183] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:46 - insurance over due task begin. 
+19:01:25.673, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarting:48 - Starting YoyoApplication on sueMacBookPro.local with PID 27881 (/Users/sue/Projects/yoyo/web/target/classes started by sue in /Users/sue/Projects/yoyo) 
+19:01:25.673, [,] [main] DEBUG [] com.yoyo.base.web.YoyoApplication logStarting:51 - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE 
+19:01:25.675, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStartupProfileInfo:593 - No active profile set, falling back to default profiles: default 
+19:01:28.872, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig globalConfig:45 - 初始化GlobalConfiguration 
+19:01:28.946, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig initDataSource:72 - 初始化DruidDataSource 
+19:01:29.819, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig sqlSessionFactory:79 - 初始化SqlSessionFactory 
+19:01:30.988, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig transactionManager:112 - 初始化DataSourceTransactionManager 
+19:01:34.556, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarted:57 - Started YoyoApplication in 9.268 seconds (JVM running for 10.232) 
+19:02:00.020, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+19:02:03.397, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+19:02:13.631, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+19:02:40.935, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+19:02:44.887, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+19:02:48.039, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+19:02:52.344, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+19:02:55.483, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+19:02:59.541, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+19:03:03.271, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+19:03:03.271, [1254dc5822c50890,1254dc5822c50890] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+19:04:00.005, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+19:04:07.591, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+19:04:25.183, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+19:04:27.416, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+19:04:35.467, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+19:04:46.852, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+19:04:54.648, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+19:04:59.841, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+19:05:06.099, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+19:05:09.476, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+19:05:09.477, [29678c097d0eabfc,29678c097d0eabfc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+19:06:00.008, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+19:06:07.760, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+19:06:12.787, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+19:06:15.017, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+19:06:18.744, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+19:06:22.057, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+19:06:26.393, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+19:06:29.729, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+19:06:33.739, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+19:06:38.726, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+19:06:38.727, [779d610431ba62f5,779d610431ba62f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+19:07:00.006, [a6a47918d4d427a2,a6a47918d4d427a2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+19:07:16.688, [a6a47918d4d427a2,a6a47918d4d427a2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+19:12:30.638, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarting:48 - Starting YoyoApplication on sueMacBookPro.local with PID 27916 (/Users/sue/Projects/yoyo/web/target/classes started by sue in /Users/sue/Projects/yoyo) 
+19:12:30.639, [,] [main] DEBUG [] com.yoyo.base.web.YoyoApplication logStarting:51 - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE 
+19:12:30.640, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStartupProfileInfo:593 - No active profile set, falling back to default profiles: default 
+19:12:33.812, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig globalConfig:45 - 初始化GlobalConfiguration 
+19:12:33.884, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig initDataSource:72 - 初始化DruidDataSource 
+19:12:34.727, [,] [main] INFO  [] com.yoyo.base.common.config.MybatisConfig sqlSessionFactory:79 - 初始化SqlSessionFactory 
+19:12:35.888, [,] [main] INFO  [] com.yoyo.base.common.config.DataSourceConfig transactionManager:112 - 初始化DataSourceTransactionManager 
+19:12:39.339, [,] [main] INFO  [] com.yoyo.base.web.YoyoApplication logStarted:57 - Started YoyoApplication in 9.058 seconds (JVM running for 10.175) 
+19:13:00.021, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+19:14:03.604, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+19:14:06.496, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+19:14:08.362, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+19:14:10.382, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+19:14:12.934, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+19:14:30.392, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+19:14:34.944, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+19:14:37.531, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+19:14:39.566, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+19:14:39.567, [0b6f69e39dcc07b1,0b6f69e39dcc07b1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+19:15:00.004, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+19:15:02.662, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+19:15:16.024, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+19:15:16.962, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+19:15:17.846, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+19:15:18.660, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+19:15:19.617, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+19:15:20.713, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+19:15:24.408, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+19:15:25.672, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+19:15:25.672, [2470efff2ea9ef50,2470efff2ea9ef50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+19:16:00.007, [a528c2cfbe8a92cf,a528c2cfbe8a92cf] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+19:38:10.509, [a528c2cfbe8a92cf,a528c2cfbe8a92cf] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+19:38:12.688, [a528c2cfbe8a92cf,a528c2cfbe8a92cf] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+19:38:13.792, [a528c2cfbe8a92cf,a528c2cfbe8a92cf] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 

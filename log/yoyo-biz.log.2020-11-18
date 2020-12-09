@@ -1,0 +1,789 @@
+00:00:00.015, [c8a8c6f6726d9165,c8a8c6f6726d9165] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:01:00.003, [80f8cd097c6bc7d9,80f8cd097c6bc7d9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:02:00.007, [eba04687e383ffe8,eba04687e383ffe8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:03:00.005, [67295a48a8aa75bd,67295a48a8aa75bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:04:00.007, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:04:00.240, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:04:02.676, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:04:05.122, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:04:07.564, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:04:10.005, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:04:12.467, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:04:14.973, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:04:17.669, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:04:18.431, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:04:18.431, [9e68c44b6fe34187,9e68c44b6fe34187] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:05:00.003, [649b7500013b4fb1,649b7500013b4fb1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:06:00.003, [2bc1facfdce475fa,2bc1facfdce475fa] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:07:00.009, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:07:00.239, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:07:02.681, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:07:05.128, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:07:07.593, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:07:10.030, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:07:12.500, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:07:14.997, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:07:17.437, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:07:18.198, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:07:18.198, [6e99c3b33eb90130,6e99c3b33eb90130] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:08:00.004, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:08:00.198, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:08:02.482, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:08:04.772, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:08:07.050, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:08:09.354, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:08:11.635, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:08:13.918, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:08:16.207, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:08:16.916, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:08:16.916, [ce24fb061fc6309a,ce24fb061fc6309a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:09:00.005, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:09:00.192, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:09:02.491, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:09:04.769, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:09:07.076, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:09:09.345, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:09:11.630, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:09:13.982, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:09:16.255, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:09:16.970, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:09:16.970, [b32b081272d6ef56,b32b081272d6ef56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:10:00.003, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:10:00.192, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:10:02.528, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:10:04.793, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:10:07.114, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:10:09.394, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:10:11.664, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:10:13.935, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:10:16.212, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:10:16.922, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:10:16.922, [da598bdd16638934,da598bdd16638934] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:11:00.004, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:11:00.182, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:11:02.457, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:11:04.736, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:11:07.061, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:11:09.340, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:11:11.638, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:11:14.033, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:11:16.302, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:11:17.006, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:11:17.006, [1392c137519f67d6,1392c137519f67d6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:12:00.008, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:12:00.180, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:12:02.483, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:12:04.761, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:12:07.037, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:12:09.427, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:12:11.707, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:12:14.056, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:12:16.336, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:12:17.670, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:12:17.671, [ae0f602b2b0ae61f,ae0f602b2b0ae61f] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:13:00.007, [82c32e2f9ff14b31,82c32e2f9ff14b31] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:14:00.011, [a23a46d2f22ed390,a23a46d2f22ed390] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:15:00.002, [648e74b998f1a624,648e74b998f1a624] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:16:00.009, [5b3eb923517c7c2c,5b3eb923517c7c2c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:17:00.011, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:17:00.209, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:17:02.507, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:17:04.777, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:17:07.058, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:17:09.351, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:17:11.666, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:17:13.958, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:17:16.240, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:17:16.960, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:17:16.961, [e2fcf04f1e78ee61,e2fcf04f1e78ee61] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:18:00.010, [99ee6b7df48896de,99ee6b7df48896de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:19:00.011, [110aed6294cad682,110aed6294cad682] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:20:00.010, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:20:00.532, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:20:02.825, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:20:05.132, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:20:07.417, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:20:09.698, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:20:11.973, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:20:14.253, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:20:16.552, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:20:17.285, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:20:17.285, [ee2ac439a4fcddea,ee2ac439a4fcddea] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:21:00.011, [6d7054e88b62ed3a,6d7054e88b62ed3a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:22:00.008, [48fd5ccac83d6342,48fd5ccac83d6342] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:23:00.004, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:23:00.213, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:23:02.506, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:23:04.793, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:23:07.106, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:23:09.397, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:23:11.690, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:23:13.979, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:23:16.271, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:23:17.000, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:23:17.000, [81390c1b6a8f7bcd,81390c1b6a8f7bcd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:24:00.003, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:24:00.209, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:24:02.511, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:24:04.776, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:24:07.011, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:24:09.303, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:24:11.593, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:24:13.907, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:24:16.216, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:24:16.950, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:24:16.950, [b654f11f9c1e5618,b654f11f9c1e5618] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:25:00.007, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:25:00.205, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:25:02.500, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:25:04.788, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:25:07.077, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:25:09.361, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:25:11.687, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:25:13.961, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:25:16.232, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:25:16.961, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:25:16.961, [851d0c7a9b3757c1,851d0c7a9b3757c1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:26:00.003, [7097614d74b80db4,7097614d74b80db4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:27:00.007, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:27:00.194, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:27:02.421, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:27:04.612, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:27:06.856, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:27:09.127, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:27:11.402, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:27:13.790, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:27:16.044, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:27:16.784, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:27:16.784, [09f378144abe9bd5,09f378144abe9bd5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:28:00.004, [e01fa968eff06d86,e01fa968eff06d86] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:29:00.003, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:29:00.206, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:29:02.523, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:29:04.789, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:29:07.069, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:29:09.708, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:29:12.013, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:29:14.395, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:29:16.781, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:29:17.511, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:29:17.511, [f48c2e0483c97c32,f48c2e0483c97c32] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:30:00.002, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:30:00.201, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:30:03.855, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:30:06.125, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:30:08.388, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:30:10.692, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:30:12.983, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:30:15.346, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:30:17.657, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:30:18.382, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:30:18.383, [e8c8f3b8dd2df67e,e8c8f3b8dd2df67e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:31:00.003, [d7efa33ec4dba9e0,d7efa33ec4dba9e0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:32:00.006, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:32:00.217, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:32:02.536, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:32:04.802, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:32:07.079, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:32:09.356, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:32:11.633, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:32:13.930, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:32:16.190, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:32:16.903, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:32:16.903, [8616290d1a1a199b,8616290d1a1a199b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:33:00.002, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:33:00.193, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:33:02.448, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:33:04.739, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:33:08.048, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:33:10.323, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:33:12.636, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:33:14.906, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:33:17.172, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:33:17.902, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:33:17.903, [02bd038d2ac5f97b,02bd038d2ac5f97b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:34:00.012, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:34:00.205, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:34:02.492, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:34:04.772, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:34:07.041, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:34:09.608, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:34:11.889, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:34:14.700, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:34:17.073, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:34:17.849, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:34:17.850, [2597a36a559d9fc2,2597a36a559d9fc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:35:00.004, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:35:00.213, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:35:02.496, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:35:04.780, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:35:07.066, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:35:09.353, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:35:11.647, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:35:13.929, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:35:16.195, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:35:16.934, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:35:16.935, [d95aded445bb4125,d95aded445bb4125] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:36:00.010, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:36:00.247, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:36:02.531, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:36:04.826, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:36:07.113, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:36:09.404, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:36:11.695, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:36:13.984, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:36:16.268, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:36:17.009, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:36:17.010, [5526e6e8119b3ad0,5526e6e8119b3ad0] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:37:00.010, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:37:00.215, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:37:02.492, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:37:04.772, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:37:07.055, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:37:09.346, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:37:11.618, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:37:13.916, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:37:16.213, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:37:16.947, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:37:16.947, [472ee69b9000a1be,472ee69b9000a1be] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:38:00.010, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:38:00.215, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:38:02.507, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:38:04.793, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:38:07.081, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:38:09.374, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:38:11.703, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:38:14.008, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:38:16.283, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:38:17.017, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:38:17.018, [41aa84dd379993f2,41aa84dd379993f2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:39:00.010, [e1557fce7bbcaf52,e1557fce7bbcaf52] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:40:00.010, [99928d3a95cf6b33,99928d3a95cf6b33] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:41:00.009, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:41:00.220, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:41:02.503, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:41:04.792, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:41:07.088, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:41:09.364, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:41:11.639, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:41:13.928, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:41:16.194, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:41:16.932, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:41:16.933, [7d9a2cbf1dac2cd3,7d9a2cbf1dac2cd3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:42:00.009, [be603235e6199c56,be603235e6199c56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:43:00.005, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:43:00.218, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:43:02.538, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:43:04.833, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:43:07.172, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:43:09.462, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:43:11.758, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:43:14.060, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:43:16.342, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:43:17.077, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:43:17.077, [7cfe136b83ba4f07,7cfe136b83ba4f07] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:44:00.007, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:44:00.204, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:44:02.481, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:44:04.763, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:44:07.048, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:44:09.344, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:44:11.629, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:44:13.966, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:44:16.247, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:44:16.971, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:44:16.972, [c0918228f08c1ce5,c0918228f08c1ce5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:45:00.009, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:45:00.207, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:45:02.534, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:45:04.827, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:45:07.145, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:45:09.502, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:45:11.789, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:45:14.077, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:45:16.355, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:45:17.072, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:45:17.072, [5a2a2406e3e5bac3,5a2a2406e3e5bac3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:46:00.003, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:46:00.210, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:46:02.535, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:46:04.832, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:46:07.119, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:46:09.412, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:46:11.685, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:46:13.970, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:46:16.233, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:46:16.964, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:46:16.964, [83745bb99ccc4789,83745bb99ccc4789] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:47:00.011, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:47:00.216, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:47:02.688, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:47:04.963, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:47:07.254, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:47:09.535, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:47:11.860, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:47:14.236, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:47:16.514, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:47:17.227, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:47:17.228, [75fea3b190bab259,75fea3b190bab259] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:48:00.007, [18f2003a9974089c,18f2003a9974089c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:49:00.005, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:49:00.288, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:49:02.554, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:49:04.827, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:49:07.133, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:49:09.405, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:49:11.714, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:49:13.992, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:49:16.266, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:49:16.979, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:49:16.980, [e74a1f89483e264e,e74a1f89483e264e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:50:00.003, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:50:00.188, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:50:02.522, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:50:04.871, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:50:07.151, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:50:09.430, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:50:11.813, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:50:14.107, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:50:16.377, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:50:17.087, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:50:17.087, [0a96e852bca2bffc,0a96e852bca2bffc] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:51:00.003, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:51:00.228, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:51:02.529, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:51:04.832, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:51:07.089, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:51:09.345, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:51:11.651, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:51:13.940, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:51:16.207, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:51:16.922, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:51:16.923, [cace0be637ac9d50,cace0be637ac9d50] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:52:00.011, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:52:00.252, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:52:02.525, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:52:04.798, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:52:07.061, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:52:09.340, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:52:11.606, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:52:13.898, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:52:16.184, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:52:16.905, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:52:16.905, [e330bedc8dd9ec22,e330bedc8dd9ec22] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:53:00.005, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:53:00.190, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:53:02.477, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:53:04.761, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:53:07.063, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:53:09.336, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:53:11.608, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:53:13.911, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:53:16.180, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:53:16.898, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:53:16.898, [465793df5d2b2766,465793df5d2b2766] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:54:00.003, [0d96a60f0490f272,0d96a60f0490f272] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:55:00.010, [f9175d12a7b7d069,f9175d12a7b7d069] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:56:00.007, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:56:00.229, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:56:02.499, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:56:04.769, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:56:07.038, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:56:09.312, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:56:11.596, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:56:13.883, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:56:16.153, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:56:16.870, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:56:16.871, [8fce2ade81cc98d4,8fce2ade81cc98d4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:57:00.012, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:57:00.201, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:57:02.521, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:57:04.809, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:57:07.103, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:57:09.379, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:57:11.650, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:57:13.934, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:57:16.237, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:57:16.945, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:57:16.945, [c4cb43a5e88a45b2,c4cb43a5e88a45b2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:58:00.008, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:58:00.212, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:58:02.473, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:58:04.763, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:58:07.034, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:58:09.355, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:58:11.644, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:58:13.943, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:58:16.720, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:58:17.436, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:58:17.437, [80018aa14abc0482,80018aa14abc0482] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+00:59:00.004, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+00:59:00.199, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+00:59:02.462, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+00:59:04.732, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+00:59:07.009, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+00:59:09.286, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+00:59:11.637, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+00:59:13.975, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+00:59:16.247, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+00:59:17.169, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+00:59:17.169, [d2f95288deeca314,d2f95288deeca314] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:00:00.012, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:00:00.203, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:00:02.503, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:00:04.790, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:00:07.066, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:00:09.349, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:00:11.630, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:00:13.944, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:00:16.211, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:00:16.930, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:00:16.930, [60e22ef448265223,60e22ef448265223] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:01:00.009, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:01:00.253, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:01:02.529, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:01:04.839, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:01:07.115, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:01:09.397, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:01:11.670, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:01:13.957, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:01:16.233, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:01:16.956, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:01:16.956, [17ab7bfe1b9f9b0c,17ab7bfe1b9f9b0c] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:02:00.009, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:02:00.204, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:02:02.487, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:02:04.762, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:02:07.039, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:02:09.310, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:02:11.580, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:02:13.880, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:02:16.161, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:02:16.872, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:02:16.872, [175c83ded7911b19,175c83ded7911b19] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:03:00.011, [bc0fd65b5a5c6e37,bc0fd65b5a5c6e37] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:04:00.008, [82308c35f0b97c16,82308c35f0b97c16] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:05:00.006, [3759610d223a6603,3759610d223a6603] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:06:00.008, [2754d842797e70f5,2754d842797e70f5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:07:00.012, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:07:00.226, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:07:02.487, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:07:04.747, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:07:07.039, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:07:09.309, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:07:11.585, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:07:13.889, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:07:16.186, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:07:16.927, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:07:16.927, [177995ded7e4c6a9,177995ded7e4c6a9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:08:00.009, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:08:00.219, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:08:02.507, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:08:04.788, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:08:07.058, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:08:09.325, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:08:11.661, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:08:13.949, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:08:16.206, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:08:16.915, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:08:16.915, [113fc2a024f499c7,113fc2a024f499c7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:09:00.007, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:09:00.192, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:09:02.462, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:09:04.735, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:09:07.000, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:09:09.288, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:09:11.568, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:09:13.860, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:09:16.137, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:09:16.856, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:09:16.857, [c60b4a7bf9e96c5a,c60b4a7bf9e96c5a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:10:00.007, [218d1768c548bd2b,218d1768c548bd2b] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:11:00.012, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:11:00.201, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:11:02.461, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:11:04.743, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:11:07.020, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:11:09.297, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:11:11.623, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:11:13.890, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:11:16.169, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:11:16.880, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:11:16.880, [e44ba6327f3787b8,e44ba6327f3787b8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:12:00.010, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:12:00.228, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:12:02.522, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:12:04.815, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:12:07.087, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:12:09.360, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:12:11.643, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:12:13.934, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:12:16.193, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:12:16.898, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:12:16.898, [7d3489933c979be2,7d3489933c979be2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:13:00.015, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:13:00.209, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:13:02.471, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:13:04.749, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:13:07.017, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:13:09.293, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:13:11.575, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:13:13.865, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:13:16.134, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:13:16.853, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:13:16.854, [23862ff875692d87,23862ff875692d87] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:14:00.003, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:14:00.179, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:14:02.454, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:14:04.742, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:14:07.310, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:14:09.627, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:14:11.949, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:14:14.249, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:14:16.531, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:14:17.267, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:14:17.268, [9ae79a95bc36e9a1,9ae79a95bc36e9a1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:15:00.010, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:15:00.195, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:15:02.511, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:15:04.798, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:15:07.133, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:15:09.407, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:15:11.696, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:15:14.136, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:15:16.399, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:15:17.127, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:15:17.127, [022538b22ee9ada4,022538b22ee9ada4] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:16:00.010, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:16:00.207, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:16:02.529, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:16:04.801, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:16:07.120, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:16:09.406, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:16:11.684, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:16:13.986, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:16:16.277, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:16:17.009, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:16:17.009, [1c73d8525d547f29,1c73d8525d547f29] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:17:00.004, [50e825b1ebb5e535,50e825b1ebb5e535] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:18:00.016, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:18:00.563, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:18:02.843, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:18:05.107, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:18:07.379, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:18:09.653, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:18:11.923, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:18:14.217, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:18:16.484, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:18:17.213, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:18:17.214, [5270952f3e8e1995,5270952f3e8e1995] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:19:00.011, [5bd55f81b9930021,5bd55f81b9930021] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:20:00.005, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:20:00.202, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:20:02.528, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:20:04.859, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:20:07.140, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:20:09.456, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:20:11.746, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:20:14.035, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:20:16.296, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:20:17.028, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:20:17.028, [d44d7e84b9753af2,d44d7e84b9753af2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:21:00.004, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:21:00.240, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:21:02.528, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:21:04.819, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:21:07.116, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:21:09.399, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:21:11.666, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:21:13.957, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:21:16.230, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:21:16.961, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:21:16.961, [8f95e8dfd56b5dc2,8f95e8dfd56b5dc2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:22:00.012, [5849b53e46180014,5849b53e46180014] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:23:00.015, [4244e20896488cd9,4244e20896488cd9] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:24:00.003, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:24:00.196, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:24:02.481, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:24:04.768, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:24:07.044, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:24:09.349, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:24:11.635, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:24:13.940, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:24:16.215, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:24:16.944, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:24:16.944, [35314cb9aae0ffa7,35314cb9aae0ffa7] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:25:00.002, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:25:00.202, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:25:02.480, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:25:04.757, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:25:07.035, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:25:09.329, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:25:11.610, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:25:13.895, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:25:16.174, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:25:16.898, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:25:16.898, [369d7c39865c92c2,369d7c39865c92c2] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:26:00.003, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:26:00.250, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:26:02.529, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:26:04.819, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:26:07.101, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:26:09.389, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:26:11.724, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:26:14.004, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:26:16.271, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:26:17.000, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:26:17.000, [1d3953f1e1ad8684,1d3953f1e1ad8684] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:27:00.003, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:27:00.211, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+01:27:02.510, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+01:27:04.816, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+01:27:07.112, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+01:27:09.409, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+01:27:11.700, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 146 
+01:27:13.996, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 146 
+01:27:16.277, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 146 
+01:27:17.001, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 146 
+01:27:17.002, [96162172e6fbf1e8,96162172e6fbf1e8] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+01:28:00.011, [7c30ccdef91ac545,7c30ccdef91ac545] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+01:33:41.795, [921fd47d448d237a,921fd47d448d237a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+03:21:20.148, [921fd47d448d237a,921fd47d448d237a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+03:21:24.440, [921fd47d448d237a,921fd47d448d237a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+03:21:26.690, [921fd47d448d237a,921fd47d448d237a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+03:21:28.929, [921fd47d448d237a,921fd47d448d237a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+03:21:31.694, [921fd47d448d237a,921fd47d448d237a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+05:09:35.318, [921fd47d448d237a,921fd47d448d237a] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:62 - insurance over due task failed. 
+08:45:31.102, [e5bf361c4fffc31a,e5bf361c4fffc31a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+08:45:31.771, [e5bf361c4fffc31a,e5bf361c4fffc31a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 146 
+08:45:36.310, [e5bf361c4fffc31a,e5bf361c4fffc31a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 146 
+08:45:38.847, [e5bf361c4fffc31a,e5bf361c4fffc31a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 146 
+08:45:41.563, [e5bf361c4fffc31a,e5bf361c4fffc31a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 146 
+08:45:44.668, [e5bf361c4fffc31a,e5bf361c4fffc31a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 146 
+12:21:40.068, [e5bf361c4fffc31a,e5bf361c4fffc31a] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:62 - insurance over due task failed. 
+13:29:30.289, [faad0d2dbe89785e,faad0d2dbe89785e] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+14:27:41.705, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+14:27:42.215, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 142 
+14:27:46.531, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 142 
+14:27:48.800, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 142 
+14:27:51.365, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 142 
+14:27:53.963, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 142 
+14:27:56.552, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 142 
+14:27:59.166, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 142 
+14:28:03.347, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 142 
+14:28:04.153, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 142 
+14:28:04.154, [80cf8aca121329de,80cf8aca121329de] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+14:33:41.797, [c09394ec38f69565,c09394ec38f69565] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+14:34:00.010, [d5d0dcb365193f65,d5d0dcb365193f65] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+14:34:00.454, [d5d0dcb365193f65,d5d0dcb365193f65] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+14:34:04.785, [d5d0dcb365193f65,d5d0dcb365193f65] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+14:34:07.062, [d5d0dcb365193f65,d5d0dcb365193f65] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+14:34:09.364, [d5d0dcb365193f65,d5d0dcb365193f65] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+14:34:11.668, [d5d0dcb365193f65,d5d0dcb365193f65] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 141 
+14:39:10.698, [d5d0dcb365193f65,d5d0dcb365193f65] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:62 - insurance over due task failed. 
+14:44:41.817, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+14:44:42.365, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+14:44:46.830, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+14:44:49.448, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+14:44:52.170, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+14:44:54.868, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 141 
+14:44:57.599, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 141 
+14:45:01.332, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 141 
+14:45:06.436, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 141 
+14:45:06.685, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 141 
+14:45:06.686, [3191276f3f7efec1,3191276f3f7efec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+14:50:51.853, [b463ecb15ee7a017,b463ecb15ee7a017] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+15:00:59.999, [69f2dbca19c366b3,69f2dbca19c366b3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+15:01:00.418, [69f2dbca19c366b3,69f2dbca19c366b3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+15:01:05.215, [69f2dbca19c366b3,69f2dbca19c366b3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+15:01:07.879, [69f2dbca19c366b3,69f2dbca19c366b3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+15:01:10.508, [69f2dbca19c366b3,69f2dbca19c366b3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+15:31:28.717, [69f2dbca19c366b3,69f2dbca19c366b3] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:62 - insurance over due task failed. 
+15:32:00.002, [8c9f654f9b518ec1,8c9f654f9b518ec1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+15:37:00.007, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+15:37:00.372, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+15:37:03.690, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+15:37:05.947, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+15:37:08.512, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+15:37:11.117, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 141 
+15:37:13.706, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 141 
+15:37:16.290, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 141 
+15:37:19.637, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 141 
+15:37:20.032, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 141 
+15:37:20.033, [e95b99aa83e5b388,e95b99aa83e5b388] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+15:42:46.844, [fe8a9bb226e8edaa,fe8a9bb226e8edaa] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+15:43:00.014, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+15:43:00.837, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+15:43:07.227, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+15:43:09.773, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+15:43:12.386, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+15:43:15.258, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 141 
+15:43:17.849, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 141 
+15:43:20.450, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 141 
+15:43:23.003, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 141 
+15:43:23.202, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 141 
+15:43:23.203, [dd261ee0f8e9f0c5,dd261ee0f8e9f0c5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+15:48:41.765, [1208fab2cdad34e5,1208fab2cdad34e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+15:49:00.010, [bfa3591e3d989fa1,bfa3591e3d989fa1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+15:49:00.387, [bfa3591e3d989fa1,bfa3591e3d989fa1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+15:49:04.353, [bfa3591e3d989fa1,bfa3591e3d989fa1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+15:49:06.637, [bfa3591e3d989fa1,bfa3591e3d989fa1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+15:49:08.895, [bfa3591e3d989fa1,bfa3591e3d989fa1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+15:54:10.402, [bfa3591e3d989fa1,bfa3591e3d989fa1] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:62 - insurance over due task failed. 
+15:59:41.748, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+15:59:42.176, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+15:59:46.529, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+15:59:49.100, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+15:59:51.718, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+15:59:54.340, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 141 
+16:00:00.567, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 141 
+16:00:03.221, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 141 
+16:00:05.780, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 141 
+16:00:05.962, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 141 
+16:00:05.963, [706e7c4ba482f9e5,706e7c4ba482f9e5] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+16:05:46.813, [983e17fe55511ab3,983e17fe55511ab3] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+16:06:00.004, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+16:06:00.705, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+16:06:06.929, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+16:06:09.775, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+16:06:12.694, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+16:06:15.521, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 141 
+16:06:18.397, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 141 
+16:06:21.315, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 141 
+16:06:24.200, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 141 
+16:06:24.386, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 141 
+16:06:24.386, [a997d53b9ee3dc56,a997d53b9ee3dc56] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+17:23:13.822, [f1995b46a5f200eb,f1995b46a5f200eb] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+17:28:46.865, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+17:28:47.328, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+17:28:51.737, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+17:28:55.325, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+17:29:00.713, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+17:29:03.412, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 141 
+17:29:06.123, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 141 
+17:29:08.918, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 141 
+17:29:11.690, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 141 
+17:29:11.881, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 141 
+17:29:11.882, [7ee736e408dfec2a,7ee736e408dfec2a] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+17:34:41.743, [804ec17267e8dbc6,804ec17267e8dbc6] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+17:35:00.004, [f930cb71fd86dcf1,f930cb71fd86dcf1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+17:35:00.403, [f930cb71fd86dcf1,f930cb71fd86dcf1] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+17:39:58.865, [f930cb71fd86dcf1,f930cb71fd86dcf1] [pool-2-thread-1] ERROR [] com.yoyo.base.task.task.GetProductDetail execute:62 - insurance over due task failed. 
+17:40:00.006, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+17:40:00.510, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+17:40:03.264, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+17:40:06.002, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+17:40:12.233, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+17:40:14.927, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 141 
+17:40:17.502, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 6,data size: 141 
+17:40:20.320, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 7,data size: 141 
+17:40:22.850, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 8,data size: 141 
+17:40:23.063, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 9,data size: 141 
+17:40:23.064, [3b46da69a2d974bd,3b46da69a2d974bd] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:66 - insurance over due task end. 
+17:45:41.782, [b1b050422c609a6d,b1b050422c609a6d] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+17:46:00.005, [15fd6292a9608dfe,15fd6292a9608dfe] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail execute:39 - insurance over due task begin. 
+17:46:00.523, [15fd6292a9608dfe,15fd6292a9608dfe] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 1,data size: 141 
+17:46:05.140, [15fd6292a9608dfe,15fd6292a9608dfe] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 2,data size: 141 
+17:46:07.714, [15fd6292a9608dfe,15fd6292a9608dfe] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 3,data size: 141 
+17:46:10.282, [15fd6292a9608dfe,15fd6292a9608dfe] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 4,data size: 141 
+17:46:12.867, [15fd6292a9608dfe,15fd6292a9608dfe] [pool-2-thread-1] INFO  [] com.yoyo.base.task.task.GetProductDetail dealProduct:76 - deal product for page 5,data size: 141 

@@ -1,0 +1,4 @@
+cn/idachain/finance/batch/web/req/BatchExecuteRequest.class
+cn/idachain/finance/batch/web/Internal/InternalAPIController.class
+cn/idachain/finance/batch/web/BatchApplication.class
+cn/idachain/finance/batch/web/resp/CommonResult.class
